@@ -27,14 +27,31 @@ const NavBar = styled.nav`
       white-space: nowrap;
       height: 100%;
       padding: 0 1em;
+      position: relative;
 
       &:hover {
         color: #bbb;
+      }
+
+      &::after {
+        opacity: 0;
+        background-color: rgb(107, 255, 228);
+        height: 3px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        content: "";
+        transition: all 0.2s ease-out;
+        position: absolute;
       }
     }
     & > a.selected {
       color: aliceblue;
       background-color: #666;
+
+      &::after {
+        opacity: 1;
+      }
     }
   }
 `;
