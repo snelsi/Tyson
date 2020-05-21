@@ -30,7 +30,7 @@ export const examples = [
   }
   `,
 
-  `key = 123;
+  `  key = 123;
   myVariable = 7 + 2;
   `,
 ];
