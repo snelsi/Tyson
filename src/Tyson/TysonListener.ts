@@ -1,5 +1,5 @@
 // Generated from src/Tyson/Tyson.g4 by ANTLR 4.7.3-SNAPSHOT
-
+/* eslint-disable */
 
 import { ParseTreeListener } from "antlr4ts/tree/ParseTreeListener";
 
@@ -458,4 +458,3 @@ export interface TysonListener extends ParseTreeListener {
 	 */
 	exitIndexes?: (ctx: IndexesContext) => void;
 }
-

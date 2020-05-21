@@ -1,5 +1,5 @@
 // Generated from src/Tyson/Tyson.g4 by ANTLR 4.7.3-SNAPSHOT
-
+/* eslint-disable */
 
 import { ATN } from "antlr4ts/atn/ATN";
 import { ATNDeserializer } from "antlr4ts/atn/ATNDeserializer";
@@ -90,25 +90,25 @@ export class TysonParser extends Parser {
 	public static readonly RULE_indexes = 13;
 	// tslint:disable:no-trailing-whitespace
 	public static readonly ruleNames: string[] = [
-		"prog", "statement", "assignment", "functionCall", "ifStatement", "ifStat", 
-		"elseIfStat", "elseStat", "forStatement", "whileStatement", "exprList", 
+		"prog", "statement", "assignment", "functionCall", "ifStatement", "ifStat",
+		"elseIfStat", "elseStat", "forStatement", "whileStatement", "exprList",
 		"expression", "list", "indexes",
 	];
 
 	private static readonly _LITERAL_NAMES: Array<string | undefined> = [
-		undefined, "'+='", "'-='", "'/='", "'*='", "'^='", "'if'", "'else'", "'return'", 
-		"'for'", "'while'", "'to'", "'do'", "'in'", "'null'", "'||'", "'&&'", 
-		"'=='", "'!='", "'>='", "'<='", "'^'", "'!'", "'>'", "'<'", "'+'", "'-'", 
-		"'*'", "'/'", "'%'", "'{'", "'}'", "'['", "']'", "'('", "')'", "';'", 
+		undefined, "'+='", "'-='", "'/='", "'*='", "'^='", "'if'", "'else'", "'return'",
+		"'for'", "'while'", "'to'", "'do'", "'in'", "'null'", "'||'", "'&&'",
+		"'=='", "'!='", "'>='", "'<='", "'^'", "'!'", "'>'", "'<'", "'+'", "'-'",
+		"'*'", "'/'", "'%'", "'{'", "'}'", "'['", "']'", "'('", "')'", "';'",
 		"'='", "','", "'?'", "':'",
 	];
 	private static readonly _SYMBOLIC_NAMES: Array<string | undefined> = [
-		undefined, undefined, undefined, undefined, undefined, undefined, "If", 
-		"Else", "Return", "For", "While", "To", "Do", "In", "Null", "Or", "And", 
-		"Equals", "NEquals", "GTEquals", "LTEquals", "Pow", "Excl", "GT", "LT", 
-		"Add", "Subtract", "Multiply", "Divide", "Modulus", "OBrace", "CBrace", 
-		"OBracket", "CBracket", "OParen", "CParen", "SColon", "Assign", "Comma", 
-		"QMark", "Colon", "Bool", "Number", "Identifier", "String", "Comment", 
+		undefined, undefined, undefined, undefined, undefined, undefined, "If",
+		"Else", "Return", "For", "While", "To", "Do", "In", "Null", "Or", "And",
+		"Equals", "NEquals", "GTEquals", "LTEquals", "Pow", "Excl", "GT", "LT",
+		"Add", "Subtract", "Multiply", "Divide", "Modulus", "OBrace", "CBrace",
+		"OBracket", "CBracket", "OParen", "CParen", "SColon", "Assign", "Comma",
+		"QMark", "Colon", "Bool", "Number", "Identifier", "String", "Comment",
 		"Space",
 	];
 	public static readonly VOCABULARY: Vocabulary = new VocabularyImpl(TysonParser._LITERAL_NAMES, TysonParser._SYMBOLIC_NAMES, []);
@@ -2449,5 +2449,3 @@ export class IndexesContext extends ParserRuleContext {
 		}
 	}
 }
-
-

@@ -1,5 +1,5 @@
 // Generated from src/Tyson/Tyson.g4 by ANTLR 4.7.3-SNAPSHOT
-
+/* eslint-disable */
 
 import { ATN } from "antlr4ts/atn/ATN";
 import { ATNDeserializer } from "antlr4ts/atn/ATNDeserializer";
@@ -74,28 +74,28 @@ export class TysonLexer extends Lexer {
 	];
 
 	public static readonly ruleNames: string[] = [
-		"T__0", "T__1", "T__2", "T__3", "T__4", "If", "Else", "Return", "For", 
-		"While", "To", "Do", "In", "Null", "Or", "And", "Equals", "NEquals", "GTEquals", 
-		"LTEquals", "Pow", "Excl", "GT", "LT", "Add", "Subtract", "Multiply", 
-		"Divide", "Modulus", "OBrace", "CBrace", "OBracket", "CBracket", "OParen", 
-		"CParen", "SColon", "Assign", "Comma", "QMark", "Colon", "Bool", "Number", 
+		"T__0", "T__1", "T__2", "T__3", "T__4", "If", "Else", "Return", "For",
+		"While", "To", "Do", "In", "Null", "Or", "And", "Equals", "NEquals", "GTEquals",
+		"LTEquals", "Pow", "Excl", "GT", "LT", "Add", "Subtract", "Multiply",
+		"Divide", "Modulus", "OBrace", "CBrace", "OBracket", "CBracket", "OParen",
+		"CParen", "SColon", "Assign", "Comma", "QMark", "Colon", "Bool", "Number",
 		"Identifier", "String", "Comment", "Space", "Int", "Digit",
 	];
 
 	private static readonly _LITERAL_NAMES: Array<string | undefined> = [
-		undefined, "'+='", "'-='", "'/='", "'*='", "'^='", "'if'", "'else'", "'return'", 
-		"'for'", "'while'", "'to'", "'do'", "'in'", "'null'", "'||'", "'&&'", 
-		"'=='", "'!='", "'>='", "'<='", "'^'", "'!'", "'>'", "'<'", "'+'", "'-'", 
-		"'*'", "'/'", "'%'", "'{'", "'}'", "'['", "']'", "'('", "')'", "';'", 
+		undefined, "'+='", "'-='", "'/='", "'*='", "'^='", "'if'", "'else'", "'return'",
+		"'for'", "'while'", "'to'", "'do'", "'in'", "'null'", "'||'", "'&&'",
+		"'=='", "'!='", "'>='", "'<='", "'^'", "'!'", "'>'", "'<'", "'+'", "'-'",
+		"'*'", "'/'", "'%'", "'{'", "'}'", "'['", "']'", "'('", "')'", "';'",
 		"'='", "','", "'?'", "':'",
 	];
 	private static readonly _SYMBOLIC_NAMES: Array<string | undefined> = [
-		undefined, undefined, undefined, undefined, undefined, undefined, "If", 
-		"Else", "Return", "For", "While", "To", "Do", "In", "Null", "Or", "And", 
-		"Equals", "NEquals", "GTEquals", "LTEquals", "Pow", "Excl", "GT", "LT", 
-		"Add", "Subtract", "Multiply", "Divide", "Modulus", "OBrace", "CBrace", 
-		"OBracket", "CBracket", "OParen", "CParen", "SColon", "Assign", "Comma", 
-		"QMark", "Colon", "Bool", "Number", "Identifier", "String", "Comment", 
+		undefined, undefined, undefined, undefined, undefined, undefined, "If",
+		"Else", "Return", "For", "While", "To", "Do", "In", "Null", "Or", "And",
+		"Equals", "NEquals", "GTEquals", "LTEquals", "Pow", "Excl", "GT", "LT",
+		"Add", "Subtract", "Multiply", "Divide", "Modulus", "OBrace", "CBrace",
+		"OBracket", "CBracket", "OParen", "CParen", "SColon", "Assign", "Comma",
+		"QMark", "Colon", "Bool", "Number", "Identifier", "String", "Comment",
 		"Space",
 	];
 	public static readonly VOCABULARY: Vocabulary = new VocabularyImpl(TysonLexer._LITERAL_NAMES, TysonLexer._SYMBOLIC_NAMES, []);
@@ -272,4 +272,3 @@ export class TysonLexer extends Lexer {
 	}
 
 }
-
