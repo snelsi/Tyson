@@ -1,0 +1,13 @@
+{
+  "name": "Tyson Translator",
+  "short_name": "Tyson",
+  "icons": [
+    {
+      "src": "google-touch-icon.png",
+      "sizes": "512x512"
+    }
+  ],
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "display": "standalone"
+}
