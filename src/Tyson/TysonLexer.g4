@@ -39,57 +39,32 @@ DivideAssign:                   '/=';
 ModulusAssign:                  '%=';
 PlusAssign:                     '+=';
 MinusAssign:                    '-=';
-PowerAssign:                   '^=';
-
-/// Null Literals
+PowerAssign:                    '^=';
 
 NullLiteral:                    'null';
 
-/// Boolean Literals
-
 BooleanLiteral:                 'true'
               |                 'false';
-
-/// Numeric Literals
 
 DecimalLiteral:                 DecimalIntegerLiteral
               |                 DecimalIntegerLiteral '.' [0-9]* ?
               |                 '.' [0-9]+ ?
               ;
 
-/// Keywords
-
-Break:                          'break';
-Do:                             'do';
-Else:                           'else';
-Continue:                       'continue';
-For:                            'for';
-While:                          'while';
 If:                             'if';
-
-/// Future Reserved Words
+Else:                           'else';
+For:                            'for';
+Do:                             'do';
+While:                          'while';
+Continue:                       'continue';
+Break:                          'break';
 
 Var:                            'var';
 Let:                            'let';
 Const:                          'const';
 
-//keywords:
-
-Any : 'any';
-Number: 'number';
-Boolean: 'boolean';
-String: 'string';
-Symbol: 'symbol';
-
-
-TypeAlias : 'type';
-
-
-/// Identifier Names and Identifiers
-
 Identifier:                     IdentifierStart IdentifierPart*;
 
-/// String Literals
 StringLiteral:                 ('"' DoubleStringCharacter* '"'
              |                  '\'' SingleStringCharacter* '\'')
              ;
@@ -98,11 +73,6 @@ WhiteSpaces:                    [\t\u000B\u000C\u0020\u00A0]+ -> channel(HIDDEN)
 
 LineTerminator:                 [\r\n\u2028\u2029] -> channel(HIDDEN);
 
-
-/// Comments
-
-HtmlComment:                    '<!--' .*? '-->' -> channel(HIDDEN);
-CDataComment:                   '<![CDATA[' .*? ']]>' -> channel(HIDDEN);
 UnexpectedCharacter:            . -> channel(ERROR);
 
 // Fragment rules
@@ -117,7 +87,6 @@ fragment SingleStringCharacter
     ;
 fragment EscapeSequence
     : CharacterEscapeSequence
-    | '0' // no digit ahead! TODO
     ;
 fragment CharacterEscapeSequence
     : SingleEscapeCharacter

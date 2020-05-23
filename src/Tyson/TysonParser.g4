@@ -5,15 +5,11 @@ options {
 }
 
 program
-    : statementList? EOF
-    ;
-
-statementList
-    : statement+
+    : statement* EOF
     ;
 
 statement
-    : OpenBrace statementList? CloseBrace
+    : OpenBrace statement* CloseBrace
     | variableStatement
     | emptyStatement
     | expressionStatement
@@ -101,7 +97,6 @@ singleExpression
     | singleExpression And singleExpression                                                           # LogicalAndExpression
     | singleExpression Or singleExpression                                                            # LogicalOrExpression
     | singleExpression QuestionMark singleExpression Colon singleExpression                           # TernaryExpression
-    | <assoc=right> singleExpression Assign singleExpression                                          # AssignmentExpression
     | <assoc=right> singleExpression assignmentOperator singleExpression                              # AssignmentOperatorExpression
     | Identifier                                                                                      # IdentifierExpression
     | literal                                                                                         # LiteralExpression
@@ -110,7 +105,8 @@ singleExpression
     ;
 
 assignmentOperator
-    : MultiplyAssign
+    : Assign
+    | MultiplyAssign
     | DivideAssign
     | ModulusAssign
     | PlusAssign
@@ -127,28 +123,4 @@ literal
 
 numericLiteral
     : DecimalLiteral
-    ;
-
-identifierName
-    : Identifier
-    | reservedWord
-    ;
-
-reservedWord
-    : keyword
-    | NullLiteral
-    | BooleanLiteral
-    ;
-
-keyword
-    : Var
-    | Let
-    | Const
-    | If
-    | Else
-    | For
-    | Do
-    | While
-    | Break
-    | Continue
     ;

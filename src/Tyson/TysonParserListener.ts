@@ -19,7 +19,6 @@ import { EqualityExpressionContext } from "./TysonParser";
 import { LogicalAndExpressionContext } from "./TysonParser";
 import { LogicalOrExpressionContext } from "./TysonParser";
 import { TernaryExpressionContext } from "./TysonParser";
-import { AssignmentExpressionContext } from "./TysonParser";
 import { AssignmentOperatorExpressionContext } from "./TysonParser";
 import { IdentifierExpressionContext } from "./TysonParser";
 import { LiteralExpressionContext } from "./TysonParser";
@@ -29,7 +28,6 @@ import { DoStatementContext } from "./TysonParser";
 import { WhileStatementContext } from "./TysonParser";
 import { ForStatementContext } from "./TysonParser";
 import { ProgramContext } from "./TysonParser";
-import { StatementListContext } from "./TysonParser";
 import { StatementContext } from "./TysonParser";
 import { EmptyStatementContext } from "./TysonParser";
 import { VariableStatementContext } from "./TysonParser";
@@ -49,9 +47,6 @@ import { SingleExpressionContext } from "./TysonParser";
 import { AssignmentOperatorContext } from "./TysonParser";
 import { LiteralContext } from "./TysonParser";
 import { NumericLiteralContext } from "./TysonParser";
-import { IdentifierNameContext } from "./TysonParser";
-import { ReservedWordContext } from "./TysonParser";
-import { KeywordContext } from "./TysonParser";
 
 
 /**
@@ -268,19 +263,6 @@ export interface TysonParserListener extends ParseTreeListener {
 	exitTernaryExpression?: (ctx: TernaryExpressionContext) => void;
 
 	/**
-	 * Enter a parse tree produced by the `AssignmentExpression`
-	 * labeled alternative in `TysonParser.singleExpression`.
-	 * @param ctx the parse tree
-	 */
-	enterAssignmentExpression?: (ctx: AssignmentExpressionContext) => void;
-	/**
-	 * Exit a parse tree produced by the `AssignmentExpression`
-	 * labeled alternative in `TysonParser.singleExpression`.
-	 * @param ctx the parse tree
-	 */
-	exitAssignmentExpression?: (ctx: AssignmentExpressionContext) => void;
-
-	/**
 	 * Enter a parse tree produced by the `AssignmentOperatorExpression`
 	 * labeled alternative in `TysonParser.singleExpression`.
 	 * @param ctx the parse tree
@@ -394,17 +376,6 @@ export interface TysonParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	exitProgram?: (ctx: ProgramContext) => void;
-
-	/**
-	 * Enter a parse tree produced by `TysonParser.statementList`.
-	 * @param ctx the parse tree
-	 */
-	enterStatementList?: (ctx: StatementListContext) => void;
-	/**
-	 * Exit a parse tree produced by `TysonParser.statementList`.
-	 * @param ctx the parse tree
-	 */
-	exitStatementList?: (ctx: StatementListContext) => void;
 
 	/**
 	 * Enter a parse tree produced by `TysonParser.statement`.
@@ -614,38 +585,5 @@ export interface TysonParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	exitNumericLiteral?: (ctx: NumericLiteralContext) => void;
-
-	/**
-	 * Enter a parse tree produced by `TysonParser.identifierName`.
-	 * @param ctx the parse tree
-	 */
-	enterIdentifierName?: (ctx: IdentifierNameContext) => void;
-	/**
-	 * Exit a parse tree produced by `TysonParser.identifierName`.
-	 * @param ctx the parse tree
-	 */
-	exitIdentifierName?: (ctx: IdentifierNameContext) => void;
-
-	/**
-	 * Enter a parse tree produced by `TysonParser.reservedWord`.
-	 * @param ctx the parse tree
-	 */
-	enterReservedWord?: (ctx: ReservedWordContext) => void;
-	/**
-	 * Exit a parse tree produced by `TysonParser.reservedWord`.
-	 * @param ctx the parse tree
-	 */
-	exitReservedWord?: (ctx: ReservedWordContext) => void;
-
-	/**
-	 * Enter a parse tree produced by `TysonParser.keyword`.
-	 * @param ctx the parse tree
-	 */
-	enterKeyword?: (ctx: KeywordContext) => void;
-	/**
-	 * Exit a parse tree produced by `TysonParser.keyword`.
-	 * @param ctx the parse tree
-	 */
-	exitKeyword?: (ctx: KeywordContext) => void;
 }
 

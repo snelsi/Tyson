@@ -19,7 +19,6 @@ import { EqualityExpressionContext } from "./TysonParser";
 import { LogicalAndExpressionContext } from "./TysonParser";
 import { LogicalOrExpressionContext } from "./TysonParser";
 import { TernaryExpressionContext } from "./TysonParser";
-import { AssignmentExpressionContext } from "./TysonParser";
 import { AssignmentOperatorExpressionContext } from "./TysonParser";
 import { IdentifierExpressionContext } from "./TysonParser";
 import { LiteralExpressionContext } from "./TysonParser";
@@ -29,7 +28,6 @@ import { DoStatementContext } from "./TysonParser";
 import { WhileStatementContext } from "./TysonParser";
 import { ForStatementContext } from "./TysonParser";
 import { ProgramContext } from "./TysonParser";
-import { StatementListContext } from "./TysonParser";
 import { StatementContext } from "./TysonParser";
 import { EmptyStatementContext } from "./TysonParser";
 import { VariableStatementContext } from "./TysonParser";
@@ -49,9 +47,6 @@ import { SingleExpressionContext } from "./TysonParser";
 import { AssignmentOperatorContext } from "./TysonParser";
 import { LiteralContext } from "./TysonParser";
 import { NumericLiteralContext } from "./TysonParser";
-import { IdentifierNameContext } from "./TysonParser";
-import { ReservedWordContext } from "./TysonParser";
-import { KeywordContext } from "./TysonParser";
 
 
 /**
@@ -191,14 +186,6 @@ export interface TysonParserVisitor<Result> extends ParseTreeVisitor<Result> {
 	visitTernaryExpression?: (ctx: TernaryExpressionContext) => Result;
 
 	/**
-	 * Visit a parse tree produced by the `AssignmentExpression`
-	 * labeled alternative in `TysonParser.singleExpression`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitAssignmentExpression?: (ctx: AssignmentExpressionContext) => Result;
-
-	/**
 	 * Visit a parse tree produced by the `AssignmentOperatorExpression`
 	 * labeled alternative in `TysonParser.singleExpression`.
 	 * @param ctx the parse tree
@@ -268,13 +255,6 @@ export interface TysonParserVisitor<Result> extends ParseTreeVisitor<Result> {
 	 * @return the visitor result
 	 */
 	visitProgram?: (ctx: ProgramContext) => Result;
-
-	/**
-	 * Visit a parse tree produced by `TysonParser.statementList`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitStatementList?: (ctx: StatementListContext) => Result;
 
 	/**
 	 * Visit a parse tree produced by `TysonParser.statement`.
@@ -408,26 +388,5 @@ export interface TysonParserVisitor<Result> extends ParseTreeVisitor<Result> {
 	 * @return the visitor result
 	 */
 	visitNumericLiteral?: (ctx: NumericLiteralContext) => Result;
-
-	/**
-	 * Visit a parse tree produced by `TysonParser.identifierName`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitIdentifierName?: (ctx: IdentifierNameContext) => Result;
-
-	/**
-	 * Visit a parse tree produced by `TysonParser.reservedWord`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitReservedWord?: (ctx: ReservedWordContext) => Result;
-
-	/**
-	 * Visit a parse tree produced by `TysonParser.keyword`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitKeyword?: (ctx: KeywordContext) => Result;
 }
 
