@@ -5,8 +5,7 @@ export const parsePolskaNotation = (props: Input[]): number => {
   if (!props) throw new Error("Input is empty");
   const stack = [];
 
-  for (let i = 0; i < props.length; i++) {
-    const variable = props[i];
+  for (let variable of props) {
     if (typeof variable === "number") {
       stack.push(variable);
     } else if (variable === "+" || variable === "-" || variable === "*" || variable === "/") {

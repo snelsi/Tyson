@@ -12,14 +12,12 @@ const Editor: React.FC<Props> = ({ initialCode, setRef }) => {
   };
 
   return (
-    <>
-      <Monaco
-        value={initialCode}
-        theme="light"
-        language="javascript"
-        editorDidMount={handleEditorDidMount}
-      />
-    </>
+    <Monaco
+      value={initialCode}
+      theme="light"
+      language="javascript"
+      editorDidMount={handleEditorDidMount}
+    />
   );
 };
 
