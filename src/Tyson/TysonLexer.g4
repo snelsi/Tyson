@@ -47,8 +47,8 @@ BooleanLiteral:                 'true'
               |                 'false';
 
 DecimalLiteral:                 DecimalIntegerLiteral
-              |                 DecimalIntegerLiteral '.' [0-9]* ?
-              |                 '.' [0-9]+ ?
+              |                 DecimalIntegerLiteral '.' [0-9]*
+              |                 '.' [0-9]+
               ;
 
 If:                             'if';

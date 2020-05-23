@@ -768,14 +768,12 @@ export class TysonParser extends Parser {
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			{
 			this.state = 134;
 			this.match(TysonParser.OpenBracket);
 			this.state = 135;
 			this.elementList();
 			this.state = 136;
 			this.match(TysonParser.CloseBracket);
-			}
 			}
 		}
 		catch (re) {
@@ -2124,11 +2122,11 @@ export class BreakStatementContext extends ParserRuleContext {
 
 
 export class ArrayLiteralContext extends ParserRuleContext {
-	public OpenBracket(): TerminalNode | undefined { return this.tryGetToken(TysonParser.OpenBracket, 0); }
-	public elementList(): ElementListContext | undefined {
-		return this.tryGetRuleContext(0, ElementListContext);
+	public OpenBracket(): TerminalNode { return this.getToken(TysonParser.OpenBracket, 0); }
+	public elementList(): ElementListContext {
+		return this.getRuleContext(0, ElementListContext);
 	}
-	public CloseBracket(): TerminalNode | undefined { return this.tryGetToken(TysonParser.CloseBracket, 0); }
+	public CloseBracket(): TerminalNode { return this.getToken(TysonParser.CloseBracket, 0); }
 	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
 		super(parent, invokingState);
 	}

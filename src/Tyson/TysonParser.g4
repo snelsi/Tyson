@@ -69,7 +69,7 @@ breakStatement
     ;
 
 arrayLiteral
-    : (OpenBracket elementList CloseBracket)
+    : OpenBracket elementList CloseBracket
     ;
 
 elementList
