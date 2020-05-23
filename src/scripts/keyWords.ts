@@ -70,11 +70,6 @@ export const keyWords = [
     details: "optional logic operator",
   },
   {
-    id: 215,
-    word: "return",
-    details: "return operator",
-  },
-  {
     id: 216,
     word: "const",
     details: "constant variable",
