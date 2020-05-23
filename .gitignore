@@ -11,6 +11,9 @@
 # production
 /build
 
+# tools generated
+.antlr
+
 # misc
 .DS_Store
 .env.local
