@@ -2,8 +2,10 @@ import React, { useRef } from "react";
 import styled from "styled-components";
 
 import { Nav } from "Nav";
-import Editor from "Editor";
+import { Window } from "Window/Window";
+
 import Tabs from "Tabs/Tabs";
+
 import { FAQ } from "FAQ";
 
 const Frame = styled.div`
@@ -19,7 +21,6 @@ const Frame = styled.div`
 const Grid = styled.div`
   --tabs-width: 800px;
   display: grid;
-  grid-template-columns: 1fr var(--tabs-width, 700px);
   width: 100%;
   height: 100%;
   overflow: auto;
@@ -43,21 +44,19 @@ const Grid = styled.div`
     padding-bottom: 40px;
   }
 
+  @media (min-width: 1081px) {
+    grid-template-columns: 1fr var(--tabs-width, 700px);
+  }
   @media (max-width: 1440px) {
     --tabs-width: 700px;
   }
   @media (max-width: 1080px) {
     --tabs-width: 1fr;
-    grid-template-columns: 1fr;
+    grid-template-rows: 40vh 1fr;
     & .tabs {
       border-top: 1px solid grey;
     }
   }
-`;
-
-const Wrapper = styled.div`
-  width: 100%;
-  overflow: hidden;
 `;
 
 interface AppProps {
@@ -79,9 +78,7 @@ const App: React.FC<AppProps> = ({ code }) => {
       <Nav />
       <Grid>
         <div className="left">
-          <Wrapper>
-            <Editor initialCode={code} setRef={setRef} />
-          </Wrapper>
+          <Window initialCode={code} setRef={setRef} />
           <FAQ />
         </div>
         <Tabs getCode={getValue} />

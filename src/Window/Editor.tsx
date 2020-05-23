@@ -1,12 +1,12 @@
 import * as React from "react";
 import Monaco from "@monaco-editor/react";
 
-interface Props {
+interface EditorProps {
   initialCode: string;
   setRef: (ref: () => string) => void;
 }
 
-const Editor: React.FC<Props> = ({ initialCode, setRef }) => {
+export const Editor: React.FC<EditorProps> = ({ initialCode, setRef }) => {
   const handleEditorDidMount = (getCurrentValue: () => string) => {
     setRef(getCurrentValue);
   };
@@ -20,5 +20,3 @@ const Editor: React.FC<Props> = ({ initialCode, setRef }) => {
     />
   );
 };
-
-export default Editor;
