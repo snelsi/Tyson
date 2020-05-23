@@ -1,5 +1,6 @@
 // Generated from src/Tyson/TysonParser.g4 by ANTLR 4.7.3-SNAPSHOT
 
+
 import { ParseTreeVisitor } from "antlr4ts/tree/ParseTreeVisitor";
 
 import { MemberIndexExpressionContext } from "./TysonParser";
@@ -30,7 +31,6 @@ import { ForStatementContext } from "./TysonParser";
 import { ProgramContext } from "./TysonParser";
 import { StatementListContext } from "./TysonParser";
 import { StatementContext } from "./TysonParser";
-import { BlockContext } from "./TysonParser";
 import { EmptyStatementContext } from "./TysonParser";
 import { VariableStatementContext } from "./TysonParser";
 import { VariableDeclarationListContext } from "./TysonParser";
@@ -52,7 +52,6 @@ import { NumericLiteralContext } from "./TysonParser";
 import { IdentifierNameContext } from "./TysonParser";
 import { ReservedWordContext } from "./TysonParser";
 import { KeywordContext } from "./TysonParser";
-import { EosContext } from "./TysonParser";
 
 
 /**
@@ -285,13 +284,6 @@ export interface TysonParserVisitor<Result> extends ParseTreeVisitor<Result> {
 	visitStatement?: (ctx: StatementContext) => Result;
 
 	/**
-	 * Visit a parse tree produced by `TysonParser.block`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitBlock?: (ctx: BlockContext) => Result;
-
-	/**
 	 * Visit a parse tree produced by `TysonParser.emptyStatement`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -437,11 +429,5 @@ export interface TysonParserVisitor<Result> extends ParseTreeVisitor<Result> {
 	 * @return the visitor result
 	 */
 	visitKeyword?: (ctx: KeywordContext) => Result;
-
-	/**
-	 * Visit a parse tree produced by `TysonParser.eos`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitEos?: (ctx: EosContext) => Result;
 }
+

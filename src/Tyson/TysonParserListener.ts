@@ -1,5 +1,6 @@
 // Generated from src/Tyson/TysonParser.g4 by ANTLR 4.7.3-SNAPSHOT
 
+
 import { ParseTreeListener } from "antlr4ts/tree/ParseTreeListener";
 
 import { MemberIndexExpressionContext } from "./TysonParser";
@@ -30,7 +31,6 @@ import { ForStatementContext } from "./TysonParser";
 import { ProgramContext } from "./TysonParser";
 import { StatementListContext } from "./TysonParser";
 import { StatementContext } from "./TysonParser";
-import { BlockContext } from "./TysonParser";
 import { EmptyStatementContext } from "./TysonParser";
 import { VariableStatementContext } from "./TysonParser";
 import { VariableDeclarationListContext } from "./TysonParser";
@@ -52,7 +52,6 @@ import { NumericLiteralContext } from "./TysonParser";
 import { IdentifierNameContext } from "./TysonParser";
 import { ReservedWordContext } from "./TysonParser";
 import { KeywordContext } from "./TysonParser";
-import { EosContext } from "./TysonParser";
 
 
 /**
@@ -419,17 +418,6 @@ export interface TysonParserListener extends ParseTreeListener {
 	exitStatement?: (ctx: StatementContext) => void;
 
 	/**
-	 * Enter a parse tree produced by `TysonParser.block`.
-	 * @param ctx the parse tree
-	 */
-	enterBlock?: (ctx: BlockContext) => void;
-	/**
-	 * Exit a parse tree produced by `TysonParser.block`.
-	 * @param ctx the parse tree
-	 */
-	exitBlock?: (ctx: BlockContext) => void;
-
-	/**
 	 * Enter a parse tree produced by `TysonParser.emptyStatement`.
 	 * @param ctx the parse tree
 	 */
@@ -659,15 +647,5 @@ export interface TysonParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	exitKeyword?: (ctx: KeywordContext) => void;
-
-	/**
-	 * Enter a parse tree produced by `TysonParser.eos`.
-	 * @param ctx the parse tree
-	 */
-	enterEos?: (ctx: EosContext) => void;
-	/**
-	 * Exit a parse tree produced by `TysonParser.eos`.
-	 * @param ctx the parse tree
-	 */
-	exitEos?: (ctx: EosContext) => void;
 }
+

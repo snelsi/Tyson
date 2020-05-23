@@ -13,7 +13,7 @@ statementList
     ;
 
 statement
-    : block
+    : OpenBrace statementList? CloseBrace
     | variableStatement
     | emptyStatement
     | expressionStatement
@@ -23,16 +23,12 @@ statement
     | breakStatement
     ;
 
-block
-    : OpenBrace statementList? CloseBrace
-    ;
-
 emptyStatement
     : SemiColon
     ;
 
 variableStatement
-    : variableDeclarationList eos
+    : variableDeclarationList SemiColon
     ;
 
 variableDeclarationList
@@ -55,7 +51,7 @@ assignable
     ;
 
 expressionStatement
-    : expressionSequence eos
+    : expressionSequence SemiColon
     ;
 
 ifStatement
@@ -63,17 +59,17 @@ ifStatement
     ;
 
 iterationStatement
-    : Do statement While OpenParen expressionSequence CloseParen eos                                                                                   # DoStatement
+    : Do statement While OpenParen expressionSequence CloseParen SemiColon                                                                             # DoStatement
     | While OpenParen expressionSequence CloseParen statement                                                                                          # WhileStatement
     | For OpenParen (expressionSequence | variableDeclarationList)? SemiColon expressionSequence? SemiColon expressionSequence? CloseParen statement   # ForStatement
     ;
 
 continueStatement
-    : Continue eos
+    : Continue SemiColon
     ;
 
 breakStatement
-    : Break eos
+    : Break SemiColon
     ;
 
 arrayLiteral
@@ -155,9 +151,4 @@ keyword
     | While
     | Break
     | Continue
-    ;
-
-eos
-    : SemiColon
-    | EOF
     ;
