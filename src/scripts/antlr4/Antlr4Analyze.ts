@@ -1,22 +1,22 @@
 import { ANTLRInputStream, CommonTokenStream } from "antlr4ts";
 import { AbstractParseTreeVisitor } from "antlr4ts/tree/AbstractParseTreeVisitor";
 
-import { TysonVisitor } from "Tyson/TysonVisitor";
+import { TysonParserVisitor } from "Tyson/TysonParserVisitor";
 import { TysonLexer } from "Tyson/TysonLexer";
 import { TysonParser } from "Tyson/TysonParser";
 
 class CountFunctionsVisitor extends AbstractParseTreeVisitor<number>
-  implements TysonVisitor<number> {
-  defaultResult() {
+  implements TysonParserVisitor<number> {
+  public defaultResult() {
     return 0;
   }
 
-  aggregateResult(aggregate: number, nextResult: number) {
+  public aggregateResult(aggregate: number, nextResult: number) {
     return aggregate + nextResult;
   }
 
   // FunctionDeclarationContext
-  visitFunctionDeclaration(context: any): number {
+  public visitFunctionDeclaration(context: any): number {
     return 1 + super.visitChildren(context);
   }
 }
@@ -43,7 +43,7 @@ export const AntlrParse = (input: string) => {
   console.log("Parser: ", parser);
 
   // Parse the input, where `compilationUnit` is whatever entry point you defined
-  const tree = parser.prog();
+  const tree = parser.program();
   console.log("Tree: ", tree);
 
   // Create the visitor
