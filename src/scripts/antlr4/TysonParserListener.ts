@@ -26,6 +26,7 @@ import { WhileStatementContext } from "./TysonParser";
 import { ForStatementContext } from "./TysonParser";
 import { ProgramContext } from "./TysonParser";
 import { StatementContext } from "./TysonParser";
+import { BracketStatementContext } from "./TysonParser";
 import { LogStatementContext } from "./TysonParser";
 import { EmptyStatementContext } from "./TysonParser";
 import { VariableStatementContext } from "./TysonParser";
@@ -343,6 +344,17 @@ export interface TysonParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	exitStatement?: (ctx: StatementContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `TysonParser.bracketStatement`.
+	 * @param ctx the parse tree
+	 */
+	enterBracketStatement?: (ctx: BracketStatementContext) => void;
+	/**
+	 * Exit a parse tree produced by `TysonParser.bracketStatement`.
+	 * @param ctx the parse tree
+	 */
+	exitBracketStatement?: (ctx: BracketStatementContext) => void;
 
 	/**
 	 * Enter a parse tree produced by `TysonParser.logStatement`.

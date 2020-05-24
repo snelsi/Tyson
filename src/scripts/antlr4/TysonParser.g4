@@ -9,7 +9,7 @@ program
     ;
 
 statement
-    : OpenBrace statement* CloseBrace
+    : bracketStatement
     | variableStatement
     | expressionStatement
     | ifStatement
@@ -20,9 +20,13 @@ statement
     | emptyStatement
     ;
 
+bracketStatement
+    : OpenBrace statement* CloseBrace
+    ;
+
 logStatement
-: Log OpenParen singleExpression CloseParen
-;
+    : Log OpenParen singleExpression CloseParen
+    ;
 
 emptyStatement
     : SemiColon
