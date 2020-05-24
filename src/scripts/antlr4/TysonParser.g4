@@ -11,12 +11,12 @@ program
 statement
     : OpenBrace statement* CloseBrace
     | variableStatement
-    | emptyStatement
     | expressionStatement
     | ifStatement
     | iterationStatement
     | continueStatement
     | breakStatement
+    | emptyStatement
     ;
 
 emptyStatement
@@ -28,22 +28,13 @@ variableStatement
     ;
 
 variableDeclarationList
-    : varModifier variableDeclaration
+    : varModifier Identifier (Assign singleExpression)?
     ;
 
 varModifier
     : Var
     | Let
     | Const
-    ;
-
-variableDeclaration
-    : assignable (Assign singleExpression)?
-    ;
-
-assignable
-    : Identifier
-    | arrayLiteral
     ;
 
 expressionStatement
@@ -68,10 +59,6 @@ breakStatement
     : Break SemiColon
     ;
 
-arrayLiteral
-    : OpenBracket elementList CloseBracket
-    ;
-
 elementList
     : (singleExpression (Comma singleExpression)*)?
     ;
@@ -81,7 +68,9 @@ expressionSequence
     ;
 
 singleExpression
-    : singleExpression OpenBracket expressionSequence CloseBracket                                    # MemberIndexExpression
+    : Identifier                                                                                      # IdentifierExpression
+    | literal                                                                                         # LiteralExpression
+    | OpenParen expressionSequence CloseParen                                                         # ParenthesizedExpression
     | singleExpression PlusPlus                                                                       # PostIncrementExpression
     | singleExpression MinusMinus                                                                     # PostDecreaseExpression
     | PlusPlus singleExpression                                                                       # PreIncrementExpression
@@ -96,12 +85,7 @@ singleExpression
     | singleExpression (Equals | NotEquals) singleExpression                                          # EqualityExpression
     | singleExpression And singleExpression                                                           # LogicalAndExpression
     | singleExpression Or singleExpression                                                            # LogicalOrExpression
-    | singleExpression QuestionMark singleExpression Colon singleExpression                           # TernaryExpression
     | <assoc=right> singleExpression assignmentOperator singleExpression                              # AssignmentOperatorExpression
-    | Identifier                                                                                      # IdentifierExpression
-    | literal                                                                                         # LiteralExpression
-    | arrayLiteral                                                                                    # ArrayLiteralExpression
-    | OpenParen expressionSequence CloseParen                                                         # ParenthesizedExpression
     ;
 
 assignmentOperator

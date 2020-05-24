@@ -5,8 +5,6 @@ channels { ERROR }
 MultiLineComment:               '/*' .*? '*/'             -> channel(HIDDEN);
 SingleLineComment:              '//' ~[\r\n\u2028\u2029]* -> channel(HIDDEN);
 
-OpenBracket:                    '[';
-CloseBracket:                   ']';
 OpenParen:                      '(';
 CloseParen:                     ')';
 OpenBrace:                      '{';
@@ -14,7 +12,6 @@ CloseBrace:                     '}';
 SemiColon:                      ';';
 Comma:                          ',';
 Assign:                         '=';
-QuestionMark:                   '?';
 Colon:                          ':';
 Dot:                            '.';
 PlusPlus:                       '++';
