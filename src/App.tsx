@@ -81,7 +81,7 @@ const App: React.FC<AppProps> = ({ code }) => {
           <Window initialCode={code} setRef={setRef} />
           <FAQ />
         </div>
-        <Tabs getCode={getValue} />
+        <Tabs getCode={getValue} initialCode={code} />
       </Grid>
     </Frame>
   );

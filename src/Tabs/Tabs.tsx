@@ -16,11 +16,14 @@ const Tabs = styled(MTabs)({
 
 interface Props {
   getCode: () => string;
+  initialCode?: string;
 }
 
-const Sidebar: React.FC<Props> = ({ getCode }) => {
+const Sidebar: React.FC<Props> = ({ getCode, initialCode = "" }) => {
   const [value, setValue] = useState(0);
-  const [code, setCode] = useState(getCode());
+  const [code, setCode] = useState(initialCode);
+
+  React.useEffect(() => setCode(initialCode), [initialCode]);
 
   const lexemas = useMemo(() => {
     console.clear();
