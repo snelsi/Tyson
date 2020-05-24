@@ -26,6 +26,7 @@ import { WhileStatementContext } from "./TysonParser";
 import { ForStatementContext } from "./TysonParser";
 import { ProgramContext } from "./TysonParser";
 import { StatementContext } from "./TysonParser";
+import { LogStatementContext } from "./TysonParser";
 import { EmptyStatementContext } from "./TysonParser";
 import { VariableStatementContext } from "./TysonParser";
 import { VariableDeclarationListContext } from "./TysonParser";
@@ -232,6 +233,13 @@ export interface TysonParserVisitor<Result> extends ParseTreeVisitor<Result> {
 	 * @return the visitor result
 	 */
 	visitStatement?: (ctx: StatementContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `TysonParser.logStatement`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitLogStatement?: (ctx: LogStatementContext) => Result;
 
 	/**
 	 * Visit a parse tree produced by `TysonParser.emptyStatement`.

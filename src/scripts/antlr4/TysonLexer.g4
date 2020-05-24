@@ -56,6 +56,8 @@ While:                          'while';
 Continue:                       'continue';
 Break:                          'break';
 
+Log:                            'log';
+
 Var:                            'var';
 Let:                            'let';
 Const:                          'const';

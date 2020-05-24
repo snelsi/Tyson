@@ -72,37 +72,40 @@ export class TysonParser extends Parser {
 	public static readonly While = 42;
 	public static readonly Continue = 43;
 	public static readonly Break = 44;
-	public static readonly Var = 45;
-	public static readonly Let = 46;
-	public static readonly Const = 47;
-	public static readonly Identifier = 48;
-	public static readonly StringLiteral = 49;
-	public static readonly WhiteSpaces = 50;
-	public static readonly LineTerminator = 51;
-	public static readonly UnexpectedCharacter = 52;
+	public static readonly Log = 45;
+	public static readonly Var = 46;
+	public static readonly Let = 47;
+	public static readonly Const = 48;
+	public static readonly Identifier = 49;
+	public static readonly StringLiteral = 50;
+	public static readonly WhiteSpaces = 51;
+	public static readonly LineTerminator = 52;
+	public static readonly UnexpectedCharacter = 53;
 	public static readonly RULE_program = 0;
 	public static readonly RULE_statement = 1;
-	public static readonly RULE_emptyStatement = 2;
-	public static readonly RULE_variableStatement = 3;
-	public static readonly RULE_variableDeclarationList = 4;
-	public static readonly RULE_varModifier = 5;
-	public static readonly RULE_expressionStatement = 6;
-	public static readonly RULE_ifStatement = 7;
-	public static readonly RULE_iterationStatement = 8;
-	public static readonly RULE_continueStatement = 9;
-	public static readonly RULE_breakStatement = 10;
-	public static readonly RULE_elementList = 11;
-	public static readonly RULE_expressionSequence = 12;
-	public static readonly RULE_singleExpression = 13;
-	public static readonly RULE_assignmentOperator = 14;
-	public static readonly RULE_literal = 15;
-	public static readonly RULE_numericLiteral = 16;
+	public static readonly RULE_logStatement = 2;
+	public static readonly RULE_emptyStatement = 3;
+	public static readonly RULE_variableStatement = 4;
+	public static readonly RULE_variableDeclarationList = 5;
+	public static readonly RULE_varModifier = 6;
+	public static readonly RULE_expressionStatement = 7;
+	public static readonly RULE_ifStatement = 8;
+	public static readonly RULE_iterationStatement = 9;
+	public static readonly RULE_continueStatement = 10;
+	public static readonly RULE_breakStatement = 11;
+	public static readonly RULE_elementList = 12;
+	public static readonly RULE_expressionSequence = 13;
+	public static readonly RULE_singleExpression = 14;
+	public static readonly RULE_assignmentOperator = 15;
+	public static readonly RULE_literal = 16;
+	public static readonly RULE_numericLiteral = 17;
 	// tslint:disable:no-trailing-whitespace
 	public static readonly ruleNames: string[] = [
-		"program", "statement", "emptyStatement", "variableStatement", "variableDeclarationList", 
-		"varModifier", "expressionStatement", "ifStatement", "iterationStatement", 
-		"continueStatement", "breakStatement", "elementList", "expressionSequence", 
-		"singleExpression", "assignmentOperator", "literal", "numericLiteral",
+		"program", "statement", "logStatement", "emptyStatement", "variableStatement", 
+		"variableDeclarationList", "varModifier", "expressionStatement", "ifStatement", 
+		"iterationStatement", "continueStatement", "breakStatement", "elementList", 
+		"expressionSequence", "singleExpression", "assignmentOperator", "literal", 
+		"numericLiteral",
 	];
 
 	private static readonly _LITERAL_NAMES: Array<string | undefined> = [
@@ -111,7 +114,7 @@ export class TysonParser extends Parser {
 		"'%'", "'<'", "'>'", "'<='", "'>='", "'=='", "'!='", "'^'", "'&&'", "'||'", 
 		"'*='", "'/='", "'%='", "'+='", "'-='", "'^='", "'null'", undefined, undefined, 
 		"'if'", "'else'", "'for'", "'do'", "'while'", "'continue'", "'break'", 
-		"'var'", "'let'", "'const'",
+		"'log'", "'var'", "'let'", "'const'",
 	];
 	private static readonly _SYMBOLIC_NAMES: Array<string | undefined> = [
 		undefined, "MultiLineComment", "SingleLineComment", "OpenParen", "CloseParen", 
@@ -121,7 +124,7 @@ export class TysonParser extends Parser {
 		"Equals", "NotEquals", "Power", "And", "Or", "MultiplyAssign", "DivideAssign", 
 		"ModulusAssign", "PlusAssign", "MinusAssign", "PowerAssign", "NullLiteral", 
 		"BooleanLiteral", "DecimalLiteral", "If", "Else", "For", "Do", "While", 
-		"Continue", "Break", "Var", "Let", "Const", "Identifier", "StringLiteral", 
+		"Continue", "Break", "Log", "Var", "Let", "Const", "Identifier", "StringLiteral", 
 		"WhiteSpaces", "LineTerminator", "UnexpectedCharacter",
 	];
 	public static readonly VOCABULARY: Vocabulary = new VocabularyImpl(TysonParser._LITERAL_NAMES, TysonParser._SYMBOLIC_NAMES, []);
@@ -154,21 +157,21 @@ export class TysonParser extends Parser {
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 37;
+			this.state = 39;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			while ((((_la) & ~0x1F) === 0 && ((1 << _la) & ((1 << TysonParser.OpenParen) | (1 << TysonParser.OpenBrace) | (1 << TysonParser.SemiColon) | (1 << TysonParser.PlusPlus) | (1 << TysonParser.MinusMinus) | (1 << TysonParser.Plus) | (1 << TysonParser.Minus) | (1 << TysonParser.Not))) !== 0) || ((((_la - 35)) & ~0x1F) === 0 && ((1 << (_la - 35)) & ((1 << (TysonParser.NullLiteral - 35)) | (1 << (TysonParser.BooleanLiteral - 35)) | (1 << (TysonParser.DecimalLiteral - 35)) | (1 << (TysonParser.If - 35)) | (1 << (TysonParser.For - 35)) | (1 << (TysonParser.Do - 35)) | (1 << (TysonParser.While - 35)) | (1 << (TysonParser.Continue - 35)) | (1 << (TysonParser.Break - 35)) | (1 << (TysonParser.Var - 35)) | (1 << (TysonParser.Let - 35)) | (1 << (TysonParser.Const - 35)) | (1 << (TysonParser.Identifier - 35)) | (1 << (TysonParser.StringLiteral - 35)))) !== 0)) {
+			while ((((_la) & ~0x1F) === 0 && ((1 << _la) & ((1 << TysonParser.OpenParen) | (1 << TysonParser.OpenBrace) | (1 << TysonParser.SemiColon) | (1 << TysonParser.PlusPlus) | (1 << TysonParser.MinusMinus) | (1 << TysonParser.Plus) | (1 << TysonParser.Minus) | (1 << TysonParser.Not))) !== 0) || ((((_la - 35)) & ~0x1F) === 0 && ((1 << (_la - 35)) & ((1 << (TysonParser.NullLiteral - 35)) | (1 << (TysonParser.BooleanLiteral - 35)) | (1 << (TysonParser.DecimalLiteral - 35)) | (1 << (TysonParser.If - 35)) | (1 << (TysonParser.For - 35)) | (1 << (TysonParser.Do - 35)) | (1 << (TysonParser.While - 35)) | (1 << (TysonParser.Continue - 35)) | (1 << (TysonParser.Break - 35)) | (1 << (TysonParser.Log - 35)) | (1 << (TysonParser.Var - 35)) | (1 << (TysonParser.Let - 35)) | (1 << (TysonParser.Const - 35)) | (1 << (TysonParser.Identifier - 35)) | (1 << (TysonParser.StringLiteral - 35)))) !== 0)) {
 				{
 				{
-				this.state = 34;
+				this.state = 36;
 				this.statement();
 				}
 				}
-				this.state = 39;
+				this.state = 41;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
 			}
-			this.state = 40;
+			this.state = 42;
 			this.match(TysonParser.EOF);
 			}
 		}
@@ -192,29 +195,29 @@ export class TysonParser extends Parser {
 		this.enterRule(_localctx, 2, TysonParser.RULE_statement);
 		let _la: number;
 		try {
-			this.state = 57;
+			this.state = 60;
 			this._errHandler.sync(this);
 			switch (this._input.LA(1)) {
 			case TysonParser.OpenBrace:
 				this.enterOuterAlt(_localctx, 1);
 				{
-				this.state = 42;
+				this.state = 44;
 				this.match(TysonParser.OpenBrace);
-				this.state = 46;
+				this.state = 48;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
-				while ((((_la) & ~0x1F) === 0 && ((1 << _la) & ((1 << TysonParser.OpenParen) | (1 << TysonParser.OpenBrace) | (1 << TysonParser.SemiColon) | (1 << TysonParser.PlusPlus) | (1 << TysonParser.MinusMinus) | (1 << TysonParser.Plus) | (1 << TysonParser.Minus) | (1 << TysonParser.Not))) !== 0) || ((((_la - 35)) & ~0x1F) === 0 && ((1 << (_la - 35)) & ((1 << (TysonParser.NullLiteral - 35)) | (1 << (TysonParser.BooleanLiteral - 35)) | (1 << (TysonParser.DecimalLiteral - 35)) | (1 << (TysonParser.If - 35)) | (1 << (TysonParser.For - 35)) | (1 << (TysonParser.Do - 35)) | (1 << (TysonParser.While - 35)) | (1 << (TysonParser.Continue - 35)) | (1 << (TysonParser.Break - 35)) | (1 << (TysonParser.Var - 35)) | (1 << (TysonParser.Let - 35)) | (1 << (TysonParser.Const - 35)) | (1 << (TysonParser.Identifier - 35)) | (1 << (TysonParser.StringLiteral - 35)))) !== 0)) {
+				while ((((_la) & ~0x1F) === 0 && ((1 << _la) & ((1 << TysonParser.OpenParen) | (1 << TysonParser.OpenBrace) | (1 << TysonParser.SemiColon) | (1 << TysonParser.PlusPlus) | (1 << TysonParser.MinusMinus) | (1 << TysonParser.Plus) | (1 << TysonParser.Minus) | (1 << TysonParser.Not))) !== 0) || ((((_la - 35)) & ~0x1F) === 0 && ((1 << (_la - 35)) & ((1 << (TysonParser.NullLiteral - 35)) | (1 << (TysonParser.BooleanLiteral - 35)) | (1 << (TysonParser.DecimalLiteral - 35)) | (1 << (TysonParser.If - 35)) | (1 << (TysonParser.For - 35)) | (1 << (TysonParser.Do - 35)) | (1 << (TysonParser.While - 35)) | (1 << (TysonParser.Continue - 35)) | (1 << (TysonParser.Break - 35)) | (1 << (TysonParser.Log - 35)) | (1 << (TysonParser.Var - 35)) | (1 << (TysonParser.Let - 35)) | (1 << (TysonParser.Const - 35)) | (1 << (TysonParser.Identifier - 35)) | (1 << (TysonParser.StringLiteral - 35)))) !== 0)) {
 					{
 					{
-					this.state = 43;
+					this.state = 45;
 					this.statement();
 					}
 					}
-					this.state = 48;
+					this.state = 50;
 					this._errHandler.sync(this);
 					_la = this._input.LA(1);
 				}
-				this.state = 49;
+				this.state = 51;
 				this.match(TysonParser.CloseBrace);
 				}
 				break;
@@ -223,7 +226,7 @@ export class TysonParser extends Parser {
 			case TysonParser.Const:
 				this.enterOuterAlt(_localctx, 2);
 				{
-				this.state = 50;
+				this.state = 52;
 				this.variableStatement();
 				}
 				break;
@@ -240,14 +243,14 @@ export class TysonParser extends Parser {
 			case TysonParser.StringLiteral:
 				this.enterOuterAlt(_localctx, 3);
 				{
-				this.state = 51;
+				this.state = 53;
 				this.expressionStatement();
 				}
 				break;
 			case TysonParser.If:
 				this.enterOuterAlt(_localctx, 4);
 				{
-				this.state = 52;
+				this.state = 54;
 				this.ifStatement();
 				}
 				break;
@@ -256,28 +259,35 @@ export class TysonParser extends Parser {
 			case TysonParser.While:
 				this.enterOuterAlt(_localctx, 5);
 				{
-				this.state = 53;
+				this.state = 55;
 				this.iterationStatement();
 				}
 				break;
 			case TysonParser.Continue:
 				this.enterOuterAlt(_localctx, 6);
 				{
-				this.state = 54;
+				this.state = 56;
 				this.continueStatement();
 				}
 				break;
 			case TysonParser.Break:
 				this.enterOuterAlt(_localctx, 7);
 				{
-				this.state = 55;
+				this.state = 57;
 				this.breakStatement();
 				}
 				break;
-			case TysonParser.SemiColon:
+			case TysonParser.Log:
 				this.enterOuterAlt(_localctx, 8);
 				{
-				this.state = 56;
+				this.state = 58;
+				this.logStatement();
+				}
+				break;
+			case TysonParser.SemiColon:
+				this.enterOuterAlt(_localctx, 9);
+				{
+				this.state = 59;
 				this.emptyStatement();
 				}
 				break;
@@ -300,13 +310,44 @@ export class TysonParser extends Parser {
 		return _localctx;
 	}
 	// @RuleVersion(0)
-	public emptyStatement(): EmptyStatementContext {
-		let _localctx: EmptyStatementContext = new EmptyStatementContext(this._ctx, this.state);
-		this.enterRule(_localctx, 4, TysonParser.RULE_emptyStatement);
+	public logStatement(): LogStatementContext {
+		let _localctx: LogStatementContext = new LogStatementContext(this._ctx, this.state);
+		this.enterRule(_localctx, 4, TysonParser.RULE_logStatement);
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 59;
+			this.state = 62;
+			this.match(TysonParser.Log);
+			this.state = 63;
+			this.match(TysonParser.OpenParen);
+			this.state = 64;
+			this.singleExpression(0);
+			this.state = 65;
+			this.match(TysonParser.CloseParen);
+			}
+		}
+		catch (re) {
+			if (re instanceof RecognitionException) {
+				_localctx.exception = re;
+				this._errHandler.reportError(this, re);
+				this._errHandler.recover(this, re);
+			} else {
+				throw re;
+			}
+		}
+		finally {
+			this.exitRule();
+		}
+		return _localctx;
+	}
+	// @RuleVersion(0)
+	public emptyStatement(): EmptyStatementContext {
+		let _localctx: EmptyStatementContext = new EmptyStatementContext(this._ctx, this.state);
+		this.enterRule(_localctx, 6, TysonParser.RULE_emptyStatement);
+		try {
+			this.enterOuterAlt(_localctx, 1);
+			{
+			this.state = 67;
 			this.match(TysonParser.SemiColon);
 			}
 		}
@@ -327,13 +368,13 @@ export class TysonParser extends Parser {
 	// @RuleVersion(0)
 	public variableStatement(): VariableStatementContext {
 		let _localctx: VariableStatementContext = new VariableStatementContext(this._ctx, this.state);
-		this.enterRule(_localctx, 6, TysonParser.RULE_variableStatement);
+		this.enterRule(_localctx, 8, TysonParser.RULE_variableStatement);
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 61;
+			this.state = 69;
 			this.variableDeclarationList();
-			this.state = 62;
+			this.state = 70;
 			this.match(TysonParser.SemiColon);
 			}
 		}
@@ -354,23 +395,23 @@ export class TysonParser extends Parser {
 	// @RuleVersion(0)
 	public variableDeclarationList(): VariableDeclarationListContext {
 		let _localctx: VariableDeclarationListContext = new VariableDeclarationListContext(this._ctx, this.state);
-		this.enterRule(_localctx, 8, TysonParser.RULE_variableDeclarationList);
+		this.enterRule(_localctx, 10, TysonParser.RULE_variableDeclarationList);
 		let _la: number;
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 64;
+			this.state = 72;
 			this.varModifier();
-			this.state = 65;
+			this.state = 73;
 			this.match(TysonParser.Identifier);
-			this.state = 68;
+			this.state = 76;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
 			if (_la === TysonParser.Assign) {
 				{
-				this.state = 66;
+				this.state = 74;
 				this.match(TysonParser.Assign);
-				this.state = 67;
+				this.state = 75;
 				this.singleExpression(0);
 				}
 			}
@@ -394,14 +435,14 @@ export class TysonParser extends Parser {
 	// @RuleVersion(0)
 	public varModifier(): VarModifierContext {
 		let _localctx: VarModifierContext = new VarModifierContext(this._ctx, this.state);
-		this.enterRule(_localctx, 10, TysonParser.RULE_varModifier);
+		this.enterRule(_localctx, 12, TysonParser.RULE_varModifier);
 		let _la: number;
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 70;
+			this.state = 78;
 			_la = this._input.LA(1);
-			if (!(((((_la - 45)) & ~0x1F) === 0 && ((1 << (_la - 45)) & ((1 << (TysonParser.Var - 45)) | (1 << (TysonParser.Let - 45)) | (1 << (TysonParser.Const - 45)))) !== 0))) {
+			if (!(((((_la - 46)) & ~0x1F) === 0 && ((1 << (_la - 46)) & ((1 << (TysonParser.Var - 46)) | (1 << (TysonParser.Let - 46)) | (1 << (TysonParser.Const - 46)))) !== 0))) {
 			this._errHandler.recoverInline(this);
 			} else {
 				if (this._input.LA(1) === Token.EOF) {
@@ -430,13 +471,13 @@ export class TysonParser extends Parser {
 	// @RuleVersion(0)
 	public expressionStatement(): ExpressionStatementContext {
 		let _localctx: ExpressionStatementContext = new ExpressionStatementContext(this._ctx, this.state);
-		this.enterRule(_localctx, 12, TysonParser.RULE_expressionStatement);
+		this.enterRule(_localctx, 14, TysonParser.RULE_expressionStatement);
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 72;
+			this.state = 80;
 			this.expressionSequence();
-			this.state = 73;
+			this.state = 81;
 			this.match(TysonParser.SemiColon);
 			}
 		}
@@ -457,28 +498,28 @@ export class TysonParser extends Parser {
 	// @RuleVersion(0)
 	public ifStatement(): IfStatementContext {
 		let _localctx: IfStatementContext = new IfStatementContext(this._ctx, this.state);
-		this.enterRule(_localctx, 14, TysonParser.RULE_ifStatement);
+		this.enterRule(_localctx, 16, TysonParser.RULE_ifStatement);
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 75;
+			this.state = 83;
 			this.match(TysonParser.If);
-			this.state = 76;
+			this.state = 84;
 			this.match(TysonParser.OpenParen);
-			this.state = 77;
+			this.state = 85;
 			this.expressionSequence();
-			this.state = 78;
+			this.state = 86;
 			this.match(TysonParser.CloseParen);
-			this.state = 79;
+			this.state = 87;
 			this.statement();
-			this.state = 82;
+			this.state = 90;
 			this._errHandler.sync(this);
 			switch ( this.interpreter.adaptivePredict(this._input, 4, this._ctx) ) {
 			case 1:
 				{
-				this.state = 80;
+				this.state = 88;
 				this.match(TysonParser.Else);
-				this.state = 81;
+				this.state = 89;
 				this.statement();
 				}
 				break;
@@ -502,29 +543,29 @@ export class TysonParser extends Parser {
 	// @RuleVersion(0)
 	public iterationStatement(): IterationStatementContext {
 		let _localctx: IterationStatementContext = new IterationStatementContext(this._ctx, this.state);
-		this.enterRule(_localctx, 16, TysonParser.RULE_iterationStatement);
+		this.enterRule(_localctx, 18, TysonParser.RULE_iterationStatement);
 		let _la: number;
 		try {
-			this.state = 114;
+			this.state = 122;
 			this._errHandler.sync(this);
 			switch (this._input.LA(1)) {
 			case TysonParser.Do:
 				_localctx = new DoStatementContext(_localctx);
 				this.enterOuterAlt(_localctx, 1);
 				{
-				this.state = 84;
+				this.state = 92;
 				this.match(TysonParser.Do);
-				this.state = 85;
+				this.state = 93;
 				this.statement();
-				this.state = 86;
+				this.state = 94;
 				this.match(TysonParser.While);
-				this.state = 87;
+				this.state = 95;
 				this.match(TysonParser.OpenParen);
-				this.state = 88;
+				this.state = 96;
 				this.expressionSequence();
-				this.state = 89;
+				this.state = 97;
 				this.match(TysonParser.CloseParen);
-				this.state = 90;
+				this.state = 98;
 				this.match(TysonParser.SemiColon);
 				}
 				break;
@@ -532,15 +573,15 @@ export class TysonParser extends Parser {
 				_localctx = new WhileStatementContext(_localctx);
 				this.enterOuterAlt(_localctx, 2);
 				{
-				this.state = 92;
+				this.state = 100;
 				this.match(TysonParser.While);
-				this.state = 93;
+				this.state = 101;
 				this.match(TysonParser.OpenParen);
-				this.state = 94;
+				this.state = 102;
 				this.expressionSequence();
-				this.state = 95;
+				this.state = 103;
 				this.match(TysonParser.CloseParen);
-				this.state = 96;
+				this.state = 104;
 				this.statement();
 				}
 				break;
@@ -548,11 +589,11 @@ export class TysonParser extends Parser {
 				_localctx = new ForStatementContext(_localctx);
 				this.enterOuterAlt(_localctx, 3);
 				{
-				this.state = 98;
+				this.state = 106;
 				this.match(TysonParser.For);
-				this.state = 99;
+				this.state = 107;
 				this.match(TysonParser.OpenParen);
-				this.state = 102;
+				this.state = 110;
 				this._errHandler.sync(this);
 				switch (this._input.LA(1)) {
 				case TysonParser.OpenParen:
@@ -567,7 +608,7 @@ export class TysonParser extends Parser {
 				case TysonParser.Identifier:
 				case TysonParser.StringLiteral:
 					{
-					this.state = 100;
+					this.state = 108;
 					this.expressionSequence();
 					}
 					break;
@@ -575,7 +616,7 @@ export class TysonParser extends Parser {
 				case TysonParser.Let:
 				case TysonParser.Const:
 					{
-					this.state = 101;
+					this.state = 109;
 					this.variableDeclarationList();
 					}
 					break;
@@ -584,33 +625,33 @@ export class TysonParser extends Parser {
 				default:
 					break;
 				}
-				this.state = 104;
-				this.match(TysonParser.SemiColon);
-				this.state = 106;
-				this._errHandler.sync(this);
-				_la = this._input.LA(1);
-				if ((((_la) & ~0x1F) === 0 && ((1 << _la) & ((1 << TysonParser.OpenParen) | (1 << TysonParser.PlusPlus) | (1 << TysonParser.MinusMinus) | (1 << TysonParser.Plus) | (1 << TysonParser.Minus) | (1 << TysonParser.Not))) !== 0) || ((((_la - 35)) & ~0x1F) === 0 && ((1 << (_la - 35)) & ((1 << (TysonParser.NullLiteral - 35)) | (1 << (TysonParser.BooleanLiteral - 35)) | (1 << (TysonParser.DecimalLiteral - 35)) | (1 << (TysonParser.Identifier - 35)) | (1 << (TysonParser.StringLiteral - 35)))) !== 0)) {
-					{
-					this.state = 105;
-					this.expressionSequence();
-					}
-				}
-
-				this.state = 108;
-				this.match(TysonParser.SemiColon);
-				this.state = 110;
-				this._errHandler.sync(this);
-				_la = this._input.LA(1);
-				if ((((_la) & ~0x1F) === 0 && ((1 << _la) & ((1 << TysonParser.OpenParen) | (1 << TysonParser.PlusPlus) | (1 << TysonParser.MinusMinus) | (1 << TysonParser.Plus) | (1 << TysonParser.Minus) | (1 << TysonParser.Not))) !== 0) || ((((_la - 35)) & ~0x1F) === 0 && ((1 << (_la - 35)) & ((1 << (TysonParser.NullLiteral - 35)) | (1 << (TysonParser.BooleanLiteral - 35)) | (1 << (TysonParser.DecimalLiteral - 35)) | (1 << (TysonParser.Identifier - 35)) | (1 << (TysonParser.StringLiteral - 35)))) !== 0)) {
-					{
-					this.state = 109;
-					this.expressionSequence();
-					}
-				}
-
 				this.state = 112;
+				this.match(TysonParser.SemiColon);
+				this.state = 114;
+				this._errHandler.sync(this);
+				_la = this._input.LA(1);
+				if ((((_la) & ~0x1F) === 0 && ((1 << _la) & ((1 << TysonParser.OpenParen) | (1 << TysonParser.PlusPlus) | (1 << TysonParser.MinusMinus) | (1 << TysonParser.Plus) | (1 << TysonParser.Minus) | (1 << TysonParser.Not))) !== 0) || ((((_la - 35)) & ~0x1F) === 0 && ((1 << (_la - 35)) & ((1 << (TysonParser.NullLiteral - 35)) | (1 << (TysonParser.BooleanLiteral - 35)) | (1 << (TysonParser.DecimalLiteral - 35)) | (1 << (TysonParser.Identifier - 35)) | (1 << (TysonParser.StringLiteral - 35)))) !== 0)) {
+					{
+					this.state = 113;
+					this.expressionSequence();
+					}
+				}
+
+				this.state = 116;
+				this.match(TysonParser.SemiColon);
+				this.state = 118;
+				this._errHandler.sync(this);
+				_la = this._input.LA(1);
+				if ((((_la) & ~0x1F) === 0 && ((1 << _la) & ((1 << TysonParser.OpenParen) | (1 << TysonParser.PlusPlus) | (1 << TysonParser.MinusMinus) | (1 << TysonParser.Plus) | (1 << TysonParser.Minus) | (1 << TysonParser.Not))) !== 0) || ((((_la - 35)) & ~0x1F) === 0 && ((1 << (_la - 35)) & ((1 << (TysonParser.NullLiteral - 35)) | (1 << (TysonParser.BooleanLiteral - 35)) | (1 << (TysonParser.DecimalLiteral - 35)) | (1 << (TysonParser.Identifier - 35)) | (1 << (TysonParser.StringLiteral - 35)))) !== 0)) {
+					{
+					this.state = 117;
+					this.expressionSequence();
+					}
+				}
+
+				this.state = 120;
 				this.match(TysonParser.CloseParen);
-				this.state = 113;
+				this.state = 121;
 				this.statement();
 				}
 				break;
@@ -635,13 +676,13 @@ export class TysonParser extends Parser {
 	// @RuleVersion(0)
 	public continueStatement(): ContinueStatementContext {
 		let _localctx: ContinueStatementContext = new ContinueStatementContext(this._ctx, this.state);
-		this.enterRule(_localctx, 18, TysonParser.RULE_continueStatement);
+		this.enterRule(_localctx, 20, TysonParser.RULE_continueStatement);
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 116;
+			this.state = 124;
 			this.match(TysonParser.Continue);
-			this.state = 117;
+			this.state = 125;
 			this.match(TysonParser.SemiColon);
 			}
 		}
@@ -662,13 +703,13 @@ export class TysonParser extends Parser {
 	// @RuleVersion(0)
 	public breakStatement(): BreakStatementContext {
 		let _localctx: BreakStatementContext = new BreakStatementContext(this._ctx, this.state);
-		this.enterRule(_localctx, 20, TysonParser.RULE_breakStatement);
+		this.enterRule(_localctx, 22, TysonParser.RULE_breakStatement);
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 119;
+			this.state = 127;
 			this.match(TysonParser.Break);
-			this.state = 120;
+			this.state = 128;
 			this.match(TysonParser.SemiColon);
 			}
 		}
@@ -689,31 +730,31 @@ export class TysonParser extends Parser {
 	// @RuleVersion(0)
 	public elementList(): ElementListContext {
 		let _localctx: ElementListContext = new ElementListContext(this._ctx, this.state);
-		this.enterRule(_localctx, 22, TysonParser.RULE_elementList);
+		this.enterRule(_localctx, 24, TysonParser.RULE_elementList);
 		let _la: number;
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 130;
+			this.state = 138;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
 			if ((((_la) & ~0x1F) === 0 && ((1 << _la) & ((1 << TysonParser.OpenParen) | (1 << TysonParser.PlusPlus) | (1 << TysonParser.MinusMinus) | (1 << TysonParser.Plus) | (1 << TysonParser.Minus) | (1 << TysonParser.Not))) !== 0) || ((((_la - 35)) & ~0x1F) === 0 && ((1 << (_la - 35)) & ((1 << (TysonParser.NullLiteral - 35)) | (1 << (TysonParser.BooleanLiteral - 35)) | (1 << (TysonParser.DecimalLiteral - 35)) | (1 << (TysonParser.Identifier - 35)) | (1 << (TysonParser.StringLiteral - 35)))) !== 0)) {
 				{
-				this.state = 122;
+				this.state = 130;
 				this.singleExpression(0);
-				this.state = 127;
+				this.state = 135;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
 				while (_la === TysonParser.Comma) {
 					{
 					{
-					this.state = 123;
+					this.state = 131;
 					this.match(TysonParser.Comma);
-					this.state = 124;
+					this.state = 132;
 					this.singleExpression(0);
 					}
 					}
-					this.state = 129;
+					this.state = 137;
 					this._errHandler.sync(this);
 					_la = this._input.LA(1);
 				}
@@ -739,26 +780,26 @@ export class TysonParser extends Parser {
 	// @RuleVersion(0)
 	public expressionSequence(): ExpressionSequenceContext {
 		let _localctx: ExpressionSequenceContext = new ExpressionSequenceContext(this._ctx, this.state);
-		this.enterRule(_localctx, 24, TysonParser.RULE_expressionSequence);
+		this.enterRule(_localctx, 26, TysonParser.RULE_expressionSequence);
 		let _la: number;
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 132;
+			this.state = 140;
 			this.singleExpression(0);
-			this.state = 137;
+			this.state = 145;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
 			while (_la === TysonParser.Comma) {
 				{
 				{
-				this.state = 133;
+				this.state = 141;
 				this.match(TysonParser.Comma);
-				this.state = 134;
+				this.state = 142;
 				this.singleExpression(0);
 				}
 				}
-				this.state = 139;
+				this.state = 147;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
 			}
@@ -791,14 +832,14 @@ export class TysonParser extends Parser {
 		let _parentState: number = this.state;
 		let _localctx: SingleExpressionContext = new SingleExpressionContext(this._ctx, _parentState);
 		let _prevctx: SingleExpressionContext = _localctx;
-		let _startState: number = 26;
-		this.enterRecursionRule(_localctx, 26, TysonParser.RULE_singleExpression, _p);
+		let _startState: number = 28;
+		this.enterRecursionRule(_localctx, 28, TysonParser.RULE_singleExpression, _p);
 		let _la: number;
 		try {
 			let _alt: number;
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 157;
+			this.state = 165;
 			this._errHandler.sync(this);
 			switch (this._input.LA(1)) {
 			case TysonParser.Identifier:
@@ -807,7 +848,7 @@ export class TysonParser extends Parser {
 				this._ctx = _localctx;
 				_prevctx = _localctx;
 
-				this.state = 141;
+				this.state = 149;
 				this.match(TysonParser.Identifier);
 				}
 				break;
@@ -819,7 +860,7 @@ export class TysonParser extends Parser {
 				_localctx = new LiteralExpressionContext(_localctx);
 				this._ctx = _localctx;
 				_prevctx = _localctx;
-				this.state = 142;
+				this.state = 150;
 				this.literal();
 				}
 				break;
@@ -828,11 +869,11 @@ export class TysonParser extends Parser {
 				_localctx = new ParenthesizedExpressionContext(_localctx);
 				this._ctx = _localctx;
 				_prevctx = _localctx;
-				this.state = 143;
+				this.state = 151;
 				this.match(TysonParser.OpenParen);
-				this.state = 144;
+				this.state = 152;
 				this.expressionSequence();
-				this.state = 145;
+				this.state = 153;
 				this.match(TysonParser.CloseParen);
 				}
 				break;
@@ -841,9 +882,9 @@ export class TysonParser extends Parser {
 				_localctx = new PreIncrementExpressionContext(_localctx);
 				this._ctx = _localctx;
 				_prevctx = _localctx;
-				this.state = 147;
+				this.state = 155;
 				this.match(TysonParser.PlusPlus);
-				this.state = 148;
+				this.state = 156;
 				this.singleExpression(13);
 				}
 				break;
@@ -852,9 +893,9 @@ export class TysonParser extends Parser {
 				_localctx = new PreDecreaseExpressionContext(_localctx);
 				this._ctx = _localctx;
 				_prevctx = _localctx;
-				this.state = 149;
+				this.state = 157;
 				this.match(TysonParser.MinusMinus);
-				this.state = 150;
+				this.state = 158;
 				this.singleExpression(12);
 				}
 				break;
@@ -863,9 +904,9 @@ export class TysonParser extends Parser {
 				_localctx = new UnaryPlusExpressionContext(_localctx);
 				this._ctx = _localctx;
 				_prevctx = _localctx;
-				this.state = 151;
+				this.state = 159;
 				this.match(TysonParser.Plus);
-				this.state = 152;
+				this.state = 160;
 				this.singleExpression(11);
 				}
 				break;
@@ -874,9 +915,9 @@ export class TysonParser extends Parser {
 				_localctx = new UnaryMinusExpressionContext(_localctx);
 				this._ctx = _localctx;
 				_prevctx = _localctx;
-				this.state = 153;
+				this.state = 161;
 				this.match(TysonParser.Minus);
-				this.state = 154;
+				this.state = 162;
 				this.singleExpression(10);
 				}
 				break;
@@ -885,9 +926,9 @@ export class TysonParser extends Parser {
 				_localctx = new NotExpressionContext(_localctx);
 				this._ctx = _localctx;
 				_prevctx = _localctx;
-				this.state = 155;
+				this.state = 163;
 				this.match(TysonParser.Not);
-				this.state = 156;
+				this.state = 164;
 				this.singleExpression(9);
 				}
 				break;
@@ -895,7 +936,7 @@ export class TysonParser extends Parser {
 				throw new NoViableAltException(this);
 			}
 			this._ctx._stop = this._input.tryLT(-1);
-			this.state = 190;
+			this.state = 198;
 			this._errHandler.sync(this);
 			_alt = this.interpreter.adaptivePredict(this._input, 14, this._ctx);
 			while (_alt !== 2 && _alt !== ATN.INVALID_ALT_NUMBER) {
@@ -905,20 +946,20 @@ export class TysonParser extends Parser {
 					}
 					_prevctx = _localctx;
 					{
-					this.state = 188;
+					this.state = 196;
 					this._errHandler.sync(this);
 					switch ( this.interpreter.adaptivePredict(this._input, 13, this._ctx) ) {
 					case 1:
 						{
 						_localctx = new PowerExpressionContext(new SingleExpressionContext(_parentctx, _parentState));
 						this.pushNewRecursionContext(_localctx, _startState, TysonParser.RULE_singleExpression);
-						this.state = 159;
+						this.state = 167;
 						if (!(this.precpred(this._ctx, 8))) {
 							throw new FailedPredicateException(this, "this.precpred(this._ctx, 8)");
 						}
-						this.state = 160;
+						this.state = 168;
 						this.match(TysonParser.Power);
-						this.state = 161;
+						this.state = 169;
 						this.singleExpression(8);
 						}
 						break;
@@ -927,11 +968,11 @@ export class TysonParser extends Parser {
 						{
 						_localctx = new MultiplicativeExpressionContext(new SingleExpressionContext(_parentctx, _parentState));
 						this.pushNewRecursionContext(_localctx, _startState, TysonParser.RULE_singleExpression);
-						this.state = 162;
+						this.state = 170;
 						if (!(this.precpred(this._ctx, 7))) {
 							throw new FailedPredicateException(this, "this.precpred(this._ctx, 7)");
 						}
-						this.state = 163;
+						this.state = 171;
 						_la = this._input.LA(1);
 						if (!((((_la) & ~0x1F) === 0 && ((1 << _la) & ((1 << TysonParser.Multiply) | (1 << TysonParser.Divide) | (1 << TysonParser.Modulus))) !== 0))) {
 						this._errHandler.recoverInline(this);
@@ -943,7 +984,7 @@ export class TysonParser extends Parser {
 							this._errHandler.reportMatch(this);
 							this.consume();
 						}
-						this.state = 164;
+						this.state = 172;
 						this.singleExpression(8);
 						}
 						break;
@@ -952,11 +993,11 @@ export class TysonParser extends Parser {
 						{
 						_localctx = new AdditiveExpressionContext(new SingleExpressionContext(_parentctx, _parentState));
 						this.pushNewRecursionContext(_localctx, _startState, TysonParser.RULE_singleExpression);
-						this.state = 165;
+						this.state = 173;
 						if (!(this.precpred(this._ctx, 6))) {
 							throw new FailedPredicateException(this, "this.precpred(this._ctx, 6)");
 						}
-						this.state = 166;
+						this.state = 174;
 						_la = this._input.LA(1);
 						if (!(_la === TysonParser.Plus || _la === TysonParser.Minus)) {
 						this._errHandler.recoverInline(this);
@@ -968,7 +1009,7 @@ export class TysonParser extends Parser {
 							this._errHandler.reportMatch(this);
 							this.consume();
 						}
-						this.state = 167;
+						this.state = 175;
 						this.singleExpression(7);
 						}
 						break;
@@ -977,11 +1018,11 @@ export class TysonParser extends Parser {
 						{
 						_localctx = new RelationalExpressionContext(new SingleExpressionContext(_parentctx, _parentState));
 						this.pushNewRecursionContext(_localctx, _startState, TysonParser.RULE_singleExpression);
-						this.state = 168;
+						this.state = 176;
 						if (!(this.precpred(this._ctx, 5))) {
 							throw new FailedPredicateException(this, "this.precpred(this._ctx, 5)");
 						}
-						this.state = 169;
+						this.state = 177;
 						_la = this._input.LA(1);
 						if (!((((_la) & ~0x1F) === 0 && ((1 << _la) & ((1 << TysonParser.LessThan) | (1 << TysonParser.MoreThan) | (1 << TysonParser.LessThanEquals) | (1 << TysonParser.GreaterThanEquals))) !== 0))) {
 						this._errHandler.recoverInline(this);
@@ -993,7 +1034,7 @@ export class TysonParser extends Parser {
 							this._errHandler.reportMatch(this);
 							this.consume();
 						}
-						this.state = 170;
+						this.state = 178;
 						this.singleExpression(6);
 						}
 						break;
@@ -1002,11 +1043,11 @@ export class TysonParser extends Parser {
 						{
 						_localctx = new EqualityExpressionContext(new SingleExpressionContext(_parentctx, _parentState));
 						this.pushNewRecursionContext(_localctx, _startState, TysonParser.RULE_singleExpression);
-						this.state = 171;
+						this.state = 179;
 						if (!(this.precpred(this._ctx, 4))) {
 							throw new FailedPredicateException(this, "this.precpred(this._ctx, 4)");
 						}
-						this.state = 172;
+						this.state = 180;
 						_la = this._input.LA(1);
 						if (!(_la === TysonParser.Equals || _la === TysonParser.NotEquals)) {
 						this._errHandler.recoverInline(this);
@@ -1018,7 +1059,7 @@ export class TysonParser extends Parser {
 							this._errHandler.reportMatch(this);
 							this.consume();
 						}
-						this.state = 173;
+						this.state = 181;
 						this.singleExpression(5);
 						}
 						break;
@@ -1027,13 +1068,13 @@ export class TysonParser extends Parser {
 						{
 						_localctx = new LogicalAndExpressionContext(new SingleExpressionContext(_parentctx, _parentState));
 						this.pushNewRecursionContext(_localctx, _startState, TysonParser.RULE_singleExpression);
-						this.state = 174;
+						this.state = 182;
 						if (!(this.precpred(this._ctx, 3))) {
 							throw new FailedPredicateException(this, "this.precpred(this._ctx, 3)");
 						}
-						this.state = 175;
+						this.state = 183;
 						this.match(TysonParser.And);
-						this.state = 176;
+						this.state = 184;
 						this.singleExpression(4);
 						}
 						break;
@@ -1042,13 +1083,13 @@ export class TysonParser extends Parser {
 						{
 						_localctx = new LogicalOrExpressionContext(new SingleExpressionContext(_parentctx, _parentState));
 						this.pushNewRecursionContext(_localctx, _startState, TysonParser.RULE_singleExpression);
-						this.state = 177;
+						this.state = 185;
 						if (!(this.precpred(this._ctx, 2))) {
 							throw new FailedPredicateException(this, "this.precpred(this._ctx, 2)");
 						}
-						this.state = 178;
+						this.state = 186;
 						this.match(TysonParser.Or);
-						this.state = 179;
+						this.state = 187;
 						this.singleExpression(3);
 						}
 						break;
@@ -1057,13 +1098,13 @@ export class TysonParser extends Parser {
 						{
 						_localctx = new AssignmentOperatorExpressionContext(new SingleExpressionContext(_parentctx, _parentState));
 						this.pushNewRecursionContext(_localctx, _startState, TysonParser.RULE_singleExpression);
-						this.state = 180;
+						this.state = 188;
 						if (!(this.precpred(this._ctx, 1))) {
 							throw new FailedPredicateException(this, "this.precpred(this._ctx, 1)");
 						}
-						this.state = 181;
+						this.state = 189;
 						this.assignmentOperator();
-						this.state = 182;
+						this.state = 190;
 						this.singleExpression(1);
 						}
 						break;
@@ -1072,11 +1113,11 @@ export class TysonParser extends Parser {
 						{
 						_localctx = new PostIncrementExpressionContext(new SingleExpressionContext(_parentctx, _parentState));
 						this.pushNewRecursionContext(_localctx, _startState, TysonParser.RULE_singleExpression);
-						this.state = 184;
+						this.state = 192;
 						if (!(this.precpred(this._ctx, 15))) {
 							throw new FailedPredicateException(this, "this.precpred(this._ctx, 15)");
 						}
-						this.state = 185;
+						this.state = 193;
 						this.match(TysonParser.PlusPlus);
 						}
 						break;
@@ -1085,18 +1126,18 @@ export class TysonParser extends Parser {
 						{
 						_localctx = new PostDecreaseExpressionContext(new SingleExpressionContext(_parentctx, _parentState));
 						this.pushNewRecursionContext(_localctx, _startState, TysonParser.RULE_singleExpression);
-						this.state = 186;
+						this.state = 194;
 						if (!(this.precpred(this._ctx, 14))) {
 							throw new FailedPredicateException(this, "this.precpred(this._ctx, 14)");
 						}
-						this.state = 187;
+						this.state = 195;
 						this.match(TysonParser.MinusMinus);
 						}
 						break;
 					}
 					}
 				}
-				this.state = 192;
+				this.state = 200;
 				this._errHandler.sync(this);
 				_alt = this.interpreter.adaptivePredict(this._input, 14, this._ctx);
 			}
@@ -1119,12 +1160,12 @@ export class TysonParser extends Parser {
 	// @RuleVersion(0)
 	public assignmentOperator(): AssignmentOperatorContext {
 		let _localctx: AssignmentOperatorContext = new AssignmentOperatorContext(this._ctx, this.state);
-		this.enterRule(_localctx, 28, TysonParser.RULE_assignmentOperator);
+		this.enterRule(_localctx, 30, TysonParser.RULE_assignmentOperator);
 		let _la: number;
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 193;
+			this.state = 201;
 			_la = this._input.LA(1);
 			if (!(((((_la - 9)) & ~0x1F) === 0 && ((1 << (_la - 9)) & ((1 << (TysonParser.Assign - 9)) | (1 << (TysonParser.MultiplyAssign - 9)) | (1 << (TysonParser.DivideAssign - 9)) | (1 << (TysonParser.ModulusAssign - 9)) | (1 << (TysonParser.PlusAssign - 9)) | (1 << (TysonParser.MinusAssign - 9)) | (1 << (TysonParser.PowerAssign - 9)))) !== 0))) {
 			this._errHandler.recoverInline(this);
@@ -1155,36 +1196,36 @@ export class TysonParser extends Parser {
 	// @RuleVersion(0)
 	public literal(): LiteralContext {
 		let _localctx: LiteralContext = new LiteralContext(this._ctx, this.state);
-		this.enterRule(_localctx, 30, TysonParser.RULE_literal);
+		this.enterRule(_localctx, 32, TysonParser.RULE_literal);
 		try {
-			this.state = 199;
+			this.state = 207;
 			this._errHandler.sync(this);
 			switch (this._input.LA(1)) {
 			case TysonParser.NullLiteral:
 				this.enterOuterAlt(_localctx, 1);
 				{
-				this.state = 195;
+				this.state = 203;
 				this.match(TysonParser.NullLiteral);
 				}
 				break;
 			case TysonParser.BooleanLiteral:
 				this.enterOuterAlt(_localctx, 2);
 				{
-				this.state = 196;
+				this.state = 204;
 				this.match(TysonParser.BooleanLiteral);
 				}
 				break;
 			case TysonParser.StringLiteral:
 				this.enterOuterAlt(_localctx, 3);
 				{
-				this.state = 197;
+				this.state = 205;
 				this.match(TysonParser.StringLiteral);
 				}
 				break;
 			case TysonParser.DecimalLiteral:
 				this.enterOuterAlt(_localctx, 4);
 				{
-				this.state = 198;
+				this.state = 206;
 				this.numericLiteral();
 				}
 				break;
@@ -1209,11 +1250,11 @@ export class TysonParser extends Parser {
 	// @RuleVersion(0)
 	public numericLiteral(): NumericLiteralContext {
 		let _localctx: NumericLiteralContext = new NumericLiteralContext(this._ctx, this.state);
-		this.enterRule(_localctx, 32, TysonParser.RULE_numericLiteral);
+		this.enterRule(_localctx, 34, TysonParser.RULE_numericLiteral);
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 201;
+			this.state = 209;
 			this.match(TysonParser.DecimalLiteral);
 			}
 		}
@@ -1234,7 +1275,7 @@ export class TysonParser extends Parser {
 
 	public sempred(_localctx: RuleContext, ruleIndex: number, predIndex: number): boolean {
 		switch (ruleIndex) {
-		case 13:
+		case 14:
 			return this.singleExpression_sempred(_localctx as SingleExpressionContext, predIndex);
 		}
 		return true;
@@ -1275,97 +1316,101 @@ export class TysonParser extends Parser {
 	}
 
 	public static readonly _serializedATN: string =
-		"\x03\uC91D\uCABA\u058D\uAFBA\u4F53\u0607\uEA8B\uC241\x036\xCE\x04\x02" +
+		"\x03\uC91D\uCABA\u058D\uAFBA\u4F53\u0607\uEA8B\uC241\x037\xD6\x04\x02" +
 		"\t\x02\x04\x03\t\x03\x04\x04\t\x04\x04\x05\t\x05\x04\x06\t\x06\x04\x07" +
 		"\t\x07\x04\b\t\b\x04\t\t\t\x04\n\t\n\x04\v\t\v\x04\f\t\f\x04\r\t\r\x04" +
-		"\x0E\t\x0E\x04\x0F\t\x0F\x04\x10\t\x10\x04\x11\t\x11\x04\x12\t\x12\x03" +
-		"\x02\x07\x02&\n\x02\f\x02\x0E\x02)\v\x02\x03\x02\x03\x02\x03\x03\x03\x03" +
-		"\x07\x03/\n\x03\f\x03\x0E\x032\v\x03\x03\x03\x03\x03\x03\x03\x03\x03\x03" +
-		"\x03\x03\x03\x03\x03\x03\x03\x05\x03<\n\x03\x03\x04\x03\x04\x03\x05\x03" +
-		"\x05\x03\x05\x03\x06\x03\x06\x03\x06\x03\x06\x05\x06G\n\x06\x03\x07\x03" +
-		"\x07\x03\b\x03\b\x03\b\x03\t\x03\t\x03\t\x03\t\x03\t\x03\t\x03\t\x05\t" +
-		"U\n\t\x03\n\x03\n\x03\n\x03\n\x03\n\x03\n\x03\n\x03\n\x03\n\x03\n\x03" +
-		"\n\x03\n\x03\n\x03\n\x03\n\x03\n\x03\n\x03\n\x05\ni\n\n\x03\n\x03\n\x05" +
-		"\nm\n\n\x03\n\x03\n\x05\nq\n\n\x03\n\x03\n\x05\nu\n\n\x03\v\x03\v\x03" +
-		"\v\x03\f\x03\f\x03\f\x03\r\x03\r\x03\r\x07\r\x80\n\r\f\r\x0E\r\x83\v\r" +
-		"\x05\r\x85\n\r\x03\x0E\x03\x0E\x03\x0E\x07\x0E\x8A\n\x0E\f\x0E\x0E\x0E" +
-		"\x8D\v\x0E\x03\x0F\x03\x0F\x03\x0F\x03\x0F\x03\x0F\x03\x0F\x03\x0F\x03" +
-		"\x0F\x03\x0F\x03\x0F\x03\x0F\x03\x0F\x03\x0F\x03\x0F\x03\x0F\x03\x0F\x03" +
-		"\x0F\x05\x0F\xA0\n\x0F\x03\x0F\x03\x0F\x03\x0F\x03\x0F\x03\x0F\x03\x0F" +
-		"\x03\x0F\x03\x0F\x03\x0F\x03\x0F\x03\x0F\x03\x0F\x03\x0F\x03\x0F\x03\x0F" +
-		"\x03\x0F\x03\x0F\x03\x0F\x03\x0F\x03\x0F\x03\x0F\x03\x0F\x03\x0F\x03\x0F" +
-		"\x03\x0F\x03\x0F\x03\x0F\x03\x0F\x03\x0F\x07\x0F\xBF\n\x0F\f\x0F\x0E\x0F" +
-		"\xC2\v\x0F\x03\x10\x03\x10\x03\x11\x03\x11\x03\x11\x03\x11\x05\x11\xCA" +
-		"\n\x11\x03\x12\x03\x12\x03\x12\x02\x02\x03\x1C\x13\x02\x02\x04\x02\x06" +
-		"\x02\b\x02\n\x02\f\x02\x0E\x02\x10\x02\x12\x02\x14\x02\x16\x02\x18\x02" +
-		"\x1A\x02\x1C\x02\x1E\x02 \x02\"\x02\x02\b\x03\x02/1\x03\x02\x13\x15\x03" +
-		"\x02\x10\x11\x03\x02\x16\x19\x03\x02\x1A\x1B\x04\x02\v\v\x1F$\x02\xE4" +
-		"\x02\'\x03\x02\x02\x02\x04;\x03\x02\x02\x02\x06=\x03\x02\x02\x02\b?\x03" +
-		"\x02\x02\x02\nB\x03\x02\x02\x02\fH\x03\x02\x02\x02\x0EJ\x03\x02\x02\x02" +
-		"\x10M\x03\x02\x02\x02\x12t\x03\x02\x02\x02\x14v\x03\x02\x02\x02\x16y\x03" +
-		"\x02\x02\x02\x18\x84\x03\x02\x02\x02\x1A\x86\x03\x02\x02\x02\x1C\x9F\x03" +
-		"\x02\x02\x02\x1E\xC3\x03\x02\x02\x02 \xC9\x03\x02\x02\x02\"\xCB\x03\x02" +
-		"\x02\x02$&\x05\x04\x03\x02%$\x03\x02\x02\x02&)\x03\x02\x02\x02\'%\x03" +
-		"\x02\x02\x02\'(\x03\x02\x02\x02(*\x03\x02\x02\x02)\'\x03\x02\x02\x02*" +
-		"+\x07\x02\x02\x03+\x03\x03\x02\x02\x02,0\x07\x07\x02\x02-/\x05\x04\x03" +
-		"\x02.-\x03\x02\x02\x02/2\x03\x02\x02\x020.\x03\x02\x02\x0201\x03\x02\x02" +
-		"\x0213\x03\x02\x02\x0220\x03\x02\x02\x023<\x07\b\x02\x024<\x05\b\x05\x02" +
-		"5<\x05\x0E\b\x026<\x05\x10\t\x027<\x05\x12\n\x028<\x05\x14\v\x029<\x05" +
-		"\x16\f\x02:<\x05\x06\x04\x02;,\x03\x02\x02\x02;4\x03\x02\x02\x02;5\x03" +
-		"\x02\x02\x02;6\x03\x02\x02\x02;7\x03\x02\x02\x02;8\x03\x02\x02\x02;9\x03" +
-		"\x02\x02\x02;:\x03\x02\x02\x02<\x05\x03\x02\x02\x02=>\x07\t\x02\x02>\x07" +
-		"\x03\x02\x02\x02?@\x05\n\x06\x02@A\x07\t\x02\x02A\t\x03\x02\x02\x02BC" +
-		"\x05\f\x07\x02CF\x072\x02\x02DE\x07\v\x02\x02EG\x05\x1C\x0F\x02FD\x03" +
-		"\x02\x02\x02FG\x03\x02\x02\x02G\v\x03\x02\x02\x02HI\t\x02\x02\x02I\r\x03" +
-		"\x02\x02\x02JK\x05\x1A\x0E\x02KL\x07\t\x02\x02L\x0F\x03\x02\x02\x02MN" +
-		"\x07(\x02\x02NO\x07\x05\x02\x02OP\x05\x1A\x0E\x02PQ\x07\x06\x02\x02QT" +
-		"\x05\x04\x03\x02RS\x07)\x02\x02SU\x05\x04\x03\x02TR\x03\x02\x02\x02TU" +
-		"\x03\x02\x02\x02U\x11\x03\x02\x02\x02VW\x07+\x02\x02WX\x05\x04\x03\x02" +
-		"XY\x07,\x02\x02YZ\x07\x05\x02\x02Z[\x05\x1A\x0E\x02[\\\x07\x06\x02\x02" +
-		"\\]\x07\t\x02\x02]u\x03\x02\x02\x02^_\x07,\x02\x02_`\x07\x05\x02\x02`" +
-		"a\x05\x1A\x0E\x02ab\x07\x06\x02\x02bc\x05\x04\x03\x02cu\x03\x02\x02\x02" +
-		"de\x07*\x02\x02eh\x07\x05\x02\x02fi\x05\x1A\x0E\x02gi\x05\n\x06\x02hf" +
-		"\x03\x02\x02\x02hg\x03\x02\x02\x02hi\x03\x02\x02\x02ij\x03\x02\x02\x02" +
-		"jl\x07\t\x02\x02km\x05\x1A\x0E\x02lk\x03\x02\x02\x02lm\x03\x02\x02\x02" +
-		"mn\x03\x02\x02\x02np\x07\t\x02\x02oq\x05\x1A\x0E\x02po\x03\x02\x02\x02" +
-		"pq\x03\x02\x02\x02qr\x03\x02\x02\x02rs\x07\x06\x02\x02su\x05\x04\x03\x02" +
-		"tV\x03\x02\x02\x02t^\x03\x02\x02\x02td\x03\x02\x02\x02u\x13\x03\x02\x02" +
-		"\x02vw\x07-\x02\x02wx\x07\t\x02\x02x\x15\x03\x02\x02\x02yz\x07.\x02\x02" +
-		"z{\x07\t\x02\x02{\x17\x03\x02\x02\x02|\x81\x05\x1C\x0F\x02}~\x07\n\x02" +
-		"\x02~\x80\x05\x1C\x0F\x02\x7F}\x03\x02\x02\x02\x80\x83\x03\x02\x02\x02" +
-		"\x81\x7F\x03\x02\x02\x02\x81\x82\x03\x02\x02\x02\x82\x85\x03\x02\x02\x02" +
-		"\x83\x81\x03\x02\x02\x02\x84|\x03\x02\x02\x02\x84\x85\x03\x02\x02\x02" +
-		"\x85\x19\x03\x02\x02\x02\x86\x8B\x05\x1C\x0F\x02\x87\x88\x07\n\x02\x02" +
-		"\x88\x8A\x05\x1C\x0F\x02\x89\x87\x03\x02\x02\x02\x8A\x8D\x03\x02\x02\x02" +
-		"\x8B\x89\x03\x02\x02\x02\x8B\x8C\x03\x02\x02\x02\x8C\x1B\x03\x02\x02\x02" +
-		"\x8D\x8B\x03\x02\x02\x02\x8E\x8F\b\x0F\x01\x02\x8F\xA0\x072\x02\x02\x90" +
-		"\xA0\x05 \x11\x02\x91\x92\x07\x05\x02\x02\x92\x93\x05\x1A\x0E\x02\x93" +
-		"\x94\x07\x06\x02\x02\x94\xA0\x03\x02\x02\x02\x95\x96\x07\x0E\x02\x02\x96" +
-		"\xA0\x05\x1C\x0F\x0F\x97\x98\x07\x0F\x02\x02\x98\xA0\x05\x1C\x0F\x0E\x99" +
-		"\x9A\x07\x10\x02\x02\x9A\xA0\x05\x1C\x0F\r\x9B\x9C\x07\x11\x02\x02\x9C" +
-		"\xA0\x05\x1C\x0F\f\x9D\x9E\x07\x12\x02\x02\x9E\xA0\x05\x1C\x0F\v\x9F\x8E" +
-		"\x03\x02\x02\x02\x9F\x90\x03\x02\x02\x02\x9F\x91\x03\x02\x02\x02\x9F\x95" +
-		"\x03\x02\x02\x02\x9F\x97\x03\x02\x02\x02\x9F\x99\x03\x02\x02\x02\x9F\x9B" +
-		"\x03\x02\x02\x02\x9F\x9D\x03\x02\x02\x02\xA0\xC0\x03\x02\x02\x02\xA1\xA2" +
-		"\f\n\x02\x02\xA2\xA3\x07\x1C\x02\x02\xA3\xBF\x05\x1C\x0F\n\xA4\xA5\f\t" +
-		"\x02\x02\xA5\xA6\t\x03\x02\x02\xA6\xBF\x05\x1C\x0F\n\xA7\xA8\f\b\x02\x02" +
-		"\xA8\xA9\t\x04\x02\x02\xA9\xBF\x05\x1C\x0F\t\xAA\xAB\f\x07\x02\x02\xAB" +
-		"\xAC\t\x05\x02\x02\xAC\xBF\x05\x1C\x0F\b\xAD\xAE\f\x06\x02\x02\xAE\xAF" +
-		"\t\x06\x02\x02\xAF\xBF\x05\x1C\x0F\x07\xB0\xB1\f\x05\x02\x02\xB1\xB2\x07" +
-		"\x1D\x02\x02\xB2\xBF\x05\x1C\x0F\x06\xB3\xB4\f\x04\x02\x02\xB4\xB5\x07" +
-		"\x1E\x02\x02\xB5\xBF\x05\x1C\x0F\x05\xB6\xB7\f\x03\x02\x02\xB7\xB8\x05" +
-		"\x1E\x10\x02\xB8\xB9\x05\x1C\x0F\x03\xB9\xBF\x03\x02\x02\x02\xBA\xBB\f" +
-		"\x11\x02\x02\xBB\xBF\x07\x0E\x02\x02\xBC\xBD\f\x10\x02\x02\xBD\xBF\x07" +
-		"\x0F\x02\x02\xBE\xA1\x03\x02\x02\x02\xBE\xA4\x03\x02\x02\x02\xBE\xA7\x03" +
-		"\x02\x02\x02\xBE\xAA\x03\x02\x02\x02\xBE\xAD\x03\x02\x02\x02\xBE\xB0\x03" +
-		"\x02\x02\x02\xBE\xB3\x03\x02\x02\x02\xBE\xB6\x03\x02\x02\x02\xBE\xBA\x03" +
-		"\x02\x02\x02\xBE\xBC\x03\x02\x02\x02\xBF\xC2\x03\x02\x02\x02\xC0\xBE\x03" +
-		"\x02\x02\x02\xC0\xC1\x03\x02\x02\x02\xC1\x1D\x03\x02\x02\x02\xC2\xC0\x03" +
-		"\x02\x02\x02\xC3\xC4\t\x07\x02\x02\xC4\x1F\x03\x02\x02\x02\xC5\xCA\x07" +
-		"%\x02\x02\xC6\xCA\x07&\x02\x02\xC7\xCA\x073\x02\x02\xC8\xCA\x05\"\x12" +
-		"\x02\xC9\xC5\x03\x02\x02\x02\xC9\xC6\x03\x02\x02\x02\xC9\xC7\x03\x02\x02" +
-		"\x02\xC9\xC8\x03\x02\x02\x02\xCA!\x03\x02\x02\x02\xCB\xCC\x07\'\x02\x02" +
-		"\xCC#\x03\x02\x02\x02\x12\'0;FThlpt\x81\x84\x8B\x9F\xBE\xC0\xC9";
+		"\x0E\t\x0E\x04\x0F\t\x0F\x04\x10\t\x10\x04\x11\t\x11\x04\x12\t\x12\x04" +
+		"\x13\t\x13\x03\x02\x07\x02(\n\x02\f\x02\x0E\x02+\v\x02\x03\x02\x03\x02" +
+		"\x03\x03\x03\x03\x07\x031\n\x03\f\x03\x0E\x034\v\x03\x03\x03\x03\x03\x03" +
+		"\x03\x03\x03\x03\x03\x03\x03\x03\x03\x03\x03\x03\x03\x05\x03?\n\x03\x03" +
+		"\x04\x03\x04\x03\x04\x03\x04\x03\x04\x03\x05\x03\x05\x03\x06\x03\x06\x03" +
+		"\x06\x03\x07\x03\x07\x03\x07\x03\x07\x05\x07O\n\x07\x03\b\x03\b\x03\t" +
+		"\x03\t\x03\t\x03\n\x03\n\x03\n\x03\n\x03\n\x03\n\x03\n\x05\n]\n\n\x03" +
+		"\v\x03\v\x03\v\x03\v\x03\v\x03\v\x03\v\x03\v\x03\v\x03\v\x03\v\x03\v\x03" +
+		"\v\x03\v\x03\v\x03\v\x03\v\x03\v\x05\vq\n\v\x03\v\x03\v\x05\vu\n\v\x03" +
+		"\v\x03\v\x05\vy\n\v\x03\v\x03\v\x05\v}\n\v\x03\f\x03\f\x03\f\x03\r\x03" +
+		"\r\x03\r\x03\x0E\x03\x0E\x03\x0E\x07\x0E\x88\n\x0E\f\x0E\x0E\x0E\x8B\v" +
+		"\x0E\x05\x0E\x8D\n\x0E\x03\x0F\x03\x0F\x03\x0F\x07\x0F\x92\n\x0F\f\x0F" +
+		"\x0E\x0F\x95\v\x0F\x03\x10\x03\x10\x03\x10\x03\x10\x03\x10\x03\x10\x03" +
+		"\x10\x03\x10\x03\x10\x03\x10\x03\x10\x03\x10\x03\x10\x03\x10\x03\x10\x03" +
+		"\x10\x03\x10\x05\x10\xA8\n\x10\x03\x10\x03\x10\x03\x10\x03\x10\x03\x10" +
+		"\x03\x10\x03\x10\x03\x10\x03\x10\x03\x10\x03\x10\x03\x10\x03\x10\x03\x10" +
+		"\x03\x10\x03\x10\x03\x10\x03\x10\x03\x10\x03\x10\x03\x10\x03\x10\x03\x10" +
+		"\x03\x10\x03\x10\x03\x10\x03\x10\x03\x10\x03\x10\x07\x10\xC7\n\x10\f\x10" +
+		"\x0E\x10\xCA\v\x10\x03\x11\x03\x11\x03\x12\x03\x12\x03\x12\x03\x12\x05" +
+		"\x12\xD2\n\x12\x03\x13\x03\x13\x03\x13\x02\x02\x03\x1E\x14\x02\x02\x04" +
+		"\x02\x06\x02\b\x02\n\x02\f\x02\x0E\x02\x10\x02\x12\x02\x14\x02\x16\x02" +
+		"\x18\x02\x1A\x02\x1C\x02\x1E\x02 \x02\"\x02$\x02\x02\b\x03\x0202\x03\x02" +
+		"\x13\x15\x03\x02\x10\x11\x03\x02\x16\x19\x03\x02\x1A\x1B\x04\x02\v\v\x1F" +
+		"$\x02\xEC\x02)\x03\x02\x02\x02\x04>\x03\x02\x02\x02\x06@\x03\x02\x02\x02" +
+		"\bE\x03\x02\x02\x02\nG\x03\x02\x02\x02\fJ\x03\x02\x02\x02\x0EP\x03\x02" +
+		"\x02\x02\x10R\x03\x02\x02\x02\x12U\x03\x02\x02\x02\x14|\x03\x02\x02\x02" +
+		"\x16~\x03\x02\x02\x02\x18\x81\x03\x02\x02\x02\x1A\x8C\x03\x02\x02\x02" +
+		"\x1C\x8E\x03\x02\x02\x02\x1E\xA7\x03\x02\x02\x02 \xCB\x03\x02\x02\x02" +
+		"\"\xD1\x03\x02\x02\x02$\xD3\x03\x02\x02\x02&(\x05\x04\x03\x02\'&\x03\x02" +
+		"\x02\x02(+\x03\x02\x02\x02)\'\x03\x02\x02\x02)*\x03\x02\x02\x02*,\x03" +
+		"\x02\x02\x02+)\x03\x02\x02\x02,-\x07\x02\x02\x03-\x03\x03\x02\x02\x02" +
+		".2\x07\x07\x02\x02/1\x05\x04\x03\x020/\x03\x02\x02\x0214\x03\x02\x02\x02" +
+		"20\x03\x02\x02\x0223\x03\x02\x02\x0235\x03\x02\x02\x0242\x03\x02\x02\x02" +
+		"5?\x07\b\x02\x026?\x05\n\x06\x027?\x05\x10\t\x028?\x05\x12\n\x029?\x05" +
+		"\x14\v\x02:?\x05\x16\f\x02;?\x05\x18\r\x02<?\x05\x06\x04\x02=?\x05\b\x05" +
+		"\x02>.\x03\x02\x02\x02>6\x03\x02\x02\x02>7\x03\x02\x02\x02>8\x03\x02\x02" +
+		"\x02>9\x03\x02\x02\x02>:\x03\x02\x02\x02>;\x03\x02\x02\x02><\x03\x02\x02" +
+		"\x02>=\x03\x02\x02\x02?\x05\x03\x02\x02\x02@A\x07/\x02\x02AB\x07\x05\x02" +
+		"\x02BC\x05\x1E\x10\x02CD\x07\x06\x02\x02D\x07\x03\x02\x02\x02EF\x07\t" +
+		"\x02\x02F\t\x03\x02\x02\x02GH\x05\f\x07\x02HI\x07\t\x02\x02I\v\x03\x02" +
+		"\x02\x02JK\x05\x0E\b\x02KN\x073\x02\x02LM\x07\v\x02\x02MO\x05\x1E\x10" +
+		"\x02NL\x03\x02\x02\x02NO\x03\x02\x02\x02O\r\x03\x02\x02\x02PQ\t\x02\x02" +
+		"\x02Q\x0F\x03\x02\x02\x02RS\x05\x1C\x0F\x02ST\x07\t\x02\x02T\x11\x03\x02" +
+		"\x02\x02UV\x07(\x02\x02VW\x07\x05\x02\x02WX\x05\x1C\x0F\x02XY\x07\x06" +
+		"\x02\x02Y\\\x05\x04\x03\x02Z[\x07)\x02\x02[]\x05\x04\x03\x02\\Z\x03\x02" +
+		"\x02\x02\\]\x03\x02\x02\x02]\x13\x03\x02\x02\x02^_\x07+\x02\x02_`\x05" +
+		"\x04\x03\x02`a\x07,\x02\x02ab\x07\x05\x02\x02bc\x05\x1C\x0F\x02cd\x07" +
+		"\x06\x02\x02de\x07\t\x02\x02e}\x03\x02\x02\x02fg\x07,\x02\x02gh\x07\x05" +
+		"\x02\x02hi\x05\x1C\x0F\x02ij\x07\x06\x02\x02jk\x05\x04\x03\x02k}\x03\x02" +
+		"\x02\x02lm\x07*\x02\x02mp\x07\x05\x02\x02nq\x05\x1C\x0F\x02oq\x05\f\x07" +
+		"\x02pn\x03\x02\x02\x02po\x03\x02\x02\x02pq\x03\x02\x02\x02qr\x03\x02\x02" +
+		"\x02rt\x07\t\x02\x02su\x05\x1C\x0F\x02ts\x03\x02\x02\x02tu\x03\x02\x02" +
+		"\x02uv\x03\x02\x02\x02vx\x07\t\x02\x02wy\x05\x1C\x0F\x02xw\x03\x02\x02" +
+		"\x02xy\x03\x02\x02\x02yz\x03\x02\x02\x02z{\x07\x06\x02\x02{}\x05\x04\x03" +
+		"\x02|^\x03\x02\x02\x02|f\x03\x02\x02\x02|l\x03\x02\x02\x02}\x15\x03\x02" +
+		"\x02\x02~\x7F\x07-\x02\x02\x7F\x80\x07\t\x02\x02\x80\x17\x03\x02\x02\x02" +
+		"\x81\x82\x07.\x02\x02\x82\x83\x07\t\x02\x02\x83\x19\x03\x02\x02\x02\x84" +
+		"\x89\x05\x1E\x10\x02\x85\x86\x07\n\x02\x02\x86\x88\x05\x1E\x10\x02\x87" +
+		"\x85\x03\x02\x02\x02\x88\x8B\x03\x02\x02\x02\x89\x87\x03\x02\x02\x02\x89" +
+		"\x8A\x03\x02\x02\x02\x8A\x8D\x03\x02\x02\x02\x8B\x89\x03\x02\x02\x02\x8C" +
+		"\x84\x03\x02\x02\x02\x8C\x8D\x03\x02\x02\x02\x8D\x1B\x03\x02\x02\x02\x8E" +
+		"\x93\x05\x1E\x10\x02\x8F\x90\x07\n\x02\x02\x90\x92\x05\x1E\x10\x02\x91" +
+		"\x8F\x03\x02\x02\x02\x92\x95\x03\x02\x02\x02\x93\x91\x03\x02\x02\x02\x93" +
+		"\x94\x03\x02\x02\x02\x94\x1D\x03\x02\x02\x02\x95\x93\x03\x02\x02\x02\x96" +
+		"\x97\b\x10\x01\x02\x97\xA8\x073\x02\x02\x98\xA8\x05\"\x12\x02\x99\x9A" +
+		"\x07\x05\x02\x02\x9A\x9B\x05\x1C\x0F\x02\x9B\x9C\x07\x06\x02\x02\x9C\xA8" +
+		"\x03\x02\x02\x02\x9D\x9E\x07\x0E\x02\x02\x9E\xA8\x05\x1E\x10\x0F\x9F\xA0" +
+		"\x07\x0F\x02\x02\xA0\xA8\x05\x1E\x10\x0E\xA1\xA2\x07\x10\x02\x02\xA2\xA8" +
+		"\x05\x1E\x10\r\xA3\xA4\x07\x11\x02\x02\xA4\xA8\x05\x1E\x10\f\xA5\xA6\x07" +
+		"\x12\x02\x02\xA6\xA8\x05\x1E\x10\v\xA7\x96\x03\x02\x02\x02\xA7\x98\x03" +
+		"\x02\x02\x02\xA7\x99\x03\x02\x02\x02\xA7\x9D\x03\x02\x02\x02\xA7\x9F\x03" +
+		"\x02\x02\x02\xA7\xA1\x03\x02\x02\x02\xA7\xA3\x03\x02\x02\x02\xA7\xA5\x03" +
+		"\x02\x02\x02\xA8\xC8\x03\x02\x02\x02\xA9\xAA\f\n\x02\x02\xAA\xAB\x07\x1C" +
+		"\x02\x02\xAB\xC7\x05\x1E\x10\n\xAC\xAD\f\t\x02\x02\xAD\xAE\t\x03\x02\x02" +
+		"\xAE\xC7\x05\x1E\x10\n\xAF\xB0\f\b\x02\x02\xB0\xB1\t\x04\x02\x02\xB1\xC7" +
+		"\x05\x1E\x10\t\xB2\xB3\f\x07\x02\x02\xB3\xB4\t\x05\x02\x02\xB4\xC7\x05" +
+		"\x1E\x10\b\xB5\xB6\f\x06\x02\x02\xB6\xB7\t\x06\x02\x02\xB7\xC7\x05\x1E" +
+		"\x10\x07\xB8\xB9\f\x05\x02\x02\xB9\xBA\x07\x1D\x02\x02\xBA\xC7\x05\x1E" +
+		"\x10\x06\xBB\xBC\f\x04\x02\x02\xBC\xBD\x07\x1E\x02\x02\xBD\xC7\x05\x1E" +
+		"\x10\x05\xBE\xBF\f\x03\x02\x02\xBF\xC0\x05 \x11\x02\xC0\xC1\x05\x1E\x10" +
+		"\x03\xC1\xC7\x03\x02\x02\x02\xC2\xC3\f\x11\x02\x02\xC3\xC7\x07\x0E\x02" +
+		"\x02\xC4\xC5\f\x10\x02\x02\xC5\xC7\x07\x0F\x02\x02\xC6\xA9\x03\x02\x02" +
+		"\x02\xC6\xAC\x03\x02\x02\x02\xC6\xAF\x03\x02\x02\x02\xC6\xB2\x03\x02\x02" +
+		"\x02\xC6\xB5\x03\x02\x02\x02\xC6\xB8\x03\x02\x02\x02\xC6\xBB\x03\x02\x02" +
+		"\x02\xC6\xBE\x03\x02\x02\x02\xC6\xC2\x03\x02\x02\x02\xC6\xC4\x03\x02\x02" +
+		"\x02\xC7\xCA\x03\x02\x02\x02\xC8\xC6\x03\x02\x02\x02\xC8\xC9\x03\x02\x02" +
+		"\x02\xC9\x1F\x03\x02\x02\x02\xCA\xC8\x03\x02\x02\x02\xCB\xCC\t\x07\x02" +
+		"\x02\xCC!\x03\x02\x02\x02\xCD\xD2\x07%\x02\x02\xCE\xD2\x07&\x02\x02\xCF" +
+		"\xD2\x074\x02\x02\xD0\xD2\x05$\x13\x02\xD1\xCD\x03\x02\x02\x02\xD1\xCE" +
+		"\x03\x02\x02\x02\xD1\xCF\x03\x02\x02\x02\xD1\xD0\x03\x02\x02\x02\xD2#" +
+		"\x03\x02\x02\x02\xD3\xD4\x07\'\x02\x02\xD4%\x03\x02\x02\x02\x12)2>N\\" +
+		"ptx|\x89\x8C\x93\xA7\xC6\xC8\xD1";
 	public static __ATN: ATN;
 	public static get _ATN(): ATN {
 		if (!TysonParser.__ATN) {
@@ -1446,6 +1491,9 @@ export class StatementContext extends ParserRuleContext {
 	public breakStatement(): BreakStatementContext | undefined {
 		return this.tryGetRuleContext(0, BreakStatementContext);
 	}
+	public logStatement(): LogStatementContext | undefined {
+		return this.tryGetRuleContext(0, LogStatementContext);
+	}
 	public emptyStatement(): EmptyStatementContext | undefined {
 		return this.tryGetRuleContext(0, EmptyStatementContext);
 	}
@@ -1470,6 +1518,41 @@ export class StatementContext extends ParserRuleContext {
 	public accept<Result>(visitor: TysonParserVisitor<Result>): Result {
 		if (visitor.visitStatement) {
 			return visitor.visitStatement(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
+}
+
+
+export class LogStatementContext extends ParserRuleContext {
+	public Log(): TerminalNode { return this.getToken(TysonParser.Log, 0); }
+	public OpenParen(): TerminalNode { return this.getToken(TysonParser.OpenParen, 0); }
+	public singleExpression(): SingleExpressionContext {
+		return this.getRuleContext(0, SingleExpressionContext);
+	}
+	public CloseParen(): TerminalNode { return this.getToken(TysonParser.CloseParen, 0); }
+	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
+		super(parent, invokingState);
+	}
+	// @Override
+	public get ruleIndex(): number { return TysonParser.RULE_logStatement; }
+	// @Override
+	public enterRule(listener: TysonParserListener): void {
+		if (listener.enterLogStatement) {
+			listener.enterLogStatement(this);
+		}
+	}
+	// @Override
+	public exitRule(listener: TysonParserListener): void {
+		if (listener.exitLogStatement) {
+			listener.exitLogStatement(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: TysonParserVisitor<Result>): Result {
+		if (visitor.visitLogStatement) {
+			return visitor.visitLogStatement(this);
 		} else {
 			return visitor.visitChildren(this);
 		}

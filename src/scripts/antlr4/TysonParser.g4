@@ -16,8 +16,13 @@ statement
     | iterationStatement
     | continueStatement
     | breakStatement
+    | logStatement
     | emptyStatement
     ;
+
+logStatement
+: Log OpenParen singleExpression CloseParen
+;
 
 emptyStatement
     : SemiColon

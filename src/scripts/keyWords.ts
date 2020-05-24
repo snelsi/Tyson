@@ -58,7 +58,11 @@ export const keyWords = [
     word: "undefined",
     details: "value is not defined",
   },
-
+  {
+    id: 221,
+    word: "log",
+    details: "log out command",
+  },
   {
     id: 201,
     word: "var",
