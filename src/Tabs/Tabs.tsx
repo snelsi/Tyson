@@ -19,7 +19,7 @@ interface Props {
 }
 
 const Sidebar: React.FC<Props> = ({ getCode }) => {
-  const [value, setValue] = useState(1);
+  const [value, setValue] = useState(0);
   const [code, setCode] = useState(getCode());
 
   const lexemas = useMemo(() => {
