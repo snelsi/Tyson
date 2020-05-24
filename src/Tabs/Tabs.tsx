@@ -54,7 +54,10 @@ const Sidebar: React.FC<Props> = ({ getCode, initialCode = "" }) => {
         Update
       </Button>
       {value === 0 && <LexemasTable lexemas={lexemas} />}
-      {value === 1 && <SyntaxResult lexemas={lexemas} />}
+
+      <div data-hide={value !== 1}>
+        <SyntaxResult lexemas={lexemas} />
+      </div>
     </div>
   );
 };

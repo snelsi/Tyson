@@ -42,6 +42,10 @@ const Grid = styled.div`
     height: 100%;
     overflow-y: auto;
     padding-bottom: 40px;
+
+    & > div[data-hide="true"] {
+      display: none;
+    }
   }
 
   @media (min-width: 1081px) {
