@@ -8,6 +8,7 @@ const alphabet = enAlphabetSmall + enAlphabetBig;
 
 const isDigit = (c: string) => /\d/.test(c);
 
+/* eslint-disable complexity */
 export const getLexemas = (input: string): AtomLexema[] => {
   const dictionary: AtomLexema[] = [];
 
@@ -33,20 +34,21 @@ export const getLexemas = (input: string): AtomLexema[] => {
       i += next;
       column = 0;
       row++;
-    } else if (char === '"') {
-      // String
+    }
+    // Double Quote String
+    else if (char === '"' || char === "'") {
       let next = 1;
-      let word = '"';
+      let word = char;
       let nextchar = input[i + next];
-      while (i + next < input.length && nextchar !== '"' && nextchar !== "\n") {
+      while (i + next < input.length && nextchar !== char && nextchar !== "\n") {
         word += String(nextchar);
         nextchar = input[i + ++next];
         if (nextchar === "\n") {
           row++;
         }
       }
-      if (nextchar === '"') {
-        word += '"';
+      if (nextchar === char) {
+        word += char;
         dictionary.push({
           row,
           column,
@@ -60,7 +62,7 @@ export const getLexemas = (input: string): AtomLexema[] => {
           column,
           type: "error",
           body: word + nextchar,
-          details: `missing closing '"' after [${row}, ${column}]'`,
+          details: `missing closing quote after [${row}, ${column}]'`,
         });
       }
       i += next;

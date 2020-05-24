@@ -4,7 +4,7 @@ import Button from "@material-ui/core/Button";
 import MTabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 
-import { getLexemas } from "scripts/getLexemas";
+import { getLexemas } from "scripts/Lexemas/getLexemas";
 import { LexemasTable } from "Tabs/Lexemas";
 import { SyntaxResult } from "Tabs/Syntax";
 
@@ -45,8 +45,8 @@ const Sidebar: React.FC<Props> = ({ getCode }) => {
         textColor="primary"
         centered
       >
-        <Tab label="Лексичний" />
-        <Tab label="Синтаксичний" />
+        <Tab label="Лексеми" />
+        <Tab label="Синтаксис" />
         <Tab label="Парсер" />
       </Tabs>
       <Button onClick={updateDictionary} color="primary" style={{ width: "100%" }}>
