@@ -1,22 +1,32 @@
-import { AnalyzeResult, Lexema } from "interfaces/Interface";
+import { Lexema } from "interfaces/Interface";
 import { NodeTree, Node, Edge } from "interfaces/graph";
 
-export const toNodes = (tree: AnalyzeResult): NodeTree => {
+interface Lexemad {
+  lexema: Lexema;
+  id: number;
+}
+export const toNodes = (tree: Lexema): NodeTree => {
+  const head: Lexemad = { lexema: tree, id: 1 };
   const nodes: Node[] = [];
   const edges: Edge[] = [];
 
-  let i = 0;
+  let i = 2;
 
-  const visitNode = (lexema: Lexema) => {
-    const node = {
-      id: ++i,
+  const visitNode = ({ lexema, id }: Lexemad) => {
+    if (Array.isArray(lexema.body)) {
+      lexema.body.forEach((child) => {
+        const NodeId = i++;
+        edges.push({ from: id, to: NodeId });
+        visitNode({ lexema: child, id: NodeId });
+      });
+    }
+    nodes.push({
+      id,
       label: Array.isArray(lexema.body) ? lexema.type : lexema.body,
-    };
-
-    nodes.push(node);
+    });
   };
 
-  visitNode(tree.foundedLexema);
+  visitNode(head);
 
   return {
     nodes,

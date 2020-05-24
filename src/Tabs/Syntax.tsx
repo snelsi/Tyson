@@ -9,6 +9,7 @@ import TableRow from "@material-ui/core/TableRow";
 
 import { Lexema } from "interfaces/Interface";
 import { syntaxAnalyse } from "scripts/Syntax/syntaxAnalyse";
+import { useLexemasTree } from "scripts/hooks/stateHelpers";
 
 interface Props {
   lexemas: Lexema[];
@@ -24,6 +25,12 @@ export const SyntaxResult: React.FC<Props> = ({ lexemas }) => {
   const [mode, setMode] = useState(false);
 
   const result = useMemo(() => syntaxAnalyse(lexemas, mode), [lexemas, mode]);
+
+  const [, setTree] = useLexemasTree();
+
+  React.useEffect(() => {
+    setTree(result.foundedLexema);
+  }, [result]);
 
   return (
     <>

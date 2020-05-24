@@ -20,6 +20,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "styled-components": "^5.1.0",
+    "use-local-storage-state": "^3.0.1",
     "vis-react": "^0.5.1"
   },
   "devDependencies": {
