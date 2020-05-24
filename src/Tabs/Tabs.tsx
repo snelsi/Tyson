@@ -27,9 +27,7 @@ const Sidebar: React.FC<Props> = ({ getCode, initialCode = "" }) => {
 
   const lexemas = useMemo(() => {
     console.clear();
-    console.log("%c -------ANTLR---------", "color: red");
     AntlrParse(code);
-    console.log("%c -------ANTLR---------", "color: red");
     return getLexemas(code);
   }, [code]);
 

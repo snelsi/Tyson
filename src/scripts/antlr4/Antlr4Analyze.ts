@@ -24,6 +24,8 @@ class CountFunctionsVisitor extends AbstractParseTreeVisitor<number>
 // Create the lexer and parser
 
 export const AntlrParse = (input: string) => {
+  console.log("%c -------ANTLR---------", "color: red");
+
   console.log("Text input: ", input);
 
   const inputStream = new ANTLRInputStream(input);
@@ -52,4 +54,6 @@ export const AntlrParse = (input: string) => {
   countFunctionsVisitor.visit(tree);
 
   console.log("countFunctionsVisitor: ", countFunctionsVisitor);
+
+  console.log("%c -------ANTLR---------", "color: red");
 };
