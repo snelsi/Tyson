@@ -1,9 +1,9 @@
 import { ANTLRInputStream, CommonTokenStream } from "antlr4ts";
 import { AbstractParseTreeVisitor } from "antlr4ts/tree/AbstractParseTreeVisitor";
 
-import { TysonParserVisitor } from "Tyson/TysonParserVisitor";
-import { TysonLexer } from "Tyson/TysonLexer";
-import { TysonParser } from "Tyson/TysonParser";
+import { TysonParserVisitor } from "scripts/antlr4/TysonParserVisitor";
+import { TysonLexer } from "scripts/antlr4/TysonLexer";
+import { TysonParser } from "scripts/antlr4/TysonParser";
 
 class CountFunctionsVisitor extends AbstractParseTreeVisitor<number>
   implements TysonParserVisitor<number> {
