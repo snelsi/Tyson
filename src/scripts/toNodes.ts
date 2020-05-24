@@ -26,8 +26,14 @@ export const toNodes = (tree: Lexema): NodeTree => {
     });
   };
 
-  visitNode(head);
-
+  try {
+    visitNode(head);
+  } catch {
+    return {
+      nodes: [],
+      edges: [],
+    };
+  }
   return {
     nodes,
     edges,
