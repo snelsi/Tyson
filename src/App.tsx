@@ -19,7 +19,6 @@ const Frame = styled.div`
 `;
 
 const Grid = styled.div`
-  --tabs-width: 800px;
   display: grid;
   width: 100%;
   height: 100%;
@@ -48,18 +47,11 @@ const Grid = styled.div`
     }
   }
 
-  @media (min-width: 1081px) {
-    grid-template-columns: 1fr var(--tabs-width, 700px);
+  @media (min-width: 1080px) {
+    grid-template-columns: 1fr 1fr;
   }
-  @media (max-width: 1440px) {
-    --tabs-width: 700px;
-  }
-  @media (max-width: 1080px) {
-    --tabs-width: 1fr;
+  @media (max-width: 1079px) {
     grid-template-rows: 40vh 1fr;
-    & .tabs {
-      border-top: 1px solid grey;
-    }
   }
 `;
 
