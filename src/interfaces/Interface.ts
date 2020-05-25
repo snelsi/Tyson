@@ -10,14 +10,14 @@ export type BaseType =
 export type Type =
   | BaseType
   | "Statement"
-  | "CycleStatement"
+  | "Command"
+  | "If Statement"
+  | "Cycle Statement"
   | "ConstExpr"
-  | "Expr"
-  | "Operation"
+  | "Expression"
   | "Type"
-  | "Condition"
-  | "AssignOperator"
-  | "ComparisonOperator"
+  | "Variable Declaration"
+  | "Assignment"
   | "Programm";
 
 export interface Lexema {

@@ -1,6 +1,9 @@
 import { Lexema, AnalyzeResult } from "interfaces/Interface";
-import { isStatement, isOperation, isCondition } from "scripts/Syntax";
+import { isStatement, isAssignment } from "scripts/Syntax";
+import { isVariableDeclaration } from "scripts/Syntax/isVariableDeclaration";
+import { isExpression } from "scripts/Syntax/Expressions";
 
+/* eslint-disable complexity */
 export function isFor(lexemas: Lexema[], mode: boolean): AnalyzeResult {
   const log = [];
 
@@ -28,14 +31,14 @@ export function isFor(lexemas: Lexema[], mode: boolean): AnalyzeResult {
     };
   }
 
-  const op1 = isOperation(lexemas.slice(2), mode);
-  log.push(...op1.log);
+  const declar = isVariableDeclaration(lexemas.slice(2), mode);
+  log.push(...declar.log);
 
-  if (!op1.isSuccessfull) {
+  if (declar.rest[0]?.type !== "keysymbol" || declar.rest[0]?.id !== 3) {
     log.push(
       mode
-        ? `!Из магазина получена открывающая скобка. Из стека ожидался Operation, но получен '${lexemas[2].body}'`
-        : "!Внутри скобок в цикле for пропущен Operation",
+        ? `!Из магазина получен variableDeclaration. Ожидалась точка с запятой из стека, но был получен '${declar.rest[0].body}'`
+        : "!После variableDeclaration пропущена точка с запятой",
     );
 
     return {
@@ -46,28 +49,13 @@ export function isFor(lexemas: Lexema[], mode: boolean): AnalyzeResult {
     };
   }
 
-  if (op1.rest[0]?.type !== "keysymbol" || op1.rest[0]?.id !== 3) {
-    log.push(
-      mode
-        ? `!Из магазина получен Operation. Ожидалась точка с запятой из стека, но был получен '${op1.rest[0].body}'`
-        : "!После Operation пропущена точка с запятой",
-    );
-
-    return {
-      isSuccessfull: false,
-      foundedLexema: null,
-      rest: lexemas,
-      log,
-    };
-  }
-
-  const condition = isCondition(op1.rest.slice(1), mode);
+  const condition = isExpression(declar.rest.slice(1), mode);
   log.push(...condition.log);
 
   if (!condition.isSuccessfull) {
     log.push(
       mode
-        ? `!Из магазина получена инициализация for, из стека ожидалось условие выхода, но был получен ${op1.rest[1].body}`
+        ? `!Из магазина получена инициализация for, из стека ожидалось условие выхода, но был получен ${declar.rest[1].body}`
         : "!Пропущено условие выхода в for",
     );
 
@@ -94,22 +82,11 @@ export function isFor(lexemas: Lexema[], mode: boolean): AnalyzeResult {
     };
   }
 
-  const op2 = isOperation(condition.rest.slice(1), mode);
+  let op2 = isAssignment(condition.rest.slice(1), mode);
   log.push(...op2.log);
 
   if (!op2.isSuccessfull) {
-    log.push(
-      mode
-        ? `!Из магазина получен оператор условия цикла, из стека ожидался оператор, но получен ${condition.rest[1].body}`
-        : "!Пропущен последний оператор в for",
-    );
-
-    return {
-      isSuccessfull: false,
-      foundedLexema: null,
-      rest: lexemas,
-      log,
-    };
+    op2 = isExpression(condition.rest.slice(1), mode);
   }
 
   if (op2.rest[0]?.type !== "keysymbol" || op2.rest[0]?.id !== 5) {
@@ -157,11 +134,11 @@ export function isFor(lexemas: Lexema[], mode: boolean): AnalyzeResult {
       body: [
         lexemas[0], // for
         lexemas[1], // (
-        op1.foundedLexema,
-        op1.rest[0], // ;
+        ...[declar.foundedLexema],
+        declar.rest[0], // ;
         condition.foundedLexema,
         condition.rest[0], // ;
-        op2.foundedLexema,
+        ...[op2.foundedLexema],
         op2.rest[0], // )
         statement.foundedLexema,
       ],

@@ -1,7 +1,10 @@
 import { Lexema, AnalyzeResult } from "interfaces/Interface";
 import { isStatement } from "scripts/Syntax";
 
-export function isBrackets(lexemas: Lexema[], mode: boolean): AnalyzeResult {
+/**
+ * { statement* }
+ */
+export function isBracketStatement(lexemas: Lexema[], mode: boolean): AnalyzeResult {
   const log = [];
 
   if (lexemas[0]?.type !== "keysymbol" || lexemas[0].id !== 6) {

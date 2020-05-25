@@ -1,7 +1,7 @@
 import { Lexema, AnalyzeResult } from "interfaces/Interface";
-import { isStatement, isCondition } from "scripts/Syntax";
+import { isStatement, isExpression } from "scripts/Syntax";
 
-export function isIf(lexemas: Lexema[], mode: boolean): AnalyzeResult {
+export function isIfStatement(lexemas: Lexema[], mode: boolean): AnalyzeResult {
   const log = [];
 
   if (lexemas[0].body !== "if") {
@@ -28,7 +28,7 @@ export function isIf(lexemas: Lexema[], mode: boolean): AnalyzeResult {
     };
   }
 
-  const condition = isCondition(lexemas.slice(2), mode);
+  const condition = isExpression(lexemas.slice(2), mode);
   log.push(...condition.log);
 
   if (!condition.isSuccessfull) {
