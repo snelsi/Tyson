@@ -40,6 +40,10 @@ else {
 myVariable = 7 + 2;
 `,
 
+  // Example 3
+  `log(7 + 2 * (3 - 1));
+`,
+
   // Example 4
   `for (i = 0; i < myVariable; i += 1) {
   key = 123;
