@@ -20,7 +20,6 @@ import { RelationalExpressionContext } from "./TysonParser";
 import { EqualityExpressionContext } from "./TysonParser";
 import { LogicalAndExpressionContext } from "./TysonParser";
 import { LogicalOrExpressionContext } from "./TysonParser";
-import { AssignmentOperatorExpressionContext } from "./TysonParser";
 import { DoStatementContext } from "./TysonParser";
 import { WhileStatementContext } from "./TysonParser";
 import { ForStatementContext } from "./TysonParser";
@@ -29,18 +28,18 @@ import { StatementContext } from "./TysonParser";
 import { BracketStatementContext } from "./TysonParser";
 import { LogStatementContext } from "./TysonParser";
 import { EmptyStatementContext } from "./TysonParser";
-import { VariableStatementContext } from "./TysonParser";
-import { VariableDeclarationListContext } from "./TysonParser";
+import { VariableDeclarationStatementContext } from "./TysonParser";
+import { VariableDeclarationContext } from "./TysonParser";
 import { VarModifierContext } from "./TysonParser";
+import { AssignmentStatementContext } from "./TysonParser";
+import { AssignmentContext } from "./TysonParser";
+import { AssignmentOperatorContext } from "./TysonParser";
 import { ExpressionStatementContext } from "./TysonParser";
 import { IfStatementContext } from "./TysonParser";
 import { IterationStatementContext } from "./TysonParser";
 import { ContinueStatementContext } from "./TysonParser";
 import { BreakStatementContext } from "./TysonParser";
-import { ElementListContext } from "./TysonParser";
-import { ExpressionSequenceContext } from "./TysonParser";
-import { SingleExpressionContext } from "./TysonParser";
-import { AssignmentOperatorContext } from "./TysonParser";
+import { ExpressionContext } from "./TysonParser";
 import { LiteralContext } from "./TysonParser";
 import { NumericLiteralContext } from "./TysonParser";
 
@@ -55,7 +54,7 @@ import { NumericLiteralContext } from "./TysonParser";
 export interface TysonParserVisitor<Result> extends ParseTreeVisitor<Result> {
 	/**
 	 * Visit a parse tree produced by the `IdentifierExpression`
-	 * labeled alternative in `TysonParser.singleExpression`.
+	 * labeled alternative in `TysonParser.expression`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
@@ -63,7 +62,7 @@ export interface TysonParserVisitor<Result> extends ParseTreeVisitor<Result> {
 
 	/**
 	 * Visit a parse tree produced by the `LiteralExpression`
-	 * labeled alternative in `TysonParser.singleExpression`.
+	 * labeled alternative in `TysonParser.expression`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
@@ -71,7 +70,7 @@ export interface TysonParserVisitor<Result> extends ParseTreeVisitor<Result> {
 
 	/**
 	 * Visit a parse tree produced by the `ParenthesizedExpression`
-	 * labeled alternative in `TysonParser.singleExpression`.
+	 * labeled alternative in `TysonParser.expression`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
@@ -79,7 +78,7 @@ export interface TysonParserVisitor<Result> extends ParseTreeVisitor<Result> {
 
 	/**
 	 * Visit a parse tree produced by the `PostIncrementExpression`
-	 * labeled alternative in `TysonParser.singleExpression`.
+	 * labeled alternative in `TysonParser.expression`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
@@ -87,7 +86,7 @@ export interface TysonParserVisitor<Result> extends ParseTreeVisitor<Result> {
 
 	/**
 	 * Visit a parse tree produced by the `PostDecreaseExpression`
-	 * labeled alternative in `TysonParser.singleExpression`.
+	 * labeled alternative in `TysonParser.expression`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
@@ -95,7 +94,7 @@ export interface TysonParserVisitor<Result> extends ParseTreeVisitor<Result> {
 
 	/**
 	 * Visit a parse tree produced by the `PreIncrementExpression`
-	 * labeled alternative in `TysonParser.singleExpression`.
+	 * labeled alternative in `TysonParser.expression`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
@@ -103,7 +102,7 @@ export interface TysonParserVisitor<Result> extends ParseTreeVisitor<Result> {
 
 	/**
 	 * Visit a parse tree produced by the `PreDecreaseExpression`
-	 * labeled alternative in `TysonParser.singleExpression`.
+	 * labeled alternative in `TysonParser.expression`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
@@ -111,7 +110,7 @@ export interface TysonParserVisitor<Result> extends ParseTreeVisitor<Result> {
 
 	/**
 	 * Visit a parse tree produced by the `UnaryPlusExpression`
-	 * labeled alternative in `TysonParser.singleExpression`.
+	 * labeled alternative in `TysonParser.expression`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
@@ -119,7 +118,7 @@ export interface TysonParserVisitor<Result> extends ParseTreeVisitor<Result> {
 
 	/**
 	 * Visit a parse tree produced by the `UnaryMinusExpression`
-	 * labeled alternative in `TysonParser.singleExpression`.
+	 * labeled alternative in `TysonParser.expression`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
@@ -127,7 +126,7 @@ export interface TysonParserVisitor<Result> extends ParseTreeVisitor<Result> {
 
 	/**
 	 * Visit a parse tree produced by the `NotExpression`
-	 * labeled alternative in `TysonParser.singleExpression`.
+	 * labeled alternative in `TysonParser.expression`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
@@ -135,7 +134,7 @@ export interface TysonParserVisitor<Result> extends ParseTreeVisitor<Result> {
 
 	/**
 	 * Visit a parse tree produced by the `PowerExpression`
-	 * labeled alternative in `TysonParser.singleExpression`.
+	 * labeled alternative in `TysonParser.expression`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
@@ -143,7 +142,7 @@ export interface TysonParserVisitor<Result> extends ParseTreeVisitor<Result> {
 
 	/**
 	 * Visit a parse tree produced by the `MultiplicativeExpression`
-	 * labeled alternative in `TysonParser.singleExpression`.
+	 * labeled alternative in `TysonParser.expression`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
@@ -151,7 +150,7 @@ export interface TysonParserVisitor<Result> extends ParseTreeVisitor<Result> {
 
 	/**
 	 * Visit a parse tree produced by the `AdditiveExpression`
-	 * labeled alternative in `TysonParser.singleExpression`.
+	 * labeled alternative in `TysonParser.expression`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
@@ -159,7 +158,7 @@ export interface TysonParserVisitor<Result> extends ParseTreeVisitor<Result> {
 
 	/**
 	 * Visit a parse tree produced by the `RelationalExpression`
-	 * labeled alternative in `TysonParser.singleExpression`.
+	 * labeled alternative in `TysonParser.expression`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
@@ -167,7 +166,7 @@ export interface TysonParserVisitor<Result> extends ParseTreeVisitor<Result> {
 
 	/**
 	 * Visit a parse tree produced by the `EqualityExpression`
-	 * labeled alternative in `TysonParser.singleExpression`.
+	 * labeled alternative in `TysonParser.expression`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
@@ -175,7 +174,7 @@ export interface TysonParserVisitor<Result> extends ParseTreeVisitor<Result> {
 
 	/**
 	 * Visit a parse tree produced by the `LogicalAndExpression`
-	 * labeled alternative in `TysonParser.singleExpression`.
+	 * labeled alternative in `TysonParser.expression`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
@@ -183,19 +182,11 @@ export interface TysonParserVisitor<Result> extends ParseTreeVisitor<Result> {
 
 	/**
 	 * Visit a parse tree produced by the `LogicalOrExpression`
-	 * labeled alternative in `TysonParser.singleExpression`.
+	 * labeled alternative in `TysonParser.expression`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	visitLogicalOrExpression?: (ctx: LogicalOrExpressionContext) => Result;
-
-	/**
-	 * Visit a parse tree produced by the `AssignmentOperatorExpression`
-	 * labeled alternative in `TysonParser.singleExpression`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitAssignmentOperatorExpression?: (ctx: AssignmentOperatorExpressionContext) => Result;
 
 	/**
 	 * Visit a parse tree produced by the `DoStatement`
@@ -257,18 +248,18 @@ export interface TysonParserVisitor<Result> extends ParseTreeVisitor<Result> {
 	visitEmptyStatement?: (ctx: EmptyStatementContext) => Result;
 
 	/**
-	 * Visit a parse tree produced by `TysonParser.variableStatement`.
+	 * Visit a parse tree produced by `TysonParser.variableDeclarationStatement`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitVariableStatement?: (ctx: VariableStatementContext) => Result;
+	visitVariableDeclarationStatement?: (ctx: VariableDeclarationStatementContext) => Result;
 
 	/**
-	 * Visit a parse tree produced by `TysonParser.variableDeclarationList`.
+	 * Visit a parse tree produced by `TysonParser.variableDeclaration`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitVariableDeclarationList?: (ctx: VariableDeclarationListContext) => Result;
+	visitVariableDeclaration?: (ctx: VariableDeclarationContext) => Result;
 
 	/**
 	 * Visit a parse tree produced by `TysonParser.varModifier`.
@@ -276,6 +267,27 @@ export interface TysonParserVisitor<Result> extends ParseTreeVisitor<Result> {
 	 * @return the visitor result
 	 */
 	visitVarModifier?: (ctx: VarModifierContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `TysonParser.assignmentStatement`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitAssignmentStatement?: (ctx: AssignmentStatementContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `TysonParser.assignment`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitAssignment?: (ctx: AssignmentContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `TysonParser.assignmentOperator`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitAssignmentOperator?: (ctx: AssignmentOperatorContext) => Result;
 
 	/**
 	 * Visit a parse tree produced by `TysonParser.expressionStatement`.
@@ -313,32 +325,11 @@ export interface TysonParserVisitor<Result> extends ParseTreeVisitor<Result> {
 	visitBreakStatement?: (ctx: BreakStatementContext) => Result;
 
 	/**
-	 * Visit a parse tree produced by `TysonParser.elementList`.
+	 * Visit a parse tree produced by `TysonParser.expression`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitElementList?: (ctx: ElementListContext) => Result;
-
-	/**
-	 * Visit a parse tree produced by `TysonParser.expressionSequence`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitExpressionSequence?: (ctx: ExpressionSequenceContext) => Result;
-
-	/**
-	 * Visit a parse tree produced by `TysonParser.singleExpression`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitSingleExpression?: (ctx: SingleExpressionContext) => Result;
-
-	/**
-	 * Visit a parse tree produced by `TysonParser.assignmentOperator`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitAssignmentOperator?: (ctx: AssignmentOperatorContext) => Result;
+	visitExpression?: (ctx: ExpressionContext) => Result;
 
 	/**
 	 * Visit a parse tree produced by `TysonParser.literal`.

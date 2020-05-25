@@ -20,7 +20,6 @@ import { RelationalExpressionContext } from "./TysonParser";
 import { EqualityExpressionContext } from "./TysonParser";
 import { LogicalAndExpressionContext } from "./TysonParser";
 import { LogicalOrExpressionContext } from "./TysonParser";
-import { AssignmentOperatorExpressionContext } from "./TysonParser";
 import { DoStatementContext } from "./TysonParser";
 import { WhileStatementContext } from "./TysonParser";
 import { ForStatementContext } from "./TysonParser";
@@ -29,18 +28,18 @@ import { StatementContext } from "./TysonParser";
 import { BracketStatementContext } from "./TysonParser";
 import { LogStatementContext } from "./TysonParser";
 import { EmptyStatementContext } from "./TysonParser";
-import { VariableStatementContext } from "./TysonParser";
-import { VariableDeclarationListContext } from "./TysonParser";
+import { VariableDeclarationStatementContext } from "./TysonParser";
+import { VariableDeclarationContext } from "./TysonParser";
 import { VarModifierContext } from "./TysonParser";
+import { AssignmentStatementContext } from "./TysonParser";
+import { AssignmentContext } from "./TysonParser";
+import { AssignmentOperatorContext } from "./TysonParser";
 import { ExpressionStatementContext } from "./TysonParser";
 import { IfStatementContext } from "./TysonParser";
 import { IterationStatementContext } from "./TysonParser";
 import { ContinueStatementContext } from "./TysonParser";
 import { BreakStatementContext } from "./TysonParser";
-import { ElementListContext } from "./TysonParser";
-import { ExpressionSequenceContext } from "./TysonParser";
-import { SingleExpressionContext } from "./TysonParser";
-import { AssignmentOperatorContext } from "./TysonParser";
+import { ExpressionContext } from "./TysonParser";
 import { LiteralContext } from "./TysonParser";
 import { NumericLiteralContext } from "./TysonParser";
 
@@ -52,237 +51,224 @@ import { NumericLiteralContext } from "./TysonParser";
 export interface TysonParserListener extends ParseTreeListener {
 	/**
 	 * Enter a parse tree produced by the `IdentifierExpression`
-	 * labeled alternative in `TysonParser.singleExpression`.
+	 * labeled alternative in `TysonParser.expression`.
 	 * @param ctx the parse tree
 	 */
 	enterIdentifierExpression?: (ctx: IdentifierExpressionContext) => void;
 	/**
 	 * Exit a parse tree produced by the `IdentifierExpression`
-	 * labeled alternative in `TysonParser.singleExpression`.
+	 * labeled alternative in `TysonParser.expression`.
 	 * @param ctx the parse tree
 	 */
 	exitIdentifierExpression?: (ctx: IdentifierExpressionContext) => void;
 
 	/**
 	 * Enter a parse tree produced by the `LiteralExpression`
-	 * labeled alternative in `TysonParser.singleExpression`.
+	 * labeled alternative in `TysonParser.expression`.
 	 * @param ctx the parse tree
 	 */
 	enterLiteralExpression?: (ctx: LiteralExpressionContext) => void;
 	/**
 	 * Exit a parse tree produced by the `LiteralExpression`
-	 * labeled alternative in `TysonParser.singleExpression`.
+	 * labeled alternative in `TysonParser.expression`.
 	 * @param ctx the parse tree
 	 */
 	exitLiteralExpression?: (ctx: LiteralExpressionContext) => void;
 
 	/**
 	 * Enter a parse tree produced by the `ParenthesizedExpression`
-	 * labeled alternative in `TysonParser.singleExpression`.
+	 * labeled alternative in `TysonParser.expression`.
 	 * @param ctx the parse tree
 	 */
 	enterParenthesizedExpression?: (ctx: ParenthesizedExpressionContext) => void;
 	/**
 	 * Exit a parse tree produced by the `ParenthesizedExpression`
-	 * labeled alternative in `TysonParser.singleExpression`.
+	 * labeled alternative in `TysonParser.expression`.
 	 * @param ctx the parse tree
 	 */
 	exitParenthesizedExpression?: (ctx: ParenthesizedExpressionContext) => void;
 
 	/**
 	 * Enter a parse tree produced by the `PostIncrementExpression`
-	 * labeled alternative in `TysonParser.singleExpression`.
+	 * labeled alternative in `TysonParser.expression`.
 	 * @param ctx the parse tree
 	 */
 	enterPostIncrementExpression?: (ctx: PostIncrementExpressionContext) => void;
 	/**
 	 * Exit a parse tree produced by the `PostIncrementExpression`
-	 * labeled alternative in `TysonParser.singleExpression`.
+	 * labeled alternative in `TysonParser.expression`.
 	 * @param ctx the parse tree
 	 */
 	exitPostIncrementExpression?: (ctx: PostIncrementExpressionContext) => void;
 
 	/**
 	 * Enter a parse tree produced by the `PostDecreaseExpression`
-	 * labeled alternative in `TysonParser.singleExpression`.
+	 * labeled alternative in `TysonParser.expression`.
 	 * @param ctx the parse tree
 	 */
 	enterPostDecreaseExpression?: (ctx: PostDecreaseExpressionContext) => void;
 	/**
 	 * Exit a parse tree produced by the `PostDecreaseExpression`
-	 * labeled alternative in `TysonParser.singleExpression`.
+	 * labeled alternative in `TysonParser.expression`.
 	 * @param ctx the parse tree
 	 */
 	exitPostDecreaseExpression?: (ctx: PostDecreaseExpressionContext) => void;
 
 	/**
 	 * Enter a parse tree produced by the `PreIncrementExpression`
-	 * labeled alternative in `TysonParser.singleExpression`.
+	 * labeled alternative in `TysonParser.expression`.
 	 * @param ctx the parse tree
 	 */
 	enterPreIncrementExpression?: (ctx: PreIncrementExpressionContext) => void;
 	/**
 	 * Exit a parse tree produced by the `PreIncrementExpression`
-	 * labeled alternative in `TysonParser.singleExpression`.
+	 * labeled alternative in `TysonParser.expression`.
 	 * @param ctx the parse tree
 	 */
 	exitPreIncrementExpression?: (ctx: PreIncrementExpressionContext) => void;
 
 	/**
 	 * Enter a parse tree produced by the `PreDecreaseExpression`
-	 * labeled alternative in `TysonParser.singleExpression`.
+	 * labeled alternative in `TysonParser.expression`.
 	 * @param ctx the parse tree
 	 */
 	enterPreDecreaseExpression?: (ctx: PreDecreaseExpressionContext) => void;
 	/**
 	 * Exit a parse tree produced by the `PreDecreaseExpression`
-	 * labeled alternative in `TysonParser.singleExpression`.
+	 * labeled alternative in `TysonParser.expression`.
 	 * @param ctx the parse tree
 	 */
 	exitPreDecreaseExpression?: (ctx: PreDecreaseExpressionContext) => void;
 
 	/**
 	 * Enter a parse tree produced by the `UnaryPlusExpression`
-	 * labeled alternative in `TysonParser.singleExpression`.
+	 * labeled alternative in `TysonParser.expression`.
 	 * @param ctx the parse tree
 	 */
 	enterUnaryPlusExpression?: (ctx: UnaryPlusExpressionContext) => void;
 	/**
 	 * Exit a parse tree produced by the `UnaryPlusExpression`
-	 * labeled alternative in `TysonParser.singleExpression`.
+	 * labeled alternative in `TysonParser.expression`.
 	 * @param ctx the parse tree
 	 */
 	exitUnaryPlusExpression?: (ctx: UnaryPlusExpressionContext) => void;
 
 	/**
 	 * Enter a parse tree produced by the `UnaryMinusExpression`
-	 * labeled alternative in `TysonParser.singleExpression`.
+	 * labeled alternative in `TysonParser.expression`.
 	 * @param ctx the parse tree
 	 */
 	enterUnaryMinusExpression?: (ctx: UnaryMinusExpressionContext) => void;
 	/**
 	 * Exit a parse tree produced by the `UnaryMinusExpression`
-	 * labeled alternative in `TysonParser.singleExpression`.
+	 * labeled alternative in `TysonParser.expression`.
 	 * @param ctx the parse tree
 	 */
 	exitUnaryMinusExpression?: (ctx: UnaryMinusExpressionContext) => void;
 
 	/**
 	 * Enter a parse tree produced by the `NotExpression`
-	 * labeled alternative in `TysonParser.singleExpression`.
+	 * labeled alternative in `TysonParser.expression`.
 	 * @param ctx the parse tree
 	 */
 	enterNotExpression?: (ctx: NotExpressionContext) => void;
 	/**
 	 * Exit a parse tree produced by the `NotExpression`
-	 * labeled alternative in `TysonParser.singleExpression`.
+	 * labeled alternative in `TysonParser.expression`.
 	 * @param ctx the parse tree
 	 */
 	exitNotExpression?: (ctx: NotExpressionContext) => void;
 
 	/**
 	 * Enter a parse tree produced by the `PowerExpression`
-	 * labeled alternative in `TysonParser.singleExpression`.
+	 * labeled alternative in `TysonParser.expression`.
 	 * @param ctx the parse tree
 	 */
 	enterPowerExpression?: (ctx: PowerExpressionContext) => void;
 	/**
 	 * Exit a parse tree produced by the `PowerExpression`
-	 * labeled alternative in `TysonParser.singleExpression`.
+	 * labeled alternative in `TysonParser.expression`.
 	 * @param ctx the parse tree
 	 */
 	exitPowerExpression?: (ctx: PowerExpressionContext) => void;
 
 	/**
 	 * Enter a parse tree produced by the `MultiplicativeExpression`
-	 * labeled alternative in `TysonParser.singleExpression`.
+	 * labeled alternative in `TysonParser.expression`.
 	 * @param ctx the parse tree
 	 */
 	enterMultiplicativeExpression?: (ctx: MultiplicativeExpressionContext) => void;
 	/**
 	 * Exit a parse tree produced by the `MultiplicativeExpression`
-	 * labeled alternative in `TysonParser.singleExpression`.
+	 * labeled alternative in `TysonParser.expression`.
 	 * @param ctx the parse tree
 	 */
 	exitMultiplicativeExpression?: (ctx: MultiplicativeExpressionContext) => void;
 
 	/**
 	 * Enter a parse tree produced by the `AdditiveExpression`
-	 * labeled alternative in `TysonParser.singleExpression`.
+	 * labeled alternative in `TysonParser.expression`.
 	 * @param ctx the parse tree
 	 */
 	enterAdditiveExpression?: (ctx: AdditiveExpressionContext) => void;
 	/**
 	 * Exit a parse tree produced by the `AdditiveExpression`
-	 * labeled alternative in `TysonParser.singleExpression`.
+	 * labeled alternative in `TysonParser.expression`.
 	 * @param ctx the parse tree
 	 */
 	exitAdditiveExpression?: (ctx: AdditiveExpressionContext) => void;
 
 	/**
 	 * Enter a parse tree produced by the `RelationalExpression`
-	 * labeled alternative in `TysonParser.singleExpression`.
+	 * labeled alternative in `TysonParser.expression`.
 	 * @param ctx the parse tree
 	 */
 	enterRelationalExpression?: (ctx: RelationalExpressionContext) => void;
 	/**
 	 * Exit a parse tree produced by the `RelationalExpression`
-	 * labeled alternative in `TysonParser.singleExpression`.
+	 * labeled alternative in `TysonParser.expression`.
 	 * @param ctx the parse tree
 	 */
 	exitRelationalExpression?: (ctx: RelationalExpressionContext) => void;
 
 	/**
 	 * Enter a parse tree produced by the `EqualityExpression`
-	 * labeled alternative in `TysonParser.singleExpression`.
+	 * labeled alternative in `TysonParser.expression`.
 	 * @param ctx the parse tree
 	 */
 	enterEqualityExpression?: (ctx: EqualityExpressionContext) => void;
 	/**
 	 * Exit a parse tree produced by the `EqualityExpression`
-	 * labeled alternative in `TysonParser.singleExpression`.
+	 * labeled alternative in `TysonParser.expression`.
 	 * @param ctx the parse tree
 	 */
 	exitEqualityExpression?: (ctx: EqualityExpressionContext) => void;
 
 	/**
 	 * Enter a parse tree produced by the `LogicalAndExpression`
-	 * labeled alternative in `TysonParser.singleExpression`.
+	 * labeled alternative in `TysonParser.expression`.
 	 * @param ctx the parse tree
 	 */
 	enterLogicalAndExpression?: (ctx: LogicalAndExpressionContext) => void;
 	/**
 	 * Exit a parse tree produced by the `LogicalAndExpression`
-	 * labeled alternative in `TysonParser.singleExpression`.
+	 * labeled alternative in `TysonParser.expression`.
 	 * @param ctx the parse tree
 	 */
 	exitLogicalAndExpression?: (ctx: LogicalAndExpressionContext) => void;
 
 	/**
 	 * Enter a parse tree produced by the `LogicalOrExpression`
-	 * labeled alternative in `TysonParser.singleExpression`.
+	 * labeled alternative in `TysonParser.expression`.
 	 * @param ctx the parse tree
 	 */
 	enterLogicalOrExpression?: (ctx: LogicalOrExpressionContext) => void;
 	/**
 	 * Exit a parse tree produced by the `LogicalOrExpression`
-	 * labeled alternative in `TysonParser.singleExpression`.
+	 * labeled alternative in `TysonParser.expression`.
 	 * @param ctx the parse tree
 	 */
 	exitLogicalOrExpression?: (ctx: LogicalOrExpressionContext) => void;
-
-	/**
-	 * Enter a parse tree produced by the `AssignmentOperatorExpression`
-	 * labeled alternative in `TysonParser.singleExpression`.
-	 * @param ctx the parse tree
-	 */
-	enterAssignmentOperatorExpression?: (ctx: AssignmentOperatorExpressionContext) => void;
-	/**
-	 * Exit a parse tree produced by the `AssignmentOperatorExpression`
-	 * labeled alternative in `TysonParser.singleExpression`.
-	 * @param ctx the parse tree
-	 */
-	exitAssignmentOperatorExpression?: (ctx: AssignmentOperatorExpressionContext) => void;
 
 	/**
 	 * Enter a parse tree produced by the `DoStatement`
@@ -379,26 +365,26 @@ export interface TysonParserListener extends ParseTreeListener {
 	exitEmptyStatement?: (ctx: EmptyStatementContext) => void;
 
 	/**
-	 * Enter a parse tree produced by `TysonParser.variableStatement`.
+	 * Enter a parse tree produced by `TysonParser.variableDeclarationStatement`.
 	 * @param ctx the parse tree
 	 */
-	enterVariableStatement?: (ctx: VariableStatementContext) => void;
+	enterVariableDeclarationStatement?: (ctx: VariableDeclarationStatementContext) => void;
 	/**
-	 * Exit a parse tree produced by `TysonParser.variableStatement`.
+	 * Exit a parse tree produced by `TysonParser.variableDeclarationStatement`.
 	 * @param ctx the parse tree
 	 */
-	exitVariableStatement?: (ctx: VariableStatementContext) => void;
+	exitVariableDeclarationStatement?: (ctx: VariableDeclarationStatementContext) => void;
 
 	/**
-	 * Enter a parse tree produced by `TysonParser.variableDeclarationList`.
+	 * Enter a parse tree produced by `TysonParser.variableDeclaration`.
 	 * @param ctx the parse tree
 	 */
-	enterVariableDeclarationList?: (ctx: VariableDeclarationListContext) => void;
+	enterVariableDeclaration?: (ctx: VariableDeclarationContext) => void;
 	/**
-	 * Exit a parse tree produced by `TysonParser.variableDeclarationList`.
+	 * Exit a parse tree produced by `TysonParser.variableDeclaration`.
 	 * @param ctx the parse tree
 	 */
-	exitVariableDeclarationList?: (ctx: VariableDeclarationListContext) => void;
+	exitVariableDeclaration?: (ctx: VariableDeclarationContext) => void;
 
 	/**
 	 * Enter a parse tree produced by `TysonParser.varModifier`.
@@ -410,6 +396,39 @@ export interface TysonParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	exitVarModifier?: (ctx: VarModifierContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `TysonParser.assignmentStatement`.
+	 * @param ctx the parse tree
+	 */
+	enterAssignmentStatement?: (ctx: AssignmentStatementContext) => void;
+	/**
+	 * Exit a parse tree produced by `TysonParser.assignmentStatement`.
+	 * @param ctx the parse tree
+	 */
+	exitAssignmentStatement?: (ctx: AssignmentStatementContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `TysonParser.assignment`.
+	 * @param ctx the parse tree
+	 */
+	enterAssignment?: (ctx: AssignmentContext) => void;
+	/**
+	 * Exit a parse tree produced by `TysonParser.assignment`.
+	 * @param ctx the parse tree
+	 */
+	exitAssignment?: (ctx: AssignmentContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `TysonParser.assignmentOperator`.
+	 * @param ctx the parse tree
+	 */
+	enterAssignmentOperator?: (ctx: AssignmentOperatorContext) => void;
+	/**
+	 * Exit a parse tree produced by `TysonParser.assignmentOperator`.
+	 * @param ctx the parse tree
+	 */
+	exitAssignmentOperator?: (ctx: AssignmentOperatorContext) => void;
 
 	/**
 	 * Enter a parse tree produced by `TysonParser.expressionStatement`.
@@ -467,48 +486,15 @@ export interface TysonParserListener extends ParseTreeListener {
 	exitBreakStatement?: (ctx: BreakStatementContext) => void;
 
 	/**
-	 * Enter a parse tree produced by `TysonParser.elementList`.
+	 * Enter a parse tree produced by `TysonParser.expression`.
 	 * @param ctx the parse tree
 	 */
-	enterElementList?: (ctx: ElementListContext) => void;
+	enterExpression?: (ctx: ExpressionContext) => void;
 	/**
-	 * Exit a parse tree produced by `TysonParser.elementList`.
+	 * Exit a parse tree produced by `TysonParser.expression`.
 	 * @param ctx the parse tree
 	 */
-	exitElementList?: (ctx: ElementListContext) => void;
-
-	/**
-	 * Enter a parse tree produced by `TysonParser.expressionSequence`.
-	 * @param ctx the parse tree
-	 */
-	enterExpressionSequence?: (ctx: ExpressionSequenceContext) => void;
-	/**
-	 * Exit a parse tree produced by `TysonParser.expressionSequence`.
-	 * @param ctx the parse tree
-	 */
-	exitExpressionSequence?: (ctx: ExpressionSequenceContext) => void;
-
-	/**
-	 * Enter a parse tree produced by `TysonParser.singleExpression`.
-	 * @param ctx the parse tree
-	 */
-	enterSingleExpression?: (ctx: SingleExpressionContext) => void;
-	/**
-	 * Exit a parse tree produced by `TysonParser.singleExpression`.
-	 * @param ctx the parse tree
-	 */
-	exitSingleExpression?: (ctx: SingleExpressionContext) => void;
-
-	/**
-	 * Enter a parse tree produced by `TysonParser.assignmentOperator`.
-	 * @param ctx the parse tree
-	 */
-	enterAssignmentOperator?: (ctx: AssignmentOperatorContext) => void;
-	/**
-	 * Exit a parse tree produced by `TysonParser.assignmentOperator`.
-	 * @param ctx the parse tree
-	 */
-	exitAssignmentOperator?: (ctx: AssignmentOperatorContext) => void;
+	exitExpression?: (ctx: ExpressionContext) => void;
 
 	/**
 	 * Enter a parse tree produced by `TysonParser.literal`.

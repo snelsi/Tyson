@@ -10,7 +10,8 @@ program
 
 statement
     : bracketStatement
-    | variableStatement
+    | variableDeclarationStatement
+    | assignmentStatement
     | expressionStatement
     | ifStatement
     | iterationStatement
@@ -25,19 +26,19 @@ bracketStatement
     ;
 
 logStatement
-    : Log OpenParen singleExpression CloseParen
+    : Log OpenParen expression CloseParen
     ;
 
 emptyStatement
     : SemiColon
     ;
 
-variableStatement
-    : variableDeclarationList SemiColon
+variableDeclarationStatement
+    : variableDeclaration SemiColon
     ;
 
-variableDeclarationList
-    : varModifier Identifier (Assign singleExpression)?
+variableDeclaration
+    : varModifier Identifier (Assign expression)?
     ;
 
 varModifier
@@ -46,55 +47,12 @@ varModifier
     | Const
     ;
 
-expressionStatement
-    : expressionSequence SemiColon
+assignmentStatement
+    : assignment SemiColon
     ;
 
-ifStatement
-    : If OpenParen expressionSequence CloseParen statement (Else statement)?
-    ;
-
-iterationStatement
-    : Do statement While OpenParen expressionSequence CloseParen SemiColon                                                                             # DoStatement
-    | While OpenParen expressionSequence CloseParen statement                                                                                          # WhileStatement
-    | For OpenParen (expressionSequence | variableDeclarationList)? SemiColon expressionSequence? SemiColon expressionSequence? CloseParen statement   # ForStatement
-    ;
-
-continueStatement
-    : Continue SemiColon
-    ;
-
-breakStatement
-    : Break SemiColon
-    ;
-
-elementList
-    : (singleExpression (Comma singleExpression)*)?
-    ;
-
-expressionSequence
-    : singleExpression (Comma singleExpression)*
-    ;
-
-singleExpression
-    : Identifier                                                                                      # IdentifierExpression
-    | literal                                                                                         # LiteralExpression
-    | OpenParen expressionSequence CloseParen                                                         # ParenthesizedExpression
-    | singleExpression PlusPlus                                                                       # PostIncrementExpression
-    | singleExpression MinusMinus                                                                     # PostDecreaseExpression
-    | PlusPlus singleExpression                                                                       # PreIncrementExpression
-    | MinusMinus singleExpression                                                                     # PreDecreaseExpression
-    | Plus singleExpression                                                                           # UnaryPlusExpression
-    | Minus singleExpression                                                                          # UnaryMinusExpression
-    | Not singleExpression                                                                            # NotExpression
-    | <assoc=right> singleExpression Power singleExpression                                           # PowerExpression
-    | singleExpression (Multiply | Divide | Modulus) singleExpression                                 # MultiplicativeExpression
-    | singleExpression (Plus | Minus) singleExpression                                                # AdditiveExpression
-    | singleExpression (LessThan | MoreThan | LessThanEquals | GreaterThanEquals) singleExpression    # RelationalExpression
-    | singleExpression (Equals | NotEquals) singleExpression                                          # EqualityExpression
-    | singleExpression And singleExpression                                                           # LogicalAndExpression
-    | singleExpression Or singleExpression                                                            # LogicalOrExpression
-    | <assoc=right> singleExpression assignmentOperator singleExpression                              # AssignmentOperatorExpression
+assignment
+    : Identifier assignmentOperator expression
     ;
 
 assignmentOperator
@@ -105,6 +63,48 @@ assignmentOperator
     | PlusAssign
     | MinusAssign
     | PowerAssign
+    ;
+
+expressionStatement
+    : expression SemiColon
+    ;
+
+ifStatement
+    : If OpenParen expression CloseParen statement (Else statement)?
+    ;
+
+iterationStatement
+    : Do statement While OpenParen expression CloseParen SemiColon                                                                       # DoStatement
+    | While OpenParen expression CloseParen statement                                                                                    # WhileStatement
+    | For OpenParen variableDeclaration? SemiColon expression SemiColon (assignment | expression)? CloseParen statement            # ForStatement
+    ;
+
+continueStatement
+    : Continue SemiColon
+    ;
+
+breakStatement
+    : Break SemiColon
+    ;
+
+expression
+    : Identifier                                                                                      # IdentifierExpression
+    | literal                                                                                         # LiteralExpression
+    | OpenParen expression CloseParen                                                           # ParenthesizedExpression
+    | Identifier PlusPlus                                                                             # PostIncrementExpression
+    | Identifier MinusMinus                                                                           # PostDecreaseExpression
+    | PlusPlus Identifier                                                                             # PreIncrementExpression
+    | MinusMinus Identifier                                                                           # PreDecreaseExpression
+    | Plus expression                                                                           # UnaryPlusExpression
+    | Minus expression                                                                          # UnaryMinusExpression
+    | Not expression                                                                            # NotExpression
+    | <assoc=right> expression Power expression                                           # PowerExpression
+    | expression (Multiply | Divide | Modulus) expression                                 # MultiplicativeExpression
+    | expression (Plus | Minus) expression                                                # AdditiveExpression
+    | expression (LessThan | MoreThan | LessThanEquals | GreaterThanEquals) expression    # RelationalExpression
+    | expression (Equals | NotEquals) expression                                          # EqualityExpression
+    | expression And expression                                                           # LogicalAndExpression
+    | <assoc=right> expression Or expression                                              # LogicalOrExpression
     ;
 
 literal
