@@ -1,5 +1,6 @@
 import { Lexema, AnalyzeResult } from "interfaces/Interface";
-import { isExpression } from "./isExpression";
+import { OpenParen, CloseParen } from "scripts/keySymbols";
+import { isExpression } from "scripts/Syntax";
 
 /**
  * ( expression )
@@ -7,7 +8,7 @@ import { isExpression } from "./isExpression";
 export function isBracketExpression(lexemas: Lexema[], mode: boolean): AnalyzeResult {
   const log = [];
 
-  if (lexemas[0]?.type !== "keysymbol" || lexemas[0].id !== 4) {
+  if (lexemas[0]?.type !== "keysymbol" || lexemas[0].id !== OpenParen.id) {
     return {
       isSuccessfull: false,
       foundedLexema: null,
@@ -34,7 +35,10 @@ export function isBracketExpression(lexemas: Lexema[], mode: boolean): AnalyzeRe
     };
   }
 
-  if (singleExpression.rest[0]?.type !== "keysymbol" || singleExpression.rest[0].id !== 5) {
+  if (
+    singleExpression.rest[0]?.type !== "keysymbol" ||
+    singleExpression.rest[0].id !== CloseParen.id
+  ) {
     log.push(
       `!Пропущена закрывающая круглая скобка [${singleExpression.rest[0].row} ${singleExpression.rest[0].column}]`,
     );

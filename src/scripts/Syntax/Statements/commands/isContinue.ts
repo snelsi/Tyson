@@ -1,9 +1,11 @@
 import { AnalyzeResult, Lexema } from "interfaces/Interface";
+import { Semicolon } from "scripts/keySymbols";
+import { Continue } from "scripts/keyWords";
 
 export function isContinue(lexemas: Lexema[], mode: boolean): AnalyzeResult {
   const log = [];
 
-  if (lexemas[0].body !== "continue") {
+  if (lexemas[0].id !== Continue.id) {
     return {
       isSuccessfull: false,
       foundedLexema: null,
@@ -12,11 +14,11 @@ export function isContinue(lexemas: Lexema[], mode: boolean): AnalyzeResult {
     };
   }
 
-  if (lexemas[1]?.type !== "keysymbol" || lexemas[1]?.id !== 3) {
+  if (lexemas[1]?.type !== "keysymbol" || lexemas[1]?.id !== Semicolon.id) {
     log.push(
       mode
-        ? `!Из магазина получена комманда continue. Из стека ожидалась закрывающая скобка, но получен ${lexemas[1].body}`
-        : "!Пропущена закрывающая скобка после continue",
+        ? `!Из магазина получена комманда continue. Из стека ожидалась точка с запятой, но получен ${lexemas[1].body}`
+        : "!Пропущена точка с запятой после continue",
     );
 
     return {

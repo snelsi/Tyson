@@ -1,5 +1,7 @@
 import { Lexema, AnalyzeResult } from "interfaces/Interface";
 import { isStatement, isExpression } from "scripts/Syntax";
+import { OpenParen, CloseParen, Semicolon } from "scripts/keySymbols";
+import { Do, While } from "scripts/keyWords";
 
 /**
  * do statement while (condition);
@@ -7,7 +9,7 @@ import { isStatement, isExpression } from "scripts/Syntax";
 export function isDoWhile(lexemas: Lexema[], mode: boolean): AnalyzeResult {
   const log = [];
 
-  if (lexemas[0].body !== "do") {
+  if (lexemas[0].id !== Do.id) {
     return {
       isSuccessfull: false,
       foundedLexema: null,
@@ -34,11 +36,11 @@ export function isDoWhile(lexemas: Lexema[], mode: boolean): AnalyzeResult {
     };
   }
 
-  if (statement.rest[0].body !== "while") {
+  if (statement.rest[0].id !== While.id) {
     log.push(
       mode
         ? `!Из магазина был получено тело цикла do. Из стека ожидался 'while', но получен ${statement[1].body}`
-        : "!Пропущен 'while' после тела цикла do",
+        : "!Пропущено условие 'while' после тела цикла do",
     );
 
     return {
@@ -49,7 +51,7 @@ export function isDoWhile(lexemas: Lexema[], mode: boolean): AnalyzeResult {
     };
   }
 
-  if (statement.rest[0]?.type !== "keysymbol" || statement.rest[0]?.id !== 4) {
+  if (statement.rest[0]?.type !== "keysymbol" || statement.rest[0]?.id !== OpenParen.id) {
     log.push(
       mode
         ? `!Из магазина получен "while". Из стека ожидалась открывающая скобка, но был получен '${statement.rest[0].body}'.`
@@ -82,11 +84,26 @@ export function isDoWhile(lexemas: Lexema[], mode: boolean): AnalyzeResult {
     };
   }
 
-  if (condition.rest[0]?.type !== "keysymbol" || condition.rest[0]?.id !== 5) {
+  if (condition.rest[0]?.type !== "keysymbol" || condition.rest[0]?.id !== CloseParen.id) {
     log.push(
       mode
         ? `!Из магазина получено условие. Из стека ожидалась закрывающая скобка, но получен ${condition.rest[0].body}`
         : "!Пропущена закрывающая скобка после условия while",
+    );
+
+    return {
+      isSuccessfull: false,
+      foundedLexema: null,
+      rest: lexemas,
+      log,
+    };
+  }
+
+  if (condition.rest[1]?.type !== "keysymbol" || condition.rest[1]?.id !== Semicolon.id) {
+    log.push(
+      mode
+        ? `!Из магазина получен цикл do while. Из стека ожидалась точка с запятой, но получен ${condition.rest[0].body}`
+        : "!Пропущена точка с запятой после условия do while",
     );
 
     return {
@@ -103,15 +120,17 @@ export function isDoWhile(lexemas: Lexema[], mode: boolean): AnalyzeResult {
     isSuccessfull: true,
     foundedLexema: {
       type: "Statement",
-      details: "Цикл while",
+      details: "Цикл Do While",
       row: lexemas[0].row,
       column: lexemas[0].column,
       body: [
-        lexemas[0], // while
-        lexemas[1], // (
+        lexemas[0], // do
+        statement.foundedLexema,
+        statement.rest[0], // while
+        statement.rest[1], // (
         condition.foundedLexema,
         condition.rest[0], // )
-        statement.foundedLexema,
+        condition.rest[1], // ;
       ],
     },
     rest: statement.rest,

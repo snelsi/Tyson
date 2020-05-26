@@ -1,17 +1,13 @@
 import { AnalyzeResult, Lexema } from "interfaces/Interface";
+import { Var, Let, Const } from "scripts/keyWords";
 
 export function isVarModifier(lexemas: Lexema[], mode: boolean): AnalyzeResult {
   const log = [];
 
-  if (lexemas[0].body === "var" || lexemas[0].body === "let" || lexemas[0].body === "const") {
+  if (lexemas[0].id === Var.id || lexemas[0].id === Let.id || lexemas[0].id === Const.id) {
     return {
       isSuccessfull: true,
-      foundedLexema: {
-        type: "Type",
-        row: lexemas[0].row,
-        column: lexemas[0].column,
-        body: lexemas[0].body,
-      },
+      foundedLexema: lexemas[0],
       rest: lexemas.slice(1),
       log,
     };

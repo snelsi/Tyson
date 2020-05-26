@@ -1,10 +1,12 @@
 import { Lexema, AnalyzeResult } from "interfaces/Interface";
 import { isStatement, isExpression } from "scripts/Syntax";
+import { OpenParen, CloseParen } from "scripts/keySymbols";
+import { While } from "scripts/keyWords";
 
 export function isWhile(lexemas: Lexema[], mode: boolean): AnalyzeResult {
   const log = [];
 
-  if (lexemas[0].body !== "while") {
+  if (lexemas[0].id !== While.id) {
     return {
       isSuccessfull: false,
       foundedLexema: null,
@@ -13,7 +15,7 @@ export function isWhile(lexemas: Lexema[], mode: boolean): AnalyzeResult {
     };
   }
 
-  if (lexemas[1]?.type !== "keysymbol" || lexemas[1]?.id !== 4) {
+  if (lexemas[1]?.type !== "keysymbol" || lexemas[1]?.id !== OpenParen.id) {
     log.push(
       mode
         ? `!Из магазина получен "while". Из стека ожидалась открывающая скобка, но был получен '${lexemas[1].body}'.`
@@ -46,7 +48,7 @@ export function isWhile(lexemas: Lexema[], mode: boolean): AnalyzeResult {
     };
   }
 
-  if (condition.rest[0]?.type !== "keysymbol" || condition.rest[0]?.id !== 5) {
+  if (condition.rest[0]?.type !== "keysymbol" || condition.rest[0]?.id !== CloseParen.id) {
     log.push(
       mode
         ? `!Из магазина получено условие. Из стека ожидалась закрывающая скобка, но получен ${condition.rest[0].body}`

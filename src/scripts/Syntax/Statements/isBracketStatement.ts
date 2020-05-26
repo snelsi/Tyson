@@ -1,5 +1,6 @@
 import { Lexema, AnalyzeResult } from "interfaces/Interface";
 import { isStatement } from "scripts/Syntax";
+import { OpenBrace, CloseBrace } from "scripts/keySymbols";
 
 /**
  * { statement* }
@@ -7,7 +8,7 @@ import { isStatement } from "scripts/Syntax";
 export function isBracketStatement(lexemas: Lexema[], mode: boolean): AnalyzeResult {
   const log = [];
 
-  if (lexemas[0]?.type !== "keysymbol" || lexemas[0].id !== 6) {
+  if (lexemas[0]?.type !== "keysymbol" || lexemas[0].id !== OpenBrace.id) {
     return {
       isSuccessfull: false,
       foundedLexema: null,
@@ -30,7 +31,7 @@ export function isBracketStatement(lexemas: Lexema[], mode: boolean): AnalyzeRes
     log.push(...statement.log);
   }
 
-  if (statement.rest[0]?.type !== "keysymbol" || statement.rest[0].id !== 7) {
+  if (statement.rest[0]?.type !== "keysymbol" || statement.rest[0].id !== CloseBrace.id) {
     log.push(
       mode
         ? `!Из стека был получен ${

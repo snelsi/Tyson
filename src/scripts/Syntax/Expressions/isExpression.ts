@@ -1,5 +1,5 @@
 import { AnalyzeResult, Lexema } from "interfaces/Interface";
-import { isSingleExpression, isRightAssociatedExpression } from ".";
+import { isSingleExpression, isRightAssociatedExpression } from "scripts/Syntax";
 
 // singleExpression
 //     : Identifier                                                                                      # IdentifierExpression

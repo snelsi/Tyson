@@ -1,7 +1,39 @@
 import { AnalyzeResult, Lexema } from "interfaces/Interface";
 import { isSingleExpression } from "scripts/Syntax";
 
-const operators = ["^", "*", "/", "%", "+", "-", "<", "<=", ">", ">=", "==", "!=", "&&", "||"];
+import {
+  Power,
+  Plus,
+  Minus,
+  Modulus,
+  Divide,
+  Multiply,
+  LessThan,
+  LessThanEquals,
+  MoreThan,
+  MoreThanEquals,
+  Equals,
+  NotEquals,
+  And,
+  Or,
+} from "scripts/keySymbols";
+
+const operators = [
+  Power,
+  Multiply,
+  Divide,
+  Modulus,
+  Plus,
+  Minus,
+  LessThan,
+  LessThanEquals,
+  MoreThan,
+  MoreThanEquals,
+  Equals,
+  NotEquals,
+  And,
+  Or,
+];
 
 // Power singleExpression                                                         # PowerExpression
 // (Multiply | Divide | Modulus) singleExpression                                 # MultiplicativeExpression
@@ -15,7 +47,7 @@ const operators = ["^", "*", "/", "%", "+", "-", "<", "<=", ">", ">=", "==", "!=
 export function isRightAssociatedExpression(lexemas: Lexema[], mode: boolean): AnalyzeResult {
   const log = [];
 
-  if (lexemas[0].type !== "keysymbol" || !operators.includes(String(lexemas[0].body))) {
+  if (lexemas[0].type !== "keysymbol" || !operators.map((op) => op.id).includes(lexemas[0].id)) {
     return {
       isSuccessfull: false,
       foundedLexema: null,

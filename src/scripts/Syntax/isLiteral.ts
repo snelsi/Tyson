@@ -1,4 +1,5 @@
 import { Lexema, AnalyzeResult } from "interfaces/Interface";
+import { Null, True, False } from "scripts/keyWords";
 
 // literal
 //     : NullLiteral
@@ -10,9 +11,9 @@ export const isLiteral = (lexemas: Lexema[], mode = false): AnalyzeResult => {
   const log = [];
 
   if (
-    lexemas[0].id === 219 || // null
-    lexemas[0].id === 208 || // true
-    lexemas[0].id === 209 || // false
+    lexemas[0].id === Null.id ||
+    lexemas[0].id === True.id ||
+    lexemas[0].id === False.id ||
     lexemas[0].type === "string" ||
     lexemas[0].type === "number"
   ) {

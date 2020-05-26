@@ -1,10 +1,12 @@
 import { AnalyzeResult, Lexema } from "interfaces/Interface";
 import { isExpression } from "scripts/Syntax";
+import { OpenParen, CloseParen, Semicolon } from "scripts/keySymbols";
+import { Log } from "scripts/keyWords";
 
 export function isLog(lexemas: Lexema[], mode: boolean): AnalyzeResult {
   const log = [];
 
-  if (lexemas[0].body !== "log") {
+  if (lexemas[0].id !== Log.id) {
     return {
       isSuccessfull: false,
       foundedLexema: null,
@@ -13,7 +15,7 @@ export function isLog(lexemas: Lexema[], mode: boolean): AnalyzeResult {
     };
   }
 
-  if (lexemas[1]?.type !== "keysymbol" || lexemas[1]?.id !== 4) {
+  if (lexemas[1]?.type !== "keysymbol" || lexemas[1]?.id !== OpenParen.id) {
     log.push(
       mode
         ? `!Из магазина получен "log". Из стека ожидалась открывающая скобка, но был получен '${lexemas[1].body}'.`
@@ -46,11 +48,32 @@ export function isLog(lexemas: Lexema[], mode: boolean): AnalyzeResult {
     };
   }
 
-  if (singleExpression.rest[0]?.type !== "keysymbol" || singleExpression.rest[0]?.id !== 5) {
+  if (
+    singleExpression.rest[0]?.type !== "keysymbol" ||
+    singleExpression.rest[0]?.id !== CloseParen.id
+  ) {
     log.push(
       mode
         ? `!Из магазина получен Expression внутри log. Из стека ожидалась закрывающая скобка, но получен ${singleExpression.rest[0].body}`
         : "!Пропущена закрывающая скобка после тела log",
+    );
+
+    return {
+      isSuccessfull: false,
+      foundedLexema: null,
+      rest: lexemas,
+      log,
+    };
+  }
+
+  if (
+    singleExpression.rest[1]?.type !== "keysymbol" ||
+    singleExpression.rest[1]?.id !== Semicolon.id
+  ) {
+    log.push(
+      mode
+        ? `!Из магазина получен log. Из стека ожидалась точка с запятой, но получен ${singleExpression.rest[0].body}`
+        : "!Пропущена точка с запятой после log",
     );
 
     return {
@@ -73,9 +96,10 @@ export function isLog(lexemas: Lexema[], mode: boolean): AnalyzeResult {
         lexemas[1], // (
         singleExpression.foundedLexema,
         singleExpression.rest[0], // )
+        singleExpression.rest[1], // ;
       ],
     },
-    rest: singleExpression.rest.slice(1),
+    rest: singleExpression.rest.slice(2),
     log,
   };
 }

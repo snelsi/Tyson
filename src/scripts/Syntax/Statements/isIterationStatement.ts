@@ -1,7 +1,7 @@
 import { Lexema, AnalyzeResult } from "interfaces/Interface";
-import { isDoWhile } from "scripts/Syntax/Statements/iterations/isDoWhile";
-import { isWhile } from "scripts/Syntax/Statements/iterations/isWhile";
-import { isFor } from "scripts/Syntax/Statements/iterations/isFor";
+import { isDoWhile } from "./iterations/isDoWhile";
+import { isWhile } from "./iterations/isWhile";
+import { isFor } from "./iterations/isFor";
 
 const functions = [isDoWhile, isWhile, isFor];
 

@@ -1,5 +1,6 @@
 import { Lexema, AnalyzeResult } from "interfaces/Interface";
 import { isAssignment } from "scripts/Syntax";
+import { Semicolon } from "scripts/keySymbols";
 
 // assignmentStatement
 //     : assignment SemiColon
@@ -19,7 +20,7 @@ export function isAssignmentStatement(lexemas: Lexema[], mode: boolean): Analyze
     };
   }
 
-  if (assignment.rest[0]?.type !== "keysymbol" || assignment.rest[0].id !== 3) {
+  if (assignment.rest[0]?.type !== "keysymbol" || assignment.rest[0].id !== Semicolon.id) {
     log.push("После singleExpression пропущена точка с запятой");
     return {
       isSuccessfull: false,

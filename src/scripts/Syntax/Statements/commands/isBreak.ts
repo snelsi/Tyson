@@ -1,9 +1,11 @@
 import { AnalyzeResult, Lexema } from "interfaces/Interface";
+import { Semicolon } from "scripts/keySymbols";
+import { Break } from "scripts/keyWords";
 
 export function isBreak(lexemas: Lexema[], mode: boolean): AnalyzeResult {
   const log = [];
 
-  if (lexemas[0].body !== "break") {
+  if (lexemas[0].id !== Break.id) {
     return {
       isSuccessfull: false,
       foundedLexema: null,
@@ -12,11 +14,11 @@ export function isBreak(lexemas: Lexema[], mode: boolean): AnalyzeResult {
     };
   }
 
-  if (lexemas[1]?.type !== "keysymbol" || lexemas[1]?.id !== 3) {
+  if (lexemas[1]?.type !== "keysymbol" || lexemas[1]?.id !== Semicolon.id) {
     log.push(
       mode
-        ? `!Из магазина получена комманда break. Из стека ожидалась закрывающая скобка, но получен ${lexemas[1].body}`
-        : "!Пропущена закрывающая скобка после break",
+        ? `!Из магазина получена комманда break. Из стека ожидалась точка с запятой, но получен ${lexemas[1].body}`
+        : "!Пропущена точка с запятой после break",
     );
 
     return {

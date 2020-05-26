@@ -1,6 +1,7 @@
 import { AnalyzeResult, Lexema } from "interfaces/Interface";
+import { PlusPlus, MinusMinus } from "scripts/keySymbols";
 
-const operators = ["++", "--"];
+const operators = [PlusPlus, MinusMinus];
 
 // ++ singleExpression      # PreIncrementExpression
 // -- singleExpression      # PreDecreaseExpression
@@ -16,7 +17,7 @@ export function isRightUnarExpression(lexemas: Lexema[], mode: boolean): Analyze
     };
   }
 
-  if (lexemas[1].type !== "keysymbol" || !operators.includes(String(lexemas[1].body))) {
+  if (lexemas[1].type !== "keysymbol" || !operators.map((op) => op.id).includes(lexemas[1].id)) {
     return {
       isSuccessfull: false,
       foundedLexema: null,

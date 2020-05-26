@@ -1,13 +1,13 @@
 import { Lexema, AnalyzeResult } from "interfaces/Interface";
-import { isStatement, isAssignment } from "scripts/Syntax";
-import { isVariableDeclaration } from "scripts/Syntax/isVariableDeclaration";
-import { isExpression } from "scripts/Syntax/Expressions";
+import { isStatement, isAssignment, isVariableDeclaration, isExpression } from "scripts/Syntax";
+import { OpenParen, CloseParen, Semicolon } from "scripts/keySymbols";
+import { For } from "scripts/keyWords";
 
 /* eslint-disable complexity */
 export function isFor(lexemas: Lexema[], mode: boolean): AnalyzeResult {
   const log = [];
 
-  if (lexemas[0].body !== "for") {
+  if (lexemas[0].id !== For.id) {
     return {
       isSuccessfull: false,
       foundedLexema: null,
@@ -16,7 +16,7 @@ export function isFor(lexemas: Lexema[], mode: boolean): AnalyzeResult {
     };
   }
 
-  if (lexemas[1]?.type !== "keysymbol" || lexemas[1]?.id !== 4) {
+  if (lexemas[1]?.type !== "keysymbol" || lexemas[1]?.id !== OpenParen.id) {
     log.push(
       mode
         ? `!Из магазина получен "for". Из стека ожидалась открывающая скобка, но был получен '${lexemas[1].body}'.`
@@ -34,7 +34,7 @@ export function isFor(lexemas: Lexema[], mode: boolean): AnalyzeResult {
   const declar = isVariableDeclaration(lexemas.slice(2), mode);
   log.push(...declar.log);
 
-  if (declar.rest[0]?.type !== "keysymbol" || declar.rest[0]?.id !== 3) {
+  if (declar.rest[0]?.type !== "keysymbol" || declar.rest[0]?.id !== Semicolon.id) {
     log.push(
       mode
         ? `!Из магазина получен variableDeclaration. Ожидалась точка с запятой из стека, но был получен '${declar.rest[0].body}'`
@@ -67,7 +67,7 @@ export function isFor(lexemas: Lexema[], mode: boolean): AnalyzeResult {
     };
   }
 
-  if (condition.rest[0]?.type !== "keysymbol" || condition.rest[0]?.id !== 3) {
+  if (condition.rest[0]?.type !== "keysymbol" || condition.rest[0]?.id !== Semicolon.id) {
     log.push(
       mode
         ? `!Из магазина получено условие, из стека ожидалась точка с запятой, но получен ${condition.rest[0].body}`
@@ -89,7 +89,7 @@ export function isFor(lexemas: Lexema[], mode: boolean): AnalyzeResult {
     op2 = isExpression(condition.rest.slice(1), mode);
   }
 
-  if (op2.rest[0]?.type !== "keysymbol" || op2.rest[0]?.id !== 5) {
+  if (op2.rest[0]?.type !== "keysymbol" || op2.rest[0]?.id !== CloseParen.id) {
     log.push(
       mode
         ? `!Из магазина получен оператор. Из стека ожидалась закрывающая скобка, но получен ${op2.rest[0].body}`

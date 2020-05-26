@@ -1,6 +1,7 @@
 import { AnalyzeResult, Lexema } from "interfaces/Interface";
+import { PlusPlus, MinusMinus, Plus, Minus, Not } from "scripts/keySymbols";
 
-const operators = ["++", "--", "+", "-", "!"];
+const operators = [PlusPlus, MinusMinus, Plus, Minus, Not];
 
 // ++ singleExpression      # PreIncrementExpression
 // -- singleExpression      # PreDecreaseExpression
@@ -10,7 +11,7 @@ const operators = ["++", "--", "+", "-", "!"];
 export function isLeftUnarExpression(lexemas: Lexema[], mode: boolean): AnalyzeResult {
   const log = [];
 
-  if (lexemas[0].type !== "keysymbol" || !operators.includes(String(lexemas[0].body))) {
+  if (lexemas[0].type !== "keysymbol" || !operators.map((op) => op.id).includes(lexemas[0].id)) {
     return {
       isSuccessfull: false,
       foundedLexema: null,
@@ -36,7 +37,7 @@ export function isLeftUnarExpression(lexemas: Lexema[], mode: boolean): AnalyzeR
       details: "Left Unar Expression",
       row: lexemas[0].row,
       column: lexemas[0].column,
-      body: [lexemas[0], lexemas[0]],
+      body: [lexemas[0], lexemas[1]],
     },
     rest: lexemas.slice(2),
     log,

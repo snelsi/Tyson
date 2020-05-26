@@ -1,6 +1,24 @@
 import { Lexema, AnalyzeResult } from "interfaces/Interface";
+import {
+  Assign,
+  MultiplyAssign,
+  DivideAssign,
+  ModulusAssign,
+  PlusAssign,
+  MinusAssign,
+  PowerAssign,
+} from "scripts/keySymbols";
 
-const operators = ["=", "*=", "/=", "%=", "+=", "-=", "^="];
+const operators = [
+  Assign,
+  MultiplyAssign,
+  DivideAssign,
+  ModulusAssign,
+  PlusAssign,
+  MinusAssign,
+  PowerAssign,
+];
+
 // assignmentOperator
 //     : Assign
 //     | MultiplyAssign
@@ -28,7 +46,7 @@ export const isAssignmentOperator = (lexemas: Lexema[], mode = false): AnalyzeRe
 
   const log = [];
 
-  if (operators.includes(word)) {
+  if (operators.map((op) => op.id).includes(lexemas[0].id)) {
     log.push(
       mode
         ? `Из стека был получен assignmentOperator ${word}, сохранён в магазин`

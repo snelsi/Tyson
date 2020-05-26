@@ -1,5 +1,6 @@
 import { Lexema, AnalyzeResult } from "interfaces/Interface";
 import { isExpression } from "scripts/Syntax/Expressions";
+import { Semicolon } from "scripts/keySymbols";
 
 // expressionStatement
 //     : singleExpression SemiColon
@@ -21,7 +22,10 @@ export function isExpressionStatement(lexemas: Lexema[], mode: boolean): Analyze
     };
   }
 
-  if (expressionSequence.rest[0].type !== "keysymbol" || expressionSequence.rest[0]?.id !== 3) {
+  if (
+    expressionSequence.rest[0].type !== "keysymbol" ||
+    expressionSequence.rest[0]?.id !== Semicolon.id
+  ) {
     log.push("!Пропущена точка с запятой после singleExpression");
 
     return {

@@ -1,5 +1,6 @@
 import { AnalyzeResult, Lexema } from "interfaces/Interface";
 import { isVarModifier, isExpression } from "scripts/Syntax";
+import { Assign } from "scripts/keySymbols";
 
 // variableDeclaration
 //     : varModifier Identifier (Assign singleExpression)?
@@ -34,7 +35,7 @@ export function isVariableDeclaration(lexemas: Lexema[], mode: boolean): Analyze
 
   let optional = [];
   let rest = varModifier.rest.slice(2);
-  if (varModifier.rest[1].body === "=") {
+  if (varModifier.rest[1].id === Assign.id) {
     const singleExpression = isExpression(rest, mode);
     log.push(...singleExpression.log);
 

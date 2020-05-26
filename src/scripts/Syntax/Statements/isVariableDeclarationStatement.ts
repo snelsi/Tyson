@@ -1,5 +1,6 @@
 import { Lexema, AnalyzeResult } from "interfaces/Interface";
 import { isVariableDeclaration } from "scripts/Syntax";
+import { Semicolon } from "scripts/keySymbols";
 
 // variableDeclarationStatement
 //     : variableDeclaration SemiColon
@@ -24,7 +25,7 @@ export function isVariableDeclarationStatement(lexemas: Lexema[], mode: boolean)
 
   if (
     variableDeclarationList.rest[0].type !== "keysymbol" ||
-    variableDeclarationList.rest[0]?.id !== 3
+    variableDeclarationList.rest[0]?.id !== Semicolon.id
   ) {
     log.push("!Пропущена точка с запятой после variableDeclarationList");
 

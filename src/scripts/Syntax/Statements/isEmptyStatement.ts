@@ -1,4 +1,5 @@
 import { Lexema, AnalyzeResult } from "interfaces/Interface";
+import { Semicolon } from "scripts/keySymbols";
 
 /**
  * ;
@@ -6,7 +7,7 @@ import { Lexema, AnalyzeResult } from "interfaces/Interface";
 export function isEmptyStatement(lexemas: Lexema[], mode: boolean): AnalyzeResult {
   const log = [];
 
-  if (lexemas[0]?.type !== "keysymbol" || lexemas[0].id !== 3) {
+  if (lexemas[0]?.type !== "keysymbol" || lexemas[0].id !== Semicolon.id) {
     return {
       isSuccessfull: false,
       foundedLexema: null,
