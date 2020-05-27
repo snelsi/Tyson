@@ -34,9 +34,11 @@ export const toNodes = (tree: Lexema): NodeTree => {
   const visitNode = ({ lexema, id }: Lexemad) => {
     if (Array.isArray(lexema.body)) {
       lexema.body.forEach((child) => {
-        const NodeId = i++;
-        edges.push({ from: id, to: NodeId });
-        visitNode({ lexema: child, id: NodeId });
+        if (child !== null) {
+          const NodeId = i++;
+          edges.push({ from: id, to: NodeId });
+          visitNode({ lexema: child, id: NodeId });
+        }
       });
     }
     nodes.push({
