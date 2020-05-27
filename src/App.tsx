@@ -6,7 +6,7 @@ import { Window } from "Window/Window";
 
 import Tabs from "Tabs/Tabs";
 
-import { FAQ } from "FAQ";
+import { InfoBlock } from "InfoBlock";
 
 const Frame = styled.div`
   display: grid;
@@ -75,7 +75,7 @@ const App: React.FC<AppProps> = ({ code }) => {
       <Grid>
         <div className="left">
           <Window initialCode={code} setRef={setRef} />
-          <FAQ />
+          <InfoBlock />
         </div>
         <Tabs getCode={getValue} initialCode={code} />
       </Grid>

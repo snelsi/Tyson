@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 
-interface FAQProps {}
+interface InfoBlockProps {}
 
 const Wrapper = styled.aside`
   @media (max-width: 1080px) {
@@ -15,7 +15,7 @@ const Wrapper = styled.aside`
     padding-top: 1em;
   }
 `;
-export const FAQ: React.FC<FAQProps> = () => (
+export const InfoBlock: React.FC<InfoBlockProps> = () => (
   <Wrapper>
     <div>
       Ця програма демонструє можливості розробленого транслятора до мови{" "}
