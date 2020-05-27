@@ -29,6 +29,15 @@ const operators = [
 //     | PowerAssign
 //     ;
 export const isAssignmentOperator = (lexemas: Lexema[], mode = false): AnalyzeResult => {
+  if (!lexemas || lexemas.length === 0) {
+    return {
+      isSuccessfull: false,
+      foundedLexema: null,
+      rest: lexemas,
+      log: [],
+    };
+  }
+
   const word = String(lexemas[0].body);
 
   if (lexemas[0].type === "operator") {

@@ -47,7 +47,7 @@ const operators = [
 export function isRightAssociatedExpression(lexemas: Lexema[], mode: boolean): AnalyzeResult {
   const log = [];
 
-  if (lexemas[0].type !== "keysymbol" || !operators.map((op) => op.id).includes(lexemas[0].id)) {
+  if (lexemas[0]?.type !== "keysymbol" || !operators.map((op) => op.id).includes(lexemas[0]?.id)) {
     return {
       isSuccessfull: false,
       foundedLexema: null,

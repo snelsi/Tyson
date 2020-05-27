@@ -662,9 +662,8 @@ export class TysonParser extends Parser {
 	public iterationStatement(): IterationStatementContext {
 		let _localctx: IterationStatementContext = new IterationStatementContext(this._ctx, this.state);
 		this.enterRule(_localctx, 26, TysonParser.RULE_iterationStatement);
-		let _la: number;
 		try {
-			this.state = 135;
+			this.state = 136;
 			this._errHandler.sync(this);
 			switch (this._input.LA(1)) {
 			case TysonParser.Do:
@@ -711,42 +710,54 @@ export class TysonParser extends Parser {
 				this.match(TysonParser.For);
 				this.state = 121;
 				this.match(TysonParser.OpenParen);
-				this.state = 123;
+				this.state = 124;
 				this._errHandler.sync(this);
-				_la = this._input.LA(1);
-				if (((((_la - 46)) & ~0x1F) === 0 && ((1 << (_la - 46)) & ((1 << (TysonParser.Var - 46)) | (1 << (TysonParser.Let - 46)) | (1 << (TysonParser.Const - 46)))) !== 0)) {
+				switch (this._input.LA(1)) {
+				case TysonParser.Identifier:
 					{
 					this.state = 122;
+					this.assignment();
+					}
+					break;
+				case TysonParser.Var:
+				case TysonParser.Let:
+				case TysonParser.Const:
+					{
+					this.state = 123;
 					this.variableDeclaration();
 					}
+					break;
+				case TysonParser.SemiColon:
+					break;
+				default:
+					break;
 				}
-
-				this.state = 125;
-				this.match(TysonParser.SemiColon);
 				this.state = 126;
-				this.expression(0);
-				this.state = 127;
 				this.match(TysonParser.SemiColon);
-				this.state = 130;
+				this.state = 127;
+				this.expression(0);
+				this.state = 128;
+				this.match(TysonParser.SemiColon);
+				this.state = 131;
 				this._errHandler.sync(this);
 				switch ( this.interpreter.adaptivePredict(this._input, 6, this._ctx) ) {
 				case 1:
 					{
-					this.state = 128;
+					this.state = 129;
 					this.assignment();
 					}
 					break;
 
 				case 2:
 					{
-					this.state = 129;
+					this.state = 130;
 					this.expression(0);
 					}
 					break;
 				}
-				this.state = 132;
-				this.match(TysonParser.CloseParen);
 				this.state = 133;
+				this.match(TysonParser.CloseParen);
+				this.state = 134;
 				this.statement();
 				}
 				break;
@@ -775,9 +786,9 @@ export class TysonParser extends Parser {
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 137;
-			this.match(TysonParser.Continue);
 			this.state = 138;
+			this.match(TysonParser.Continue);
+			this.state = 139;
 			this.match(TysonParser.SemiColon);
 			}
 		}
@@ -802,9 +813,9 @@ export class TysonParser extends Parser {
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 140;
-			this.match(TysonParser.Break);
 			this.state = 141;
+			this.match(TysonParser.Break);
+			this.state = 142;
 			this.match(TysonParser.SemiColon);
 			}
 		}
@@ -842,7 +853,7 @@ export class TysonParser extends Parser {
 			let _alt: number;
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 164;
+			this.state = 165;
 			this._errHandler.sync(this);
 			switch ( this.interpreter.adaptivePredict(this._input, 8, this._ctx) ) {
 			case 1:
@@ -851,7 +862,7 @@ export class TysonParser extends Parser {
 				this._ctx = _localctx;
 				_prevctx = _localctx;
 
-				this.state = 144;
+				this.state = 145;
 				this.match(TysonParser.Identifier);
 				}
 				break;
@@ -861,7 +872,7 @@ export class TysonParser extends Parser {
 				_localctx = new LiteralExpressionContext(_localctx);
 				this._ctx = _localctx;
 				_prevctx = _localctx;
-				this.state = 145;
+				this.state = 146;
 				this.literal();
 				}
 				break;
@@ -871,11 +882,11 @@ export class TysonParser extends Parser {
 				_localctx = new ParenthesizedExpressionContext(_localctx);
 				this._ctx = _localctx;
 				_prevctx = _localctx;
-				this.state = 146;
-				this.match(TysonParser.OpenParen);
 				this.state = 147;
-				this.expression(0);
+				this.match(TysonParser.OpenParen);
 				this.state = 148;
+				this.expression(0);
+				this.state = 149;
 				this.match(TysonParser.CloseParen);
 				}
 				break;
@@ -885,9 +896,9 @@ export class TysonParser extends Parser {
 				_localctx = new PostIncrementExpressionContext(_localctx);
 				this._ctx = _localctx;
 				_prevctx = _localctx;
-				this.state = 150;
-				this.match(TysonParser.Identifier);
 				this.state = 151;
+				this.match(TysonParser.Identifier);
+				this.state = 152;
 				this.match(TysonParser.PlusPlus);
 				}
 				break;
@@ -897,9 +908,9 @@ export class TysonParser extends Parser {
 				_localctx = new PostDecreaseExpressionContext(_localctx);
 				this._ctx = _localctx;
 				_prevctx = _localctx;
-				this.state = 152;
-				this.match(TysonParser.Identifier);
 				this.state = 153;
+				this.match(TysonParser.Identifier);
+				this.state = 154;
 				this.match(TysonParser.MinusMinus);
 				}
 				break;
@@ -909,9 +920,9 @@ export class TysonParser extends Parser {
 				_localctx = new PreIncrementExpressionContext(_localctx);
 				this._ctx = _localctx;
 				_prevctx = _localctx;
-				this.state = 154;
-				this.match(TysonParser.PlusPlus);
 				this.state = 155;
+				this.match(TysonParser.PlusPlus);
+				this.state = 156;
 				this.match(TysonParser.Identifier);
 				}
 				break;
@@ -921,9 +932,9 @@ export class TysonParser extends Parser {
 				_localctx = new PreDecreaseExpressionContext(_localctx);
 				this._ctx = _localctx;
 				_prevctx = _localctx;
-				this.state = 156;
-				this.match(TysonParser.MinusMinus);
 				this.state = 157;
+				this.match(TysonParser.MinusMinus);
+				this.state = 158;
 				this.match(TysonParser.Identifier);
 				}
 				break;
@@ -933,9 +944,9 @@ export class TysonParser extends Parser {
 				_localctx = new UnaryPlusExpressionContext(_localctx);
 				this._ctx = _localctx;
 				_prevctx = _localctx;
-				this.state = 158;
-				this.match(TysonParser.Plus);
 				this.state = 159;
+				this.match(TysonParser.Plus);
+				this.state = 160;
 				this.expression(10);
 				}
 				break;
@@ -945,9 +956,9 @@ export class TysonParser extends Parser {
 				_localctx = new UnaryMinusExpressionContext(_localctx);
 				this._ctx = _localctx;
 				_prevctx = _localctx;
-				this.state = 160;
-				this.match(TysonParser.Minus);
 				this.state = 161;
+				this.match(TysonParser.Minus);
+				this.state = 162;
 				this.expression(9);
 				}
 				break;
@@ -957,15 +968,15 @@ export class TysonParser extends Parser {
 				_localctx = new NotExpressionContext(_localctx);
 				this._ctx = _localctx;
 				_prevctx = _localctx;
-				this.state = 162;
-				this.match(TysonParser.Not);
 				this.state = 163;
+				this.match(TysonParser.Not);
+				this.state = 164;
 				this.expression(8);
 				}
 				break;
 			}
 			this._ctx._stop = this._input.tryLT(-1);
-			this.state = 189;
+			this.state = 190;
 			this._errHandler.sync(this);
 			_alt = this.interpreter.adaptivePredict(this._input, 10, this._ctx);
 			while (_alt !== 2 && _alt !== ATN.INVALID_ALT_NUMBER) {
@@ -975,20 +986,20 @@ export class TysonParser extends Parser {
 					}
 					_prevctx = _localctx;
 					{
-					this.state = 187;
+					this.state = 188;
 					this._errHandler.sync(this);
 					switch ( this.interpreter.adaptivePredict(this._input, 9, this._ctx) ) {
 					case 1:
 						{
 						_localctx = new PowerExpressionContext(new ExpressionContext(_parentctx, _parentState));
 						this.pushNewRecursionContext(_localctx, _startState, TysonParser.RULE_expression);
-						this.state = 166;
+						this.state = 167;
 						if (!(this.precpred(this._ctx, 7))) {
 							throw new FailedPredicateException(this, "this.precpred(this._ctx, 7)");
 						}
-						this.state = 167;
-						this.match(TysonParser.Power);
 						this.state = 168;
+						this.match(TysonParser.Power);
+						this.state = 169;
 						this.expression(7);
 						}
 						break;
@@ -997,11 +1008,11 @@ export class TysonParser extends Parser {
 						{
 						_localctx = new MultiplicativeExpressionContext(new ExpressionContext(_parentctx, _parentState));
 						this.pushNewRecursionContext(_localctx, _startState, TysonParser.RULE_expression);
-						this.state = 169;
+						this.state = 170;
 						if (!(this.precpred(this._ctx, 6))) {
 							throw new FailedPredicateException(this, "this.precpred(this._ctx, 6)");
 						}
-						this.state = 170;
+						this.state = 171;
 						_la = this._input.LA(1);
 						if (!((((_la) & ~0x1F) === 0 && ((1 << _la) & ((1 << TysonParser.Multiply) | (1 << TysonParser.Divide) | (1 << TysonParser.Modulus))) !== 0))) {
 						this._errHandler.recoverInline(this);
@@ -1013,7 +1024,7 @@ export class TysonParser extends Parser {
 							this._errHandler.reportMatch(this);
 							this.consume();
 						}
-						this.state = 171;
+						this.state = 172;
 						this.expression(7);
 						}
 						break;
@@ -1022,11 +1033,11 @@ export class TysonParser extends Parser {
 						{
 						_localctx = new AdditiveExpressionContext(new ExpressionContext(_parentctx, _parentState));
 						this.pushNewRecursionContext(_localctx, _startState, TysonParser.RULE_expression);
-						this.state = 172;
+						this.state = 173;
 						if (!(this.precpred(this._ctx, 5))) {
 							throw new FailedPredicateException(this, "this.precpred(this._ctx, 5)");
 						}
-						this.state = 173;
+						this.state = 174;
 						_la = this._input.LA(1);
 						if (!(_la === TysonParser.Plus || _la === TysonParser.Minus)) {
 						this._errHandler.recoverInline(this);
@@ -1038,7 +1049,7 @@ export class TysonParser extends Parser {
 							this._errHandler.reportMatch(this);
 							this.consume();
 						}
-						this.state = 174;
+						this.state = 175;
 						this.expression(6);
 						}
 						break;
@@ -1047,11 +1058,11 @@ export class TysonParser extends Parser {
 						{
 						_localctx = new RelationalExpressionContext(new ExpressionContext(_parentctx, _parentState));
 						this.pushNewRecursionContext(_localctx, _startState, TysonParser.RULE_expression);
-						this.state = 175;
+						this.state = 176;
 						if (!(this.precpred(this._ctx, 4))) {
 							throw new FailedPredicateException(this, "this.precpred(this._ctx, 4)");
 						}
-						this.state = 176;
+						this.state = 177;
 						_la = this._input.LA(1);
 						if (!((((_la) & ~0x1F) === 0 && ((1 << _la) & ((1 << TysonParser.LessThan) | (1 << TysonParser.MoreThan) | (1 << TysonParser.LessThanEquals) | (1 << TysonParser.GreaterThanEquals))) !== 0))) {
 						this._errHandler.recoverInline(this);
@@ -1063,7 +1074,7 @@ export class TysonParser extends Parser {
 							this._errHandler.reportMatch(this);
 							this.consume();
 						}
-						this.state = 177;
+						this.state = 178;
 						this.expression(5);
 						}
 						break;
@@ -1072,11 +1083,11 @@ export class TysonParser extends Parser {
 						{
 						_localctx = new EqualityExpressionContext(new ExpressionContext(_parentctx, _parentState));
 						this.pushNewRecursionContext(_localctx, _startState, TysonParser.RULE_expression);
-						this.state = 178;
+						this.state = 179;
 						if (!(this.precpred(this._ctx, 3))) {
 							throw new FailedPredicateException(this, "this.precpred(this._ctx, 3)");
 						}
-						this.state = 179;
+						this.state = 180;
 						_la = this._input.LA(1);
 						if (!(_la === TysonParser.Equals || _la === TysonParser.NotEquals)) {
 						this._errHandler.recoverInline(this);
@@ -1088,7 +1099,7 @@ export class TysonParser extends Parser {
 							this._errHandler.reportMatch(this);
 							this.consume();
 						}
-						this.state = 180;
+						this.state = 181;
 						this.expression(4);
 						}
 						break;
@@ -1097,13 +1108,13 @@ export class TysonParser extends Parser {
 						{
 						_localctx = new LogicalAndExpressionContext(new ExpressionContext(_parentctx, _parentState));
 						this.pushNewRecursionContext(_localctx, _startState, TysonParser.RULE_expression);
-						this.state = 181;
+						this.state = 182;
 						if (!(this.precpred(this._ctx, 2))) {
 							throw new FailedPredicateException(this, "this.precpred(this._ctx, 2)");
 						}
-						this.state = 182;
-						this.match(TysonParser.And);
 						this.state = 183;
+						this.match(TysonParser.And);
+						this.state = 184;
 						this.expression(3);
 						}
 						break;
@@ -1112,20 +1123,20 @@ export class TysonParser extends Parser {
 						{
 						_localctx = new LogicalOrExpressionContext(new ExpressionContext(_parentctx, _parentState));
 						this.pushNewRecursionContext(_localctx, _startState, TysonParser.RULE_expression);
-						this.state = 184;
+						this.state = 185;
 						if (!(this.precpred(this._ctx, 1))) {
 							throw new FailedPredicateException(this, "this.precpred(this._ctx, 1)");
 						}
-						this.state = 185;
-						this.match(TysonParser.Or);
 						this.state = 186;
+						this.match(TysonParser.Or);
+						this.state = 187;
 						this.expression(1);
 						}
 						break;
 					}
 					}
 				}
-				this.state = 191;
+				this.state = 192;
 				this._errHandler.sync(this);
 				_alt = this.interpreter.adaptivePredict(this._input, 10, this._ctx);
 			}
@@ -1150,34 +1161,34 @@ export class TysonParser extends Parser {
 		let _localctx: LiteralContext = new LiteralContext(this._ctx, this.state);
 		this.enterRule(_localctx, 34, TysonParser.RULE_literal);
 		try {
-			this.state = 196;
+			this.state = 197;
 			this._errHandler.sync(this);
 			switch (this._input.LA(1)) {
 			case TysonParser.NullLiteral:
 				this.enterOuterAlt(_localctx, 1);
 				{
-				this.state = 192;
+				this.state = 193;
 				this.match(TysonParser.NullLiteral);
 				}
 				break;
 			case TysonParser.BooleanLiteral:
 				this.enterOuterAlt(_localctx, 2);
 				{
-				this.state = 193;
+				this.state = 194;
 				this.match(TysonParser.BooleanLiteral);
 				}
 				break;
 			case TysonParser.StringLiteral:
 				this.enterOuterAlt(_localctx, 3);
 				{
-				this.state = 194;
+				this.state = 195;
 				this.match(TysonParser.StringLiteral);
 				}
 				break;
 			case TysonParser.DecimalLiteral:
 				this.enterOuterAlt(_localctx, 4);
 				{
-				this.state = 195;
+				this.state = 196;
 				this.numericLiteral();
 				}
 				break;
@@ -1206,7 +1217,7 @@ export class TysonParser extends Parser {
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 198;
+			this.state = 199;
 			this.match(TysonParser.DecimalLiteral);
 			}
 		}
@@ -1259,7 +1270,7 @@ export class TysonParser extends Parser {
 	}
 
 	public static readonly _serializedATN: string =
-		"\x03\uC91D\uCABA\u058D\uAFBA\u4F53\u0607\uEA8B\uC241\x037\xCB\x04\x02" +
+		"\x03\uC91D\uCABA\u058D\uAFBA\u4F53\u0607\uEA8B\uC241\x037\xCC\x04\x02" +
 		"\t\x02\x04\x03\t\x03\x04\x04\t\x04\x04\x05\t\x05\x04\x06\t\x06\x04\x07" +
 		"\t\x07\x04\b\t\b\x04\t\t\t\x04\n\t\n\x04\v\t\v\x04\f\t\f\x04\r\t\r\x04" +
 		"\x0E\t\x0E\x04\x0F\t\x0F\x04\x10\t\x10\x04\x11\t\x11\x04\x12\t\x12\x04" +
@@ -1272,82 +1283,83 @@ export class TysonParser extends Parser {
 		"\f\x03\r\x03\r\x03\r\x03\x0E\x03\x0E\x03\x0E\x03\x0E\x03\x0E\x03\x0E\x03" +
 		"\x0E\x05\x0Ek\n\x0E\x03\x0F\x03\x0F\x03\x0F\x03\x0F\x03\x0F\x03\x0F\x03" +
 		"\x0F\x03\x0F\x03\x0F\x03\x0F\x03\x0F\x03\x0F\x03\x0F\x03\x0F\x03\x0F\x03" +
-		"\x0F\x03\x0F\x05\x0F~\n\x0F\x03\x0F\x03\x0F\x03\x0F\x03\x0F\x03\x0F\x05" +
-		"\x0F\x85\n\x0F\x03\x0F\x03\x0F\x03\x0F\x05\x0F\x8A\n\x0F\x03\x10\x03\x10" +
-		"\x03\x10\x03\x11\x03\x11\x03\x11\x03\x12\x03\x12\x03\x12\x03\x12\x03\x12" +
+		"\x0F\x03\x0F\x03\x0F\x05\x0F\x7F\n\x0F\x03\x0F\x03\x0F\x03\x0F\x03\x0F" +
+		"\x03\x0F\x05\x0F\x86\n\x0F\x03\x0F\x03\x0F\x03\x0F\x05\x0F\x8B\n\x0F\x03" +
+		"\x10\x03\x10\x03\x10\x03\x11\x03\x11\x03\x11\x03\x12\x03\x12\x03\x12\x03" +
+		"\x12\x03\x12\x03\x12\x03\x12\x03\x12\x03\x12\x03\x12\x03\x12\x03\x12\x03" +
+		"\x12\x03\x12\x03\x12\x03\x12\x03\x12\x03\x12\x03\x12\x03\x12\x03\x12\x05" +
+		"\x12\xA8\n\x12\x03\x12\x03\x12\x03\x12\x03\x12\x03\x12\x03\x12\x03\x12" +
 		"\x03\x12\x03\x12\x03\x12\x03\x12\x03\x12\x03\x12\x03\x12\x03\x12\x03\x12" +
-		"\x03\x12\x03\x12\x03\x12\x03\x12\x03\x12\x03\x12\x03\x12\x05\x12\xA7\n" +
-		"\x12\x03\x12\x03\x12\x03\x12\x03\x12\x03\x12\x03\x12\x03\x12\x03\x12\x03" +
-		"\x12\x03\x12\x03\x12\x03\x12\x03\x12\x03\x12\x03\x12\x03\x12\x03\x12\x03" +
-		"\x12\x03\x12\x03\x12\x03\x12\x07\x12\xBE\n\x12\f\x12\x0E\x12\xC1\v\x12" +
-		"\x03\x13\x03\x13\x03\x13\x03\x13\x05\x13\xC7\n\x13\x03\x14\x03\x14\x03" +
-		"\x14\x02\x02\x03\"\x15\x02\x02\x04\x02\x06\x02\b\x02\n\x02\f\x02\x0E\x02" +
-		"\x10\x02\x12\x02\x14\x02\x16\x02\x18\x02\x1A\x02\x1C\x02\x1E\x02 \x02" +
-		"\"\x02$\x02&\x02\x02\b\x03\x0202\x04\x02\v\v\x1F$\x03\x02\x13\x15\x03" +
-		"\x02\x10\x11\x03\x02\x16\x19\x03\x02\x1A\x1B\x02\xDC\x02+\x03\x02\x02" +
-		"\x02\x04:\x03\x02\x02\x02\x06<\x03\x02\x02\x02\bE\x03\x02\x02\x02\nJ\x03" +
-		"\x02\x02\x02\fL\x03\x02\x02\x02\x0EO\x03\x02\x02\x02\x10U\x03\x02\x02" +
-		"\x02\x12W\x03\x02\x02\x02\x14Z\x03\x02\x02\x02\x16^\x03\x02\x02\x02\x18" +
-		"`\x03\x02\x02\x02\x1Ac\x03\x02\x02\x02\x1C\x89\x03\x02\x02\x02\x1E\x8B" +
-		"\x03\x02\x02\x02 \x8E\x03\x02\x02\x02\"\xA6\x03\x02\x02\x02$\xC6\x03\x02" +
-		"\x02\x02&\xC8\x03\x02\x02\x02(*\x05\x04\x03\x02)(\x03\x02\x02\x02*-\x03" +
-		"\x02\x02\x02+)\x03\x02\x02\x02+,\x03\x02\x02\x02,.\x03\x02\x02\x02-+\x03" +
-		"\x02\x02\x02./\x07\x02\x02\x03/\x03\x03\x02\x02\x020;\x05\x06\x04\x02" +
-		"1;\x05\f\x07\x022;\x05\x12\n\x023;\x05\x18\r\x024;\x05\x1A\x0E\x025;\x05" +
-		"\x1C\x0F\x026;\x05\x1E\x10\x027;\x05 \x11\x028;\x05\b\x05\x029;\x05\n" +
-		"\x06\x02:0\x03\x02\x02\x02:1\x03\x02\x02\x02:2\x03\x02\x02\x02:3\x03\x02" +
-		"\x02\x02:4\x03\x02\x02\x02:5\x03\x02\x02\x02:6\x03\x02\x02\x02:7\x03\x02" +
-		"\x02\x02:8\x03\x02\x02\x02:9\x03\x02\x02\x02;\x05\x03\x02\x02\x02<@\x07" +
-		"\x07\x02\x02=?\x05\x04\x03\x02>=\x03\x02\x02\x02?B\x03\x02\x02\x02@>\x03" +
-		"\x02\x02\x02@A\x03\x02\x02\x02AC\x03\x02\x02\x02B@\x03\x02\x02\x02CD\x07" +
-		"\b\x02\x02D\x07\x03\x02\x02\x02EF\x07/\x02\x02FG\x07\x05\x02\x02GH\x05" +
-		"\"\x12\x02HI\x07\x06\x02\x02I\t\x03\x02\x02\x02JK\x07\t\x02\x02K\v\x03" +
-		"\x02\x02\x02LM\x05\x0E\b\x02MN\x07\t\x02\x02N\r\x03\x02\x02\x02OP\x05" +
-		"\x10\t\x02PS\x073\x02\x02QR\x07\v\x02\x02RT\x05\"\x12\x02SQ\x03\x02\x02" +
-		"\x02ST\x03\x02\x02\x02T\x0F\x03\x02\x02\x02UV\t\x02\x02\x02V\x11\x03\x02" +
-		"\x02\x02WX\x05\x14\v\x02XY\x07\t\x02\x02Y\x13\x03\x02\x02\x02Z[\x073\x02" +
-		"\x02[\\\x05\x16\f\x02\\]\x05\"\x12\x02]\x15\x03\x02\x02\x02^_\t\x03\x02" +
-		"\x02_\x17\x03\x02\x02\x02`a\x05\"\x12\x02ab\x07\t\x02\x02b\x19\x03\x02" +
-		"\x02\x02cd\x07(\x02\x02de\x07\x05\x02\x02ef\x05\"\x12\x02fg\x07\x06\x02" +
-		"\x02gj\x05\x04\x03\x02hi\x07)\x02\x02ik\x05\x04\x03\x02jh\x03\x02\x02" +
-		"\x02jk\x03\x02\x02\x02k\x1B\x03\x02\x02\x02lm\x07+\x02\x02mn\x05\x04\x03" +
-		"\x02no\x07,\x02\x02op\x07\x05\x02\x02pq\x05\"\x12\x02qr\x07\x06\x02\x02" +
-		"rs\x07\t\x02\x02s\x8A\x03\x02\x02\x02tu\x07,\x02\x02uv\x07\x05\x02\x02" +
-		"vw\x05\"\x12\x02wx\x07\x06\x02\x02xy\x05\x04\x03\x02y\x8A\x03\x02\x02" +
-		"\x02z{\x07*\x02\x02{}\x07\x05\x02\x02|~\x05\x0E\b\x02}|\x03\x02\x02\x02" +
-		"}~\x03\x02\x02\x02~\x7F\x03\x02\x02\x02\x7F\x80\x07\t\x02\x02\x80\x81" +
-		"\x05\"\x12\x02\x81\x84\x07\t\x02\x02\x82\x85\x05\x14\v\x02\x83\x85\x05" +
-		"\"\x12\x02\x84\x82\x03\x02\x02\x02\x84\x83\x03\x02\x02\x02\x84\x85\x03" +
-		"\x02\x02\x02\x85\x86\x03\x02\x02\x02\x86\x87\x07\x06\x02\x02\x87\x88\x05" +
-		"\x04\x03\x02\x88\x8A\x03\x02\x02\x02\x89l\x03\x02\x02\x02\x89t\x03\x02" +
-		"\x02\x02\x89z\x03\x02\x02\x02\x8A\x1D\x03\x02\x02\x02\x8B\x8C\x07-\x02" +
-		"\x02\x8C\x8D\x07\t\x02\x02\x8D\x1F\x03\x02\x02\x02\x8E\x8F\x07.\x02\x02" +
-		"\x8F\x90\x07\t\x02\x02\x90!\x03\x02\x02\x02\x91\x92\b\x12\x01\x02\x92" +
-		"\xA7\x073\x02\x02\x93\xA7\x05$\x13\x02\x94\x95\x07\x05\x02\x02\x95\x96" +
-		"\x05\"\x12\x02\x96\x97\x07\x06\x02\x02\x97\xA7\x03\x02\x02\x02\x98\x99" +
-		"\x073\x02\x02\x99\xA7\x07\x0E\x02\x02\x9A\x9B\x073\x02\x02\x9B\xA7\x07" +
-		"\x0F\x02\x02\x9C\x9D\x07\x0E\x02\x02\x9D\xA7\x073\x02\x02\x9E\x9F\x07" +
-		"\x0F\x02\x02\x9F\xA7\x073\x02\x02\xA0\xA1\x07\x10\x02\x02\xA1\xA7\x05" +
-		"\"\x12\f\xA2\xA3\x07\x11\x02\x02\xA3\xA7\x05\"\x12\v\xA4\xA5\x07\x12\x02" +
-		"\x02\xA5\xA7\x05\"\x12\n\xA6\x91\x03\x02\x02\x02\xA6\x93\x03\x02\x02\x02" +
-		"\xA6\x94\x03\x02\x02\x02\xA6\x98\x03\x02\x02\x02\xA6\x9A\x03\x02\x02\x02" +
-		"\xA6\x9C\x03\x02\x02\x02\xA6\x9E\x03\x02\x02\x02\xA6\xA0\x03\x02\x02\x02" +
-		"\xA6\xA2\x03\x02\x02\x02\xA6\xA4\x03\x02\x02\x02\xA7\xBF\x03\x02\x02\x02" +
-		"\xA8\xA9\f\t\x02\x02\xA9\xAA\x07\x1C\x02\x02\xAA\xBE\x05\"\x12\t\xAB\xAC" +
-		"\f\b\x02\x02\xAC\xAD\t\x04\x02\x02\xAD\xBE\x05\"\x12\t\xAE\xAF\f\x07\x02" +
-		"\x02\xAF\xB0\t\x05\x02\x02\xB0\xBE\x05\"\x12\b\xB1\xB2\f\x06\x02\x02\xB2" +
-		"\xB3\t\x06\x02\x02\xB3\xBE\x05\"\x12\x07\xB4\xB5\f\x05\x02\x02\xB5\xB6" +
-		"\t\x07\x02\x02\xB6\xBE\x05\"\x12\x06\xB7\xB8\f\x04\x02\x02\xB8\xB9\x07" +
-		"\x1D\x02\x02\xB9\xBE\x05\"\x12\x05\xBA\xBB\f\x03\x02\x02\xBB\xBC\x07\x1E" +
-		"\x02\x02\xBC\xBE\x05\"\x12\x03\xBD\xA8\x03\x02\x02\x02\xBD\xAB\x03\x02" +
-		"\x02\x02\xBD\xAE\x03\x02\x02\x02\xBD\xB1\x03\x02\x02\x02\xBD\xB4\x03\x02" +
-		"\x02\x02\xBD\xB7\x03\x02\x02\x02\xBD\xBA\x03\x02\x02\x02\xBE\xC1\x03\x02" +
-		"\x02\x02\xBF\xBD\x03\x02\x02\x02\xBF\xC0\x03\x02\x02\x02\xC0#\x03\x02" +
-		"\x02\x02\xC1\xBF\x03\x02\x02\x02\xC2\xC7\x07%\x02\x02\xC3\xC7\x07&\x02" +
-		"\x02\xC4\xC7\x074\x02\x02\xC5\xC7\x05&\x14\x02\xC6\xC2\x03\x02\x02\x02" +
-		"\xC6\xC3\x03\x02\x02\x02\xC6\xC4\x03\x02\x02\x02\xC6\xC5\x03\x02\x02\x02" +
-		"\xC7%\x03\x02\x02\x02\xC8\xC9\x07\'\x02\x02\xC9\'\x03\x02\x02\x02\x0E" +
-		"+:@Sj}\x84\x89\xA6\xBD\xBF\xC6";
+		"\x03\x12\x03\x12\x03\x12\x03\x12\x03\x12\x07\x12\xBF\n\x12\f\x12\x0E\x12" +
+		"\xC2\v\x12\x03\x13\x03\x13\x03\x13\x03\x13\x05\x13\xC8\n\x13\x03\x14\x03" +
+		"\x14\x03\x14\x02\x02\x03\"\x15\x02\x02\x04\x02\x06\x02\b\x02\n\x02\f\x02" +
+		"\x0E\x02\x10\x02\x12\x02\x14\x02\x16\x02\x18\x02\x1A\x02\x1C\x02\x1E\x02" +
+		" \x02\"\x02$\x02&\x02\x02\b\x03\x0202\x04\x02\v\v\x1F$\x03\x02\x13\x15" +
+		"\x03\x02\x10\x11\x03\x02\x16\x19\x03\x02\x1A\x1B\x02\xDE\x02+\x03\x02" +
+		"\x02\x02\x04:\x03\x02\x02\x02\x06<\x03\x02\x02\x02\bE\x03\x02\x02\x02" +
+		"\nJ\x03\x02\x02\x02\fL\x03\x02\x02\x02\x0EO\x03\x02\x02\x02\x10U\x03\x02" +
+		"\x02\x02\x12W\x03\x02\x02\x02\x14Z\x03\x02\x02\x02\x16^\x03\x02\x02\x02" +
+		"\x18`\x03\x02\x02\x02\x1Ac\x03\x02\x02\x02\x1C\x8A\x03\x02\x02\x02\x1E" +
+		"\x8C\x03\x02\x02\x02 \x8F\x03\x02\x02\x02\"\xA7\x03\x02\x02\x02$\xC7\x03" +
+		"\x02\x02\x02&\xC9\x03\x02\x02\x02(*\x05\x04\x03\x02)(\x03\x02\x02\x02" +
+		"*-\x03\x02\x02\x02+)\x03\x02\x02\x02+,\x03\x02\x02\x02,.\x03\x02\x02\x02" +
+		"-+\x03\x02\x02\x02./\x07\x02\x02\x03/\x03\x03\x02\x02\x020;\x05\x06\x04" +
+		"\x021;\x05\f\x07\x022;\x05\x12\n\x023;\x05\x18\r\x024;\x05\x1A\x0E\x02" +
+		"5;\x05\x1C\x0F\x026;\x05\x1E\x10\x027;\x05 \x11\x028;\x05\b\x05\x029;" +
+		"\x05\n\x06\x02:0\x03\x02\x02\x02:1\x03\x02\x02\x02:2\x03\x02\x02\x02:" +
+		"3\x03\x02\x02\x02:4\x03\x02\x02\x02:5\x03\x02\x02\x02:6\x03\x02\x02\x02" +
+		":7\x03\x02\x02\x02:8\x03\x02\x02\x02:9\x03\x02\x02\x02;\x05\x03\x02\x02" +
+		"\x02<@\x07\x07\x02\x02=?\x05\x04\x03\x02>=\x03\x02\x02\x02?B\x03\x02\x02" +
+		"\x02@>\x03\x02\x02\x02@A\x03\x02\x02\x02AC\x03\x02\x02\x02B@\x03\x02\x02" +
+		"\x02CD\x07\b\x02\x02D\x07\x03\x02\x02\x02EF\x07/\x02\x02FG\x07\x05\x02" +
+		"\x02GH\x05\"\x12\x02HI\x07\x06\x02\x02I\t\x03\x02\x02\x02JK\x07\t\x02" +
+		"\x02K\v\x03\x02\x02\x02LM\x05\x0E\b\x02MN\x07\t\x02\x02N\r\x03\x02\x02" +
+		"\x02OP\x05\x10\t\x02PS\x073\x02\x02QR\x07\v\x02\x02RT\x05\"\x12\x02SQ" +
+		"\x03\x02\x02\x02ST\x03\x02\x02\x02T\x0F\x03\x02\x02\x02UV\t\x02\x02\x02" +
+		"V\x11\x03\x02\x02\x02WX\x05\x14\v\x02XY\x07\t\x02\x02Y\x13\x03\x02\x02" +
+		"\x02Z[\x073\x02\x02[\\\x05\x16\f\x02\\]\x05\"\x12\x02]\x15\x03\x02\x02" +
+		"\x02^_\t\x03\x02\x02_\x17\x03\x02\x02\x02`a\x05\"\x12\x02ab\x07\t\x02" +
+		"\x02b\x19\x03\x02\x02\x02cd\x07(\x02\x02de\x07\x05\x02\x02ef\x05\"\x12" +
+		"\x02fg\x07\x06\x02\x02gj\x05\x04\x03\x02hi\x07)\x02\x02ik\x05\x04\x03" +
+		"\x02jh\x03\x02\x02\x02jk\x03\x02\x02\x02k\x1B\x03\x02\x02\x02lm\x07+\x02" +
+		"\x02mn\x05\x04\x03\x02no\x07,\x02\x02op\x07\x05\x02\x02pq\x05\"\x12\x02" +
+		"qr\x07\x06\x02\x02rs\x07\t\x02\x02s\x8B\x03\x02\x02\x02tu\x07,\x02\x02" +
+		"uv\x07\x05\x02\x02vw\x05\"\x12\x02wx\x07\x06\x02\x02xy\x05\x04\x03\x02" +
+		"y\x8B\x03\x02\x02\x02z{\x07*\x02\x02{~\x07\x05\x02\x02|\x7F\x05\x14\v" +
+		"\x02}\x7F\x05\x0E\b\x02~|\x03\x02\x02\x02~}\x03\x02\x02\x02~\x7F\x03\x02" +
+		"\x02\x02\x7F\x80\x03\x02\x02\x02\x80\x81\x07\t\x02\x02\x81\x82\x05\"\x12" +
+		"\x02\x82\x85\x07\t\x02\x02\x83\x86\x05\x14\v\x02\x84\x86\x05\"\x12\x02" +
+		"\x85\x83\x03\x02\x02\x02\x85\x84\x03\x02\x02\x02\x85\x86\x03\x02\x02\x02" +
+		"\x86\x87\x03\x02\x02\x02\x87\x88\x07\x06\x02\x02\x88\x89\x05\x04\x03\x02" +
+		"\x89\x8B\x03\x02\x02\x02\x8Al\x03\x02\x02\x02\x8At\x03\x02\x02\x02\x8A" +
+		"z\x03\x02\x02\x02\x8B\x1D\x03\x02\x02\x02\x8C\x8D\x07-\x02\x02\x8D\x8E" +
+		"\x07\t\x02\x02\x8E\x1F\x03\x02\x02\x02\x8F\x90\x07.\x02\x02\x90\x91\x07" +
+		"\t\x02\x02\x91!\x03\x02\x02\x02\x92\x93\b\x12\x01\x02\x93\xA8\x073\x02" +
+		"\x02\x94\xA8\x05$\x13\x02\x95\x96\x07\x05\x02\x02\x96\x97\x05\"\x12\x02" +
+		"\x97\x98\x07\x06\x02\x02\x98\xA8\x03\x02\x02\x02\x99\x9A\x073\x02\x02" +
+		"\x9A\xA8\x07\x0E\x02\x02\x9B\x9C\x073\x02\x02\x9C\xA8\x07\x0F\x02\x02" +
+		"\x9D\x9E\x07\x0E\x02\x02\x9E\xA8\x073\x02\x02\x9F\xA0\x07\x0F\x02\x02" +
+		"\xA0\xA8\x073\x02\x02\xA1\xA2\x07\x10\x02\x02\xA2\xA8\x05\"\x12\f\xA3" +
+		"\xA4\x07\x11\x02\x02\xA4\xA8\x05\"\x12\v\xA5\xA6\x07\x12\x02\x02\xA6\xA8" +
+		"\x05\"\x12\n\xA7\x92\x03\x02\x02\x02\xA7\x94\x03\x02\x02\x02\xA7\x95\x03" +
+		"\x02\x02\x02\xA7\x99\x03\x02\x02\x02\xA7\x9B\x03\x02\x02\x02\xA7\x9D\x03" +
+		"\x02\x02\x02\xA7\x9F\x03\x02\x02\x02\xA7\xA1\x03\x02\x02\x02\xA7\xA3\x03" +
+		"\x02\x02\x02\xA7\xA5\x03\x02\x02\x02\xA8\xC0\x03\x02\x02\x02\xA9\xAA\f" +
+		"\t\x02\x02\xAA\xAB\x07\x1C\x02\x02\xAB\xBF\x05\"\x12\t\xAC\xAD\f\b\x02" +
+		"\x02\xAD\xAE\t\x04\x02\x02\xAE\xBF\x05\"\x12\t\xAF\xB0\f\x07\x02\x02\xB0" +
+		"\xB1\t\x05\x02\x02\xB1\xBF\x05\"\x12\b\xB2\xB3\f\x06\x02\x02\xB3\xB4\t" +
+		"\x06\x02\x02\xB4\xBF\x05\"\x12\x07\xB5\xB6\f\x05\x02\x02\xB6\xB7\t\x07" +
+		"\x02\x02\xB7\xBF\x05\"\x12\x06\xB8\xB9\f\x04\x02\x02\xB9\xBA\x07\x1D\x02" +
+		"\x02\xBA\xBF\x05\"\x12\x05\xBB\xBC\f\x03\x02\x02\xBC\xBD\x07\x1E\x02\x02" +
+		"\xBD\xBF\x05\"\x12\x03\xBE\xA9\x03\x02\x02\x02\xBE\xAC\x03\x02\x02\x02" +
+		"\xBE\xAF\x03\x02\x02\x02\xBE\xB2\x03\x02\x02\x02\xBE\xB5\x03\x02\x02\x02" +
+		"\xBE\xB8\x03\x02\x02\x02\xBE\xBB\x03\x02\x02\x02\xBF\xC2\x03\x02\x02\x02" +
+		"\xC0\xBE\x03\x02\x02\x02\xC0\xC1\x03\x02\x02\x02\xC1#\x03\x02\x02\x02" +
+		"\xC2\xC0\x03\x02\x02\x02\xC3\xC8\x07%\x02\x02\xC4\xC8\x07&\x02\x02\xC5" +
+		"\xC8\x074\x02\x02\xC6\xC8\x05&\x14\x02\xC7\xC3\x03\x02\x02\x02\xC7\xC4" +
+		"\x03\x02\x02\x02\xC7\xC5\x03\x02\x02\x02\xC7\xC6\x03\x02\x02\x02\xC8%" +
+		"\x03\x02\x02\x02\xC9\xCA\x07\'\x02\x02\xCA\'\x03\x02\x02\x02\x0E+:@Sj" +
+		"~\x85\x8A\xA7\xBE\xC0\xC7";
 	public static __ATN: ATN;
 	public static get _ATN(): ATN {
 		if (!TysonParser.__ATN) {
@@ -1954,11 +1966,17 @@ export class ForStatementContext extends IterationStatementContext {
 	public statement(): StatementContext {
 		return this.getRuleContext(0, StatementContext);
 	}
+	public assignment(): AssignmentContext[];
+	public assignment(i: number): AssignmentContext;
+	public assignment(i?: number): AssignmentContext | AssignmentContext[] {
+		if (i === undefined) {
+			return this.getRuleContexts(AssignmentContext);
+		} else {
+			return this.getRuleContext(i, AssignmentContext);
+		}
+	}
 	public variableDeclaration(): VariableDeclarationContext | undefined {
 		return this.tryGetRuleContext(0, VariableDeclarationContext);
-	}
-	public assignment(): AssignmentContext | undefined {
-		return this.tryGetRuleContext(0, AssignmentContext);
 	}
 	constructor(ctx: IterationStatementContext) {
 		super(ctx.parent, ctx.invokingState);

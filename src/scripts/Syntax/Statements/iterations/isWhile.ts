@@ -6,7 +6,7 @@ import { While } from "scripts/keyWords";
 export function isWhile(lexemas: Lexema[], mode: boolean): AnalyzeResult {
   const log = [];
 
-  if (lexemas[0].id !== While.id) {
+  if (lexemas[0]?.id !== While.id) {
     return {
       isSuccessfull: false,
       foundedLexema: null,
@@ -86,7 +86,7 @@ export function isWhile(lexemas: Lexema[], mode: boolean): AnalyzeResult {
   return {
     isSuccessfull: true,
     foundedLexema: {
-      type: "Statement",
+      type: "While",
       details: "Цикл while",
       row: lexemas[0].row,
       column: lexemas[0].column,

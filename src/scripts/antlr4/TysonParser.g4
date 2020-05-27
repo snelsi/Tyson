@@ -74,9 +74,9 @@ ifStatement
     ;
 
 iterationStatement
-    : Do statement While OpenParen expression CloseParen SemiColon                                                                       # DoStatement
-    | While OpenParen expression CloseParen statement                                                                                    # WhileStatement
-    | For OpenParen variableDeclaration? SemiColon expression SemiColon (assignment | expression)? CloseParen statement            # ForStatement
+    : Do statement While OpenParen expression CloseParen SemiColon                                                                              # DoStatement
+    | While OpenParen expression CloseParen statement                                                                                           # WhileStatement
+    | For OpenParen (assignment | variableDeclaration)? SemiColon expression SemiColon (assignment | expression)? CloseParen statement          # ForStatement
     ;
 
 continueStatement
@@ -88,23 +88,23 @@ breakStatement
     ;
 
 expression
-    : Identifier                                                                                      # IdentifierExpression
-    | literal                                                                                         # LiteralExpression
+    : Identifier                                                                                # IdentifierExpression
+    | literal                                                                                   # LiteralExpression
     | OpenParen expression CloseParen                                                           # ParenthesizedExpression
-    | Identifier PlusPlus                                                                             # PostIncrementExpression
-    | Identifier MinusMinus                                                                           # PostDecreaseExpression
-    | PlusPlus Identifier                                                                             # PreIncrementExpression
-    | MinusMinus Identifier                                                                           # PreDecreaseExpression
+    | Identifier PlusPlus                                                                       # PostIncrementExpression
+    | Identifier MinusMinus                                                                     # PostDecreaseExpression
+    | PlusPlus Identifier                                                                       # PreIncrementExpression
+    | MinusMinus Identifier                                                                     # PreDecreaseExpression
     | Plus expression                                                                           # UnaryPlusExpression
     | Minus expression                                                                          # UnaryMinusExpression
     | Not expression                                                                            # NotExpression
-    | <assoc=right> expression Power expression                                           # PowerExpression
-    | expression (Multiply | Divide | Modulus) expression                                 # MultiplicativeExpression
-    | expression (Plus | Minus) expression                                                # AdditiveExpression
-    | expression (LessThan | MoreThan | LessThanEquals | GreaterThanEquals) expression    # RelationalExpression
-    | expression (Equals | NotEquals) expression                                          # EqualityExpression
-    | expression And expression                                                           # LogicalAndExpression
-    | <assoc=right> expression Or expression                                              # LogicalOrExpression
+    | <assoc=right> expression Power expression                                                 # PowerExpression
+    | expression (Multiply | Divide | Modulus) expression                                       # MultiplicativeExpression
+    | expression (Plus | Minus) expression                                                      # AdditiveExpression
+    | expression (LessThan | MoreThan | LessThanEquals | GreaterThanEquals) expression          # RelationalExpression
+    | expression (Equals | NotEquals) expression                                                # EqualityExpression
+    | expression And expression                                                                 # LogicalAndExpression
+    | <assoc=right> expression Or expression                                                    # LogicalOrExpression
     ;
 
 literal

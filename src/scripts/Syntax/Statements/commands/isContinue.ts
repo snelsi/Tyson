@@ -32,7 +32,7 @@ export function isContinue(lexemas: Lexema[], mode: boolean): AnalyzeResult {
   return {
     isSuccessfull: true,
     foundedLexema: {
-      type: "Statement",
+      type: "Continue",
       details: "Комманда continue",
       row: lexemas[0].row,
       column: lexemas[0].column,

@@ -87,7 +87,7 @@ export function isLog(lexemas: Lexema[], mode: boolean): AnalyzeResult {
   return {
     isSuccessfull: true,
     foundedLexema: {
-      type: "Statement",
+      type: "Log",
       details: "Комманда log",
       row: lexemas[0].row,
       column: lexemas[0].column,

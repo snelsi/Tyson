@@ -36,8 +36,29 @@ else {
 `,
 
   // Example 2
-  `key = 123;
-myVariable = 7 + 2;
+  `// Tyson підтримує числа, символьні рядки, логічні вирази
+// та спеціальне значення null
+
+'single quote string';
+"double quote string";
+
+1;
+1.02;
+ .03;
+
+true;
+false;
+
+null;
+
+// Для оголошення змінної використовується конструкція
+// Type IdentName [= Exp];
+
+let UndefinedVariable;
+
+var integer = 123;
+let double = 1.23;
+const myVariable = true;
 `,
 
   // Example 3

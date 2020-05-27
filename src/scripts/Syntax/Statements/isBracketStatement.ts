@@ -57,7 +57,7 @@ export function isBracketStatement(lexemas: Lexema[], mode: boolean): AnalyzeRes
   return {
     isSuccessfull: true,
     foundedLexema: {
-      type: "Statement",
+      type: "Brackets",
       details: "Блок из скобок",
       row: lexemas[0].row,
       column: lexemas[0].column,

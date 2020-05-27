@@ -23,7 +23,7 @@ export function isEmptyStatement(lexemas: Lexema[], mode: boolean): AnalyzeResul
   return {
     isSuccessfull: true,
     foundedLexema: {
-      type: "Statement",
+      type: "Empty",
       details: "Пустой Statement",
       row: lexemas[0].row,
       column: lexemas[0].column,

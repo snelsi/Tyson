@@ -22,7 +22,7 @@ export function isVariableDeclaration(lexemas: Lexema[], mode: boolean): Analyze
     };
   }
 
-  if (varModifier.rest[0].type !== "identificator") {
+  if (varModifier.rest[0]?.type !== "identificator") {
     log.push("Не удалось составить variableDeclarationList");
 
     return {
@@ -34,9 +34,9 @@ export function isVariableDeclaration(lexemas: Lexema[], mode: boolean): Analyze
   }
 
   let optional = [];
-  let rest = varModifier.rest.slice(2);
-  if (varModifier.rest[1].id === Assign.id) {
-    const singleExpression = isExpression(rest, mode);
+  let rest = varModifier.rest.slice(1);
+  if (varModifier.rest[1]?.id === Assign.id) {
+    const singleExpression = isExpression(rest.slice(1), mode);
     log.push(...singleExpression.log);
 
     if (!singleExpression.isSuccessfull) {

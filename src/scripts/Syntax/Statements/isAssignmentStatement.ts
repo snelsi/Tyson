@@ -35,7 +35,7 @@ export function isAssignmentStatement(lexemas: Lexema[], mode: boolean): Analyze
   return {
     isSuccessfull: true,
     foundedLexema: {
-      type: "Statement",
+      type: "Assignment",
       details: "Комманда присвоения",
       row: lexemas[0].row,
       column: lexemas[0].column,

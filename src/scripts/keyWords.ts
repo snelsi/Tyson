@@ -58,12 +58,6 @@ export const Break = {
   details: "cycle break operator",
 };
 
-export const Undefined = {
-  id: 220,
-  word: "undefined",
-  details: "value is not defined",
-};
-
 export const Log = {
   id: 221,
   word: "log",
@@ -73,7 +67,7 @@ export const Log = {
 export const Var = {
   id: 201,
   word: "var",
-  details: "gloval variable",
+  details: "global variable",
 };
 
 export const Let = {
@@ -99,7 +93,6 @@ export const keyWords = [
   While,
   Continue,
   Break,
-  Undefined,
   Log,
   Var,
   Let,

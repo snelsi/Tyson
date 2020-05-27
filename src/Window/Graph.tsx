@@ -2,7 +2,7 @@ import * as React from "react";
 import VisGraph from "vis-react";
 import { useLexemasTree } from "scripts/hooks/stateHelpers";
 
-import { toNodes } from "scripts/toNodes";
+import { toNodes } from "scripts/helpers";
 
 const options = {
   layout: {

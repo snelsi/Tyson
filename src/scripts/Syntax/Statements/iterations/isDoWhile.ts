@@ -9,7 +9,7 @@ import { Do, While } from "scripts/keyWords";
 export function isDoWhile(lexemas: Lexema[], mode: boolean): AnalyzeResult {
   const log = [];
 
-  if (lexemas[0].id !== Do.id) {
+  if (lexemas[0]?.id !== Do.id) {
     return {
       isSuccessfull: false,
       foundedLexema: null,
@@ -36,7 +36,7 @@ export function isDoWhile(lexemas: Lexema[], mode: boolean): AnalyzeResult {
     };
   }
 
-  if (statement.rest[0].id !== While.id) {
+  if (statement.rest[0]?.id !== While.id) {
     log.push(
       mode
         ? `!Из магазина был получено тело цикла do. Из стека ожидался 'while', но получен ${statement[1].body}`
@@ -119,7 +119,7 @@ export function isDoWhile(lexemas: Lexema[], mode: boolean): AnalyzeResult {
   return {
     isSuccessfull: true,
     foundedLexema: {
-      type: "Statement",
+      type: "Do While",
       details: "Цикл Do While",
       row: lexemas[0].row,
       column: lexemas[0].column,

@@ -1,17 +1,15 @@
 import { AnalyzeResult, Lexema } from "interfaces/Interface";
-import { PlusPlus, MinusMinus, Plus, Minus, Not } from "scripts/keySymbols";
+import { Plus, Minus, Not } from "scripts/keySymbols";
 
-const operators = [PlusPlus, MinusMinus, Plus, Minus, Not];
+const operators = [Plus, Minus, Not];
 
-// ++ singleExpression      # PreIncrementExpression
-// -- singleExpression      # PreDecreaseExpression
 // +  singleExpression      # UnaryPlusExpression
 // -  singleExpression      # UnaryMinusExpression
 // '!' singleExpression
 export function isLeftUnarExpression(lexemas: Lexema[], mode: boolean): AnalyzeResult {
   const log = [];
 
-  if (lexemas[0].type !== "keysymbol" || !operators.map((op) => op.id).includes(lexemas[0].id)) {
+  if (lexemas[0]?.type !== "keysymbol" || !operators.map((op) => op.id).includes(lexemas[0]?.id)) {
     return {
       isSuccessfull: false,
       foundedLexema: null,
@@ -20,7 +18,7 @@ export function isLeftUnarExpression(lexemas: Lexema[], mode: boolean): AnalyzeR
     };
   }
 
-  if (lexemas[1].type !== "identificator") {
+  if (lexemas[1]?.type !== "identificator") {
     log.push(`!После унарного оператора '${lexemas[0].body}' не последовал идентификатор`);
     return {
       isSuccessfull: false,

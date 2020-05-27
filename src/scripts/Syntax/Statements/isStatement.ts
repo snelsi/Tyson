@@ -27,11 +27,10 @@ const functions = [
 ];
 
 export function isStatement(lexemas: Lexema[], mode = false): AnalyzeResult {
-  let result: AnalyzeResult;
   const log = [];
 
   for (let check of functions) {
-    result = check(lexemas, mode);
+    let result = check(lexemas, mode);
     log.push(...result.log);
     if (result.isSuccessfull) {
       return result;

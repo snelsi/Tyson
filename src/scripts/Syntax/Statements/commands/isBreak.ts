@@ -32,7 +32,7 @@ export function isBreak(lexemas: Lexema[], mode: boolean): AnalyzeResult {
   return {
     isSuccessfull: true,
     foundedLexema: {
-      type: "Statement",
+      type: "Break",
       details: "Комманда break",
       row: lexemas[0].row,
       column: lexemas[0].column,

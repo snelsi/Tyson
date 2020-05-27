@@ -2,14 +2,9 @@ import { AnalyzeResult, Lexema } from "interfaces/Interface";
 import { isBracketExpression } from "./isBracketExpression";
 import { isExpressionLiteral } from "./isExpressionLiteral";
 import { isLeftUnarExpression } from "./isLeftUnarExpression";
-import { isRightUnarExpression } from "./isRightUnarExpression";
+import { isIterator } from "./isIterator";
 
-const functions = [
-  isBracketExpression,
-  isLeftUnarExpression,
-  isRightUnarExpression,
-  isExpressionLiteral,
-];
+const functions = [isBracketExpression, isLeftUnarExpression, isIterator, isExpressionLiteral];
 
 export function isSingleExpression(lexemas: Lexema[], mode: boolean): AnalyzeResult {
   const log = [];

@@ -112,7 +112,7 @@ export function isIfStatement(lexemas: Lexema[], mode: boolean): AnalyzeResult {
   return {
     isSuccessfull: true,
     foundedLexema: {
-      type: "Statement",
+      type: "If",
       details: "Логический блок",
       row: lexemas[0].row,
       column: lexemas[0].column,

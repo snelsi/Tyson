@@ -41,7 +41,7 @@ export function isExpressionStatement(lexemas: Lexema[], mode: boolean): Analyze
   return {
     isSuccessfull: true,
     foundedLexema: {
-      type: "Statement",
+      type: "Expression Statement",
       details: "Expression Statement",
       row: lexemas[0].row,
       column: lexemas[0].column,

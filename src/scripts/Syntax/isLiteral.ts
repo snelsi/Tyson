@@ -10,12 +10,21 @@ import { Null, True, False } from "scripts/keyWords";
 export const isLiteral = (lexemas: Lexema[], mode = false): AnalyzeResult => {
   const log = [];
 
+  if (!lexemas || lexemas.length === 0) {
+    return {
+      isSuccessfull: false,
+      foundedLexema: null,
+      rest: lexemas,
+      log,
+    };
+  }
+
   if (
-    lexemas[0].id === Null.id ||
-    lexemas[0].id === True.id ||
-    lexemas[0].id === False.id ||
-    lexemas[0].type === "string" ||
-    lexemas[0].type === "number"
+    lexemas[0]?.id === Null.id ||
+    lexemas[0]?.id === True.id ||
+    lexemas[0]?.id === False.id ||
+    lexemas[0]?.type === "string" ||
+    lexemas[0]?.type === "number"
   ) {
     return {
       isSuccessfull: true,

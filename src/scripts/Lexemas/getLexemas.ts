@@ -1,6 +1,6 @@
 import { keySymbols } from "scripts/keySymbols";
 import { keyWords } from "scripts/keyWords";
-import { AtomLexema } from "interfaces/Interface";
+import { BaseLexema } from "interfaces/Interface";
 
 const enAlphabetSmall = "abcdefghijklmnopqrstuvwxyz";
 const enAlphabetBig = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -9,8 +9,8 @@ const alphabet = enAlphabetSmall + enAlphabetBig;
 const isDigit = (c: string) => /\d/.test(c);
 
 /* eslint-disable complexity */
-export const getLexemas = (input: string): AtomLexema[] => {
-  const dictionary: AtomLexema[] = [];
+export const getLexemas = (input: string): BaseLexema[] => {
+  const dictionary: BaseLexema[] = [];
 
   let row = 1;
   let column = 1;
@@ -117,6 +117,36 @@ export const getLexemas = (input: string): AtomLexema[] => {
           body: word,
         });
       }
+      i += next - 1;
+      column += next - 1;
+    } else if (char === "." && isDigit(input[i + 1])) {
+      // Float
+      let next = 1;
+      let word = ".";
+      let nextchar = input[i + next];
+      while (i + next < input.length && isDigit(nextchar)) {
+        word += `${nextchar}`;
+        nextchar = input[i + ++next];
+      }
+      if (alphabet.includes(nextchar)) {
+        dictionary.push({
+          row,
+          column,
+          type: "error",
+          body: word + nextchar,
+          details: `unexpected letter '${nextchar}' after float '${word}' in [${row}, ${column}]'`,
+        });
+        break;
+      }
+
+      dictionary.push({
+        row,
+        column,
+        type: "number",
+        details: "integer",
+        body: word,
+      });
+
       i += next - 1;
       column += next - 1;
     } else if (char === "_" || alphabet.includes(char)) {

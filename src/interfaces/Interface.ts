@@ -1,3 +1,5 @@
+export type Token = number | string | boolean;
+
 export type BaseType =
   | "keysymbol"
   | "keyword"
@@ -7,35 +9,34 @@ export type BaseType =
   | "operator"
   | "error";
 
-export type Type =
-  | BaseType
+export type StatementType =
   | "Statement"
-  | "Command"
-  | "If Statement"
-  | "Cycle Statement"
-  | "ConstExpr"
-  | "Expression"
-  | "Type"
-  | "Variable Declaration"
+  | "Log"
+  | "Continue"
+  | "Break"
+  | "For"
+  | "Do While"
+  | "While"
   | "Assignment"
-  | "Programm";
+  | "Brackets"
+  | "Empty"
+  | "Expression Statement"
+  | "If"
+  | "Variable Declaration";
+
+export type Type = BaseType | StatementType | "Expression" | "Type" | "Programm";
 
 export interface Lexema {
   type: Type;
-  row: number;
-  column: number;
   body: string | Lexema[];
+  row?: number;
+  column?: number;
   id?: number;
   details?: string;
   msg?: string;
 }
 
-export interface AtomLexema extends Lexema {
-  type: BaseType;
-  body: string;
-}
-
-export interface TestLexema {
+export interface BaseLexema extends Lexema {
   type: BaseType;
   body: string;
 }
@@ -52,14 +53,12 @@ export interface Anchor {
   anchor: string;
 }
 
-export interface Template {
-  type: Type;
-  details: string;
-}
-
 export interface AnalyzeResult {
   isSuccessfull: boolean;
   foundedLexema: Lexema;
   rest: Lexema[];
   log: string[];
 }
+
+type Operation = "+" | "-" | "*" | "/";
+type Input = number | Operation;

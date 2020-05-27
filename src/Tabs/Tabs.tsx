@@ -7,6 +7,7 @@ import Tab from "@material-ui/core/Tab";
 import { getLexemas } from "scripts/Lexemas/getLexemas";
 import { LexemasTable } from "Tabs/Lexemas";
 import { SyntaxResult } from "Tabs/Syntax";
+import { Parser } from "Tabs/Parser";
 
 import { AntlrParse } from "scripts/antlr4/Antlr4Analyze";
 
@@ -55,9 +56,12 @@ const Sidebar: React.FC<Props> = ({ getCode, initialCode = "" }) => {
       </Button>
       {value === 0 && <LexemasTable lexemas={lexemas} />}
 
+
       <div data-hide={value !== 1}>
         <SyntaxResult lexemas={lexemas} />
       </div>
+
+      {value === 2 && <Parser  />}
     </div>
   );
 };

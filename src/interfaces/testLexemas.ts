@@ -1,6 +1,6 @@
-import { TestLexema } from "interfaces/Interface";
+import { BaseLexema } from "interfaces/Interface";
 
-export const testLexemas: { [name: string]: TestLexema } = {
+export const testLexemas: { [name: string]: BaseLexema } = {
   Num1: {
     type: "number",
     body: "1",
@@ -29,25 +29,29 @@ export const testLexemas: { [name: string]: TestLexema } = {
     type: "operator",
     body: "/",
   },
-  Set: {
+  Assign: {
     type: "operator",
     body: "=",
   },
-  SetPlus: {
+  AssignPlus: {
     type: "operator",
     body: "+=",
   },
-  SetMinus: {
+  AssignMinus: {
     type: "operator",
     body: "-=",
   },
-  SetMultiply: {
+  AssignMultiply: {
     type: "operator",
     body: "*=",
   },
-  SetDivide: {
+  AssignDivide: {
     type: "operator",
     body: "/=",
+  },
+  AssignPower: {
+    type: "operator",
+    body: "^=",
   },
   Semicolon: {
     type: "keysymbol",

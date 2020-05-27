@@ -7,7 +7,7 @@ import { For } from "scripts/keyWords";
 export function isFor(lexemas: Lexema[], mode: boolean): AnalyzeResult {
   const log = [];
 
-  if (lexemas[0].id !== For.id) {
+  if (lexemas[0]?.id !== For.id) {
     return {
       isSuccessfull: false,
       foundedLexema: null,
@@ -31,8 +31,12 @@ export function isFor(lexemas: Lexema[], mode: boolean): AnalyzeResult {
     };
   }
 
-  const declar = isVariableDeclaration(lexemas.slice(2), mode);
+  let declar = isVariableDeclaration(lexemas.slice(2), mode);
   log.push(...declar.log);
+  if (!declar.isSuccessfull) {
+    declar = isAssignment(lexemas.slice(2), mode);
+    log.push(...declar.log);
+  }
 
   if (declar.rest[0]?.type !== "keysymbol" || declar.rest[0]?.id !== Semicolon.id) {
     log.push(
@@ -87,6 +91,7 @@ export function isFor(lexemas: Lexema[], mode: boolean): AnalyzeResult {
 
   if (!op2.isSuccessfull) {
     op2 = isExpression(condition.rest.slice(1), mode);
+    log.push(...op2.log);
   }
 
   if (op2.rest[0]?.type !== "keysymbol" || op2.rest[0]?.id !== CloseParen.id) {
@@ -127,7 +132,7 @@ export function isFor(lexemas: Lexema[], mode: boolean): AnalyzeResult {
   return {
     isSuccessfull: true,
     foundedLexema: {
-      type: "Statement",
+      type: "For",
       details: "Цикл for",
       row: lexemas[0].row,
       column: lexemas[0].column,

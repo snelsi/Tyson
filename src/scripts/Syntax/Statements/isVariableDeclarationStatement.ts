@@ -24,7 +24,7 @@ export function isVariableDeclarationStatement(lexemas: Lexema[], mode: boolean)
   }
 
   if (
-    variableDeclarationList.rest[0].type !== "keysymbol" ||
+    variableDeclarationList.rest[0]?.type !== "keysymbol" ||
     variableDeclarationList.rest[0]?.id !== Semicolon.id
   ) {
     log.push("!Пропущена точка с запятой после variableDeclarationList");
@@ -42,7 +42,7 @@ export function isVariableDeclarationStatement(lexemas: Lexema[], mode: boolean)
   return {
     isSuccessfull: true,
     foundedLexema: {
-      type: "Statement",
+      type: "Variable Declaration",
       details: "Variable Statement",
       row: lexemas[0].row,
       column: lexemas[0].column,
