@@ -1,13 +1,14 @@
-import React, { useState, useMemo } from "react";
+import * as React from "react";
+
 import { styled } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import MTabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 
-import { getLexemas } from "scripts/Lexemas/getLexemas";
-import { LexemasTable } from "Tabs/Lexemas";
-import { SyntaxResult } from "Tabs/Syntax";
-import { Parser } from "Tabs/Parser";
+import { LexemasTab, SyntaxTab, ParserTab } from "Tabs";
+
+import { observer } from "mobx-react";
+import { useLexemas, useSyntax, useParser } from "scripts/store";
 
 import { AntlrParse } from "scripts/antlr4/Antlr4Analyze";
 
@@ -20,17 +21,25 @@ interface Props {
   initialCode?: string;
 }
 
-const Sidebar: React.FC<Props> = ({ getCode, initialCode = "" }) => {
-  const [value, setValue] = useState(0);
-  const [code, setCode] = useState(initialCode);
+const Sidebar: React.FC<Props> = observer(({ getCode, initialCode = "" }) => {
+  const [value, setValue] = React.useState(0);
+  const [code, setCode] = React.useState(initialCode);
+
+  const lexemas = useLexemas();
+  const syntax = useSyntax();
+  const parser = useParser();
 
   React.useEffect(() => setCode(initialCode), [initialCode]);
 
-  const lexemas = useMemo(() => {
+  React.useEffect(() => {
     console.clear();
     AntlrParse(code);
-    return getLexemas(code);
+    lexemas.analyzeLexemas(code);
   }, [code]);
+
+  React.useEffect(() => syntax.analyzeLexemas(lexemas.lexemas), [lexemas.lexemas]);
+
+  React.useEffect(() => parser.parseCode(syntax.programm), [syntax.programm]);
 
   const updateDictionary = () => setCode(getCode());
 
@@ -54,16 +63,11 @@ const Sidebar: React.FC<Props> = ({ getCode, initialCode = "" }) => {
       <Button onClick={updateDictionary} color="primary" style={{ width: "100%" }}>
         Update
       </Button>
-      {value === 0 && <LexemasTable lexemas={lexemas} />}
-
-
-      <div data-hide={value !== 1}>
-        <SyntaxResult lexemas={lexemas} />
-      </div>
-
-      {value === 2 && <Parser  />}
+      {value === 0 && <LexemasTab />}
+      {value === 1 && <SyntaxTab />}
+      {value === 2 && <ParserTab />}
     </div>
   );
-};
+});
 
 export default Sidebar;

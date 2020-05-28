@@ -1,7 +1,7 @@
-import { AnalyzeResult, Lexema } from "interfaces/Interface";
+import { AnalyzeResult, BaseLexema } from "interfaces/Interface";
 import { isStatement } from "scripts/Syntax/Statements/isStatement";
 
-export const syntaxAnalyse = (lexemas: Lexema[], mode: boolean): AnalyzeResult => {
+export const syntaxAnalyse = (lexemas: BaseLexema[], mode = false): AnalyzeResult => {
   if (!lexemas || lexemas.length === 0) {
     return {
       isSuccessfull: true,

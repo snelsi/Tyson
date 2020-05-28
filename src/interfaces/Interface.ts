@@ -41,16 +41,9 @@ export interface BaseLexema extends Lexema {
   body: string;
 }
 
-export interface GoTo {
-  type: "unconditional" | "conditional";
-  body: "goto";
-  anchor: string;
-}
-
-export interface Anchor {
-  type: "anchor";
-  body: "anchor";
-  anchor: string;
+export interface Variable {
+  value: number | string | boolean | null;
+  constant: boolean;
 }
 
 export interface AnalyzeResult {
@@ -59,6 +52,3 @@ export interface AnalyzeResult {
   rest: Lexema[];
   log: string[];
 }
-
-type Operation = "+" | "-" | "*" | "/";
-type Input = number | Operation;

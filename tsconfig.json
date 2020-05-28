@@ -9,6 +9,7 @@
     "allowSyntheticDefaultImports": true,
     "strict": false,
     "forceConsistentCasingInFileNames": true,
+    "experimentalDecorators": true,
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,

@@ -1,8 +1,8 @@
 import * as React from "react";
 import VisGraph from "vis-react";
-import { useLexemasTree } from "scripts/hooks/stateHelpers";
 
-import { toNodes } from "scripts/helpers";
+import { observer } from "mobx-react";
+import { useSyntax } from "scripts/store";
 
 const options = {
   layout: {
@@ -21,8 +21,7 @@ const options = {
   },
 };
 
-export const Graph = () => {
-  const [tree] = useLexemasTree();
-  const graph = React.useMemo(() => toNodes(tree), [tree]);
-  return <VisGraph graph={graph} options={options} />;
-};
+export const Graph = observer(() => {
+  const syntax = useSyntax();
+  return <VisGraph graph={syntax.tree} options={options} />;
+});
