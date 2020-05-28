@@ -28,6 +28,8 @@ LessThanEquals:                 '<=';
 GreaterThanEquals:              '>=';
 Equals:                         '==';
 NotEquals:                      '!=';
+StrictEquals:                   '===';
+StrictNotEquals:                '!==';
 Power:                          '^';
 And:                            '&&';
 Or:                             '||';

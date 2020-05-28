@@ -1,12 +1,14 @@
 import * as React from "react";
 import { action, observable } from "mobx";
-import { Variable, Lexema } from "interfaces/Interface";
+import { Lexema } from "interfaces/Interface";
 
+import { Variables } from "scripts/store/Variables";
 import { parseCode } from "scripts/Parser";
 
 class ParserStore {
   @observable public log: string[] = [];
-  @observable public variables: Set<Variable> = new Set<Variable>();
+  @observable public variables = new Variables();
+  @observable public anchors = 0;
 
   @action public parseCode = (programm: Lexema) => {
     this.log = [];
@@ -15,8 +17,8 @@ class ParserStore {
     parseCode(programm);
   };
 
-  @action public pushLog = (info: string) => {
-    this.log.push(info);
+  @action public pushLog = (info: any) => {
+    this.log.push(String(info));
   };
 }
 

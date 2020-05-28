@@ -102,7 +102,7 @@ expression
     | expression (Multiply | Divide | Modulus) expression                                       # MultiplicativeExpression
     | expression (Plus | Minus) expression                                                      # AdditiveExpression
     | expression (LessThan | MoreThan | LessThanEquals | GreaterThanEquals) expression          # RelationalExpression
-    | expression (Equals | NotEquals) expression                                                # EqualityExpression
+    | expression (Equals | NotEquals | StrictEquals | StrictNotEquals) expression               # EqualityExpression
     | expression And expression                                                                 # LogicalAndExpression
     | <assoc=right> expression Or expression                                                    # LogicalOrExpression
     ;

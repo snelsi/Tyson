@@ -518,4 +518,3 @@ export interface TysonParserListener extends ParseTreeListener {
 	 */
 	exitNumericLiteral?: (ctx: NumericLiteralContext) => void;
 }
-

@@ -35,7 +35,7 @@ export const getLexemas = (input: string): BaseLexema[] => {
       column = 0;
       row++;
     }
-    // Double Quote String
+    // String
     else if (char === '"' || char === "'") {
       let next = 1;
       let word = char;
@@ -162,11 +162,11 @@ export const getLexemas = (input: string): BaseLexema[] => {
         next++;
         nextchar = input[i + next];
       }
-      let isKey = false;
+      let isKeyword = false;
 
       for (let token of keyWords) {
         if (word === token.word) {
-          isKey = true;
+          isKeyword = true;
           dictionary.push({
             row,
             column,
@@ -178,7 +178,7 @@ export const getLexemas = (input: string): BaseLexema[] => {
           break;
         }
       }
-      if (!isKey) {
+      if (!isKeyword) {
         dictionary.push({
           row,
           column,
@@ -189,34 +189,14 @@ export const getLexemas = (input: string): BaseLexema[] => {
       column += next - 1;
       i += next - 1;
     } else {
-      if (i + 1 < input.length) {
-        let isShortCut = false;
-        const word = char + input[i + 1];
-        for (let keysymbol of keySymbols) {
-          if (word === keysymbol.symbol) {
-            isShortCut = true;
-            dictionary.push({
-              row,
-              column,
-              type: "keysymbol",
-              id: keysymbol.id,
-              body: keysymbol.symbol,
-              details: keysymbol.details,
-            });
-            break;
-          }
-        }
-        if (isShortCut) {
-          i++;
-          column++;
-          continue;
-        }
-      }
+      const rest = input.slice(i);
 
-      let isKey = false;
+      let isShortCut = false;
+
       for (let keysymbol of keySymbols) {
-        if (char === keysymbol.symbol) {
-          isKey = true;
+        if (rest.startsWith(keysymbol.symbol)) {
+          isShortCut = true;
+
           dictionary.push({
             row,
             column,
@@ -225,19 +205,24 @@ export const getLexemas = (input: string): BaseLexema[] => {
             body: keysymbol.symbol,
             details: keysymbol.details,
           });
+
+          i += keysymbol.symbol.length - 1;
+          column += keysymbol.symbol.length - 1;
           break;
         }
       }
-      if (!isKey) {
-        dictionary.push({
-          row,
-          column,
-          type: "error",
-          body: char,
-          details: `unexpected symbol '${char} in [${row}, ${column}]'`,
-        });
-        break;
+      if (isShortCut) {
+        continue;
       }
+
+      dictionary.push({
+        row,
+        column,
+        type: "error",
+        body: char,
+        details: `unexpected symbol '${char} in [${row}, ${column}]'`,
+      });
+      break;
     }
   }
   return dictionary;

@@ -16,7 +16,8 @@ export const parseCode = (programm: Lexema) => {
   try {
     parsePolish(output);
     return true;
-  } catch {
+  } catch (e) {
+    console.log(e);
     return false;
   }
 };

@@ -14,6 +14,8 @@ import {
   MoreThanEquals,
   Equals,
   NotEquals,
+  StrictEquals,
+  StrictNotEquals,
   And,
   Or,
 } from "scripts/keySymbols";
@@ -31,6 +33,8 @@ const operators = [
   MoreThanEquals,
   Equals,
   NotEquals,
+  StrictEquals,
+  StrictNotEquals,
   And,
   Or,
 ];

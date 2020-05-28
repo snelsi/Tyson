@@ -41,8 +41,10 @@ export interface BaseLexema extends Lexema {
   body: string;
 }
 
+export type VariableValue = number | string | boolean | null;
+
 export interface Variable {
-  value: number | string | boolean | null;
+  value: VariableValue;
   constant: boolean;
 }
 

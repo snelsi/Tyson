@@ -1,83 +1,83 @@
 export const Null = {
-  id: 219,
+  id: 201,
   word: "null",
   details: "no value",
 };
 
 export const True = {
-  id: 208,
+  id: 202,
   word: "true",
   details: "logical 1",
 };
 
 export const False = {
-  id: 209,
+  id: 203,
   word: "false",
   details: "logical 0",
 };
 
 export const If = {
-  id: 213,
+  id: 204,
   word: "if",
   details: "optional operator",
 };
 
 export const Else = {
-  id: 214,
+  id: 205,
   word: "else",
   details: "optional logic operator",
 };
 
 export const For = {
-  id: 210,
+  id: 206,
   word: "for",
   details: "cycle declaration",
 };
 
 export const Do = {
-  id: 211,
+  id: 207,
   word: "do",
   details: "cycle declaration",
 };
 
 export const While = {
-  id: 212,
+  id: 208,
   word: "while",
   details: "cycle declaration",
 };
 
 export const Continue = {
-  id: 218,
+  id: 209,
   word: "continue",
   details: "cycle continue operator",
 };
 
 export const Break = {
-  id: 217,
+  id: 210,
   word: "break",
   details: "cycle break operator",
 };
 
 export const Log = {
-  id: 221,
+  id: 211,
   word: "log",
   details: "log out command",
 };
 
 export const Var = {
-  id: 201,
+  id: 212,
   word: "var",
   details: "global variable",
 };
 
 export const Let = {
-  id: 202,
+  id: 213,
   word: "let",
   details: "localscope variable",
 };
 
 export const Const = {
-  id: 216,
+  id: 214,
   word: "const",
   details: "constant variable",
 };

@@ -53,34 +53,36 @@ export class TysonParser extends Parser {
 	public static readonly GreaterThanEquals = 23;
 	public static readonly Equals = 24;
 	public static readonly NotEquals = 25;
-	public static readonly Power = 26;
-	public static readonly And = 27;
-	public static readonly Or = 28;
-	public static readonly MultiplyAssign = 29;
-	public static readonly DivideAssign = 30;
-	public static readonly ModulusAssign = 31;
-	public static readonly PlusAssign = 32;
-	public static readonly MinusAssign = 33;
-	public static readonly PowerAssign = 34;
-	public static readonly NullLiteral = 35;
-	public static readonly BooleanLiteral = 36;
-	public static readonly DecimalLiteral = 37;
-	public static readonly If = 38;
-	public static readonly Else = 39;
-	public static readonly For = 40;
-	public static readonly Do = 41;
-	public static readonly While = 42;
-	public static readonly Continue = 43;
-	public static readonly Break = 44;
-	public static readonly Log = 45;
-	public static readonly Var = 46;
-	public static readonly Let = 47;
-	public static readonly Const = 48;
-	public static readonly Identifier = 49;
-	public static readonly StringLiteral = 50;
-	public static readonly WhiteSpaces = 51;
-	public static readonly LineTerminator = 52;
-	public static readonly UnexpectedCharacter = 53;
+	public static readonly StrictEquals = 26;
+	public static readonly StrictNotEquals = 27;
+	public static readonly Power = 28;
+	public static readonly And = 29;
+	public static readonly Or = 30;
+	public static readonly MultiplyAssign = 31;
+	public static readonly DivideAssign = 32;
+	public static readonly ModulusAssign = 33;
+	public static readonly PlusAssign = 34;
+	public static readonly MinusAssign = 35;
+	public static readonly PowerAssign = 36;
+	public static readonly NullLiteral = 37;
+	public static readonly BooleanLiteral = 38;
+	public static readonly DecimalLiteral = 39;
+	public static readonly If = 40;
+	public static readonly Else = 41;
+	public static readonly For = 42;
+	public static readonly Do = 43;
+	public static readonly While = 44;
+	public static readonly Continue = 45;
+	public static readonly Break = 46;
+	public static readonly Log = 47;
+	public static readonly Var = 48;
+	public static readonly Let = 49;
+	public static readonly Const = 50;
+	public static readonly Identifier = 51;
+	public static readonly StringLiteral = 52;
+	public static readonly WhiteSpaces = 53;
+	public static readonly LineTerminator = 54;
+	public static readonly UnexpectedCharacter = 55;
 	public static readonly RULE_program = 0;
 	public static readonly RULE_statement = 1;
 	public static readonly RULE_bracketStatement = 2;
@@ -102,31 +104,32 @@ export class TysonParser extends Parser {
 	public static readonly RULE_numericLiteral = 18;
 	// tslint:disable:no-trailing-whitespace
 	public static readonly ruleNames: string[] = [
-		"program", "statement", "bracketStatement", "logStatement", "emptyStatement", 
-		"variableDeclarationStatement", "variableDeclaration", "varModifier", 
-		"assignmentStatement", "assignment", "assignmentOperator", "expressionStatement", 
-		"ifStatement", "iterationStatement", "continueStatement", "breakStatement", 
+		"program", "statement", "bracketStatement", "logStatement", "emptyStatement",
+		"variableDeclarationStatement", "variableDeclaration", "varModifier",
+		"assignmentStatement", "assignment", "assignmentOperator", "expressionStatement",
+		"ifStatement", "iterationStatement", "continueStatement", "breakStatement",
 		"expression", "literal", "numericLiteral",
 	];
 
 	private static readonly _LITERAL_NAMES: Array<string | undefined> = [
-		undefined, undefined, undefined, "'('", "')'", "'{'", "'}'", "';'", "','", 
-		"'='", "':'", "'.'", "'++'", "'--'", "'+'", "'-'", "'!'", "'*'", "'/'", 
-		"'%'", "'<'", "'>'", "'<='", "'>='", "'=='", "'!='", "'^'", "'&&'", "'||'", 
-		"'*='", "'/='", "'%='", "'+='", "'-='", "'^='", "'null'", undefined, undefined, 
-		"'if'", "'else'", "'for'", "'do'", "'while'", "'continue'", "'break'", 
-		"'log'", "'var'", "'let'", "'const'",
+		undefined, undefined, undefined, "'('", "')'", "'{'", "'}'", "';'", "','",
+		"'='", "':'", "'.'", "'++'", "'--'", "'+'", "'-'", "'!'", "'*'", "'/'",
+		"'%'", "'<'", "'>'", "'<='", "'>='", "'=='", "'!='", "'==='", "'!=='",
+		"'^'", "'&&'", "'||'", "'*='", "'/='", "'%='", "'+='", "'-='", "'^='",
+		"'null'", undefined, undefined, "'if'", "'else'", "'for'", "'do'", "'while'",
+		"'continue'", "'break'", "'log'", "'var'", "'let'", "'const'",
 	];
 	private static readonly _SYMBOLIC_NAMES: Array<string | undefined> = [
-		undefined, "MultiLineComment", "SingleLineComment", "OpenParen", "CloseParen", 
-		"OpenBrace", "CloseBrace", "SemiColon", "Comma", "Assign", "Colon", "Dot", 
-		"PlusPlus", "MinusMinus", "Plus", "Minus", "Not", "Multiply", "Divide", 
-		"Modulus", "LessThan", "MoreThan", "LessThanEquals", "GreaterThanEquals", 
-		"Equals", "NotEquals", "Power", "And", "Or", "MultiplyAssign", "DivideAssign", 
-		"ModulusAssign", "PlusAssign", "MinusAssign", "PowerAssign", "NullLiteral", 
-		"BooleanLiteral", "DecimalLiteral", "If", "Else", "For", "Do", "While", 
-		"Continue", "Break", "Log", "Var", "Let", "Const", "Identifier", "StringLiteral", 
-		"WhiteSpaces", "LineTerminator", "UnexpectedCharacter",
+		undefined, "MultiLineComment", "SingleLineComment", "OpenParen", "CloseParen",
+		"OpenBrace", "CloseBrace", "SemiColon", "Comma", "Assign", "Colon", "Dot",
+		"PlusPlus", "MinusMinus", "Plus", "Minus", "Not", "Multiply", "Divide",
+		"Modulus", "LessThan", "MoreThan", "LessThanEquals", "GreaterThanEquals",
+		"Equals", "NotEquals", "StrictEquals", "StrictNotEquals", "Power", "And",
+		"Or", "MultiplyAssign", "DivideAssign", "ModulusAssign", "PlusAssign",
+		"MinusAssign", "PowerAssign", "NullLiteral", "BooleanLiteral", "DecimalLiteral",
+		"If", "Else", "For", "Do", "While", "Continue", "Break", "Log", "Var",
+		"Let", "Const", "Identifier", "StringLiteral", "WhiteSpaces", "LineTerminator",
+		"UnexpectedCharacter",
 	];
 	public static readonly VOCABULARY: Vocabulary = new VocabularyImpl(TysonParser._LITERAL_NAMES, TysonParser._SYMBOLIC_NAMES, []);
 
@@ -161,7 +164,7 @@ export class TysonParser extends Parser {
 			this.state = 41;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			while ((((_la) & ~0x1F) === 0 && ((1 << _la) & ((1 << TysonParser.OpenParen) | (1 << TysonParser.OpenBrace) | (1 << TysonParser.SemiColon) | (1 << TysonParser.PlusPlus) | (1 << TysonParser.MinusMinus) | (1 << TysonParser.Plus) | (1 << TysonParser.Minus) | (1 << TysonParser.Not))) !== 0) || ((((_la - 35)) & ~0x1F) === 0 && ((1 << (_la - 35)) & ((1 << (TysonParser.NullLiteral - 35)) | (1 << (TysonParser.BooleanLiteral - 35)) | (1 << (TysonParser.DecimalLiteral - 35)) | (1 << (TysonParser.If - 35)) | (1 << (TysonParser.For - 35)) | (1 << (TysonParser.Do - 35)) | (1 << (TysonParser.While - 35)) | (1 << (TysonParser.Continue - 35)) | (1 << (TysonParser.Break - 35)) | (1 << (TysonParser.Log - 35)) | (1 << (TysonParser.Var - 35)) | (1 << (TysonParser.Let - 35)) | (1 << (TysonParser.Const - 35)) | (1 << (TysonParser.Identifier - 35)) | (1 << (TysonParser.StringLiteral - 35)))) !== 0)) {
+			while ((((_la) & ~0x1F) === 0 && ((1 << _la) & ((1 << TysonParser.OpenParen) | (1 << TysonParser.OpenBrace) | (1 << TysonParser.SemiColon) | (1 << TysonParser.PlusPlus) | (1 << TysonParser.MinusMinus) | (1 << TysonParser.Plus) | (1 << TysonParser.Minus) | (1 << TysonParser.Not))) !== 0) || ((((_la - 37)) & ~0x1F) === 0 && ((1 << (_la - 37)) & ((1 << (TysonParser.NullLiteral - 37)) | (1 << (TysonParser.BooleanLiteral - 37)) | (1 << (TysonParser.DecimalLiteral - 37)) | (1 << (TysonParser.If - 37)) | (1 << (TysonParser.For - 37)) | (1 << (TysonParser.Do - 37)) | (1 << (TysonParser.While - 37)) | (1 << (TysonParser.Continue - 37)) | (1 << (TysonParser.Break - 37)) | (1 << (TysonParser.Log - 37)) | (1 << (TysonParser.Var - 37)) | (1 << (TysonParser.Let - 37)) | (1 << (TysonParser.Const - 37)) | (1 << (TysonParser.Identifier - 37)) | (1 << (TysonParser.StringLiteral - 37)))) !== 0)) {
 				{
 				{
 				this.state = 38;
@@ -306,7 +309,7 @@ export class TysonParser extends Parser {
 			this.state = 62;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			while ((((_la) & ~0x1F) === 0 && ((1 << _la) & ((1 << TysonParser.OpenParen) | (1 << TysonParser.OpenBrace) | (1 << TysonParser.SemiColon) | (1 << TysonParser.PlusPlus) | (1 << TysonParser.MinusMinus) | (1 << TysonParser.Plus) | (1 << TysonParser.Minus) | (1 << TysonParser.Not))) !== 0) || ((((_la - 35)) & ~0x1F) === 0 && ((1 << (_la - 35)) & ((1 << (TysonParser.NullLiteral - 35)) | (1 << (TysonParser.BooleanLiteral - 35)) | (1 << (TysonParser.DecimalLiteral - 35)) | (1 << (TysonParser.If - 35)) | (1 << (TysonParser.For - 35)) | (1 << (TysonParser.Do - 35)) | (1 << (TysonParser.While - 35)) | (1 << (TysonParser.Continue - 35)) | (1 << (TysonParser.Break - 35)) | (1 << (TysonParser.Log - 35)) | (1 << (TysonParser.Var - 35)) | (1 << (TysonParser.Let - 35)) | (1 << (TysonParser.Const - 35)) | (1 << (TysonParser.Identifier - 35)) | (1 << (TysonParser.StringLiteral - 35)))) !== 0)) {
+			while ((((_la) & ~0x1F) === 0 && ((1 << _la) & ((1 << TysonParser.OpenParen) | (1 << TysonParser.OpenBrace) | (1 << TysonParser.SemiColon) | (1 << TysonParser.PlusPlus) | (1 << TysonParser.MinusMinus) | (1 << TysonParser.Plus) | (1 << TysonParser.Minus) | (1 << TysonParser.Not))) !== 0) || ((((_la - 37)) & ~0x1F) === 0 && ((1 << (_la - 37)) & ((1 << (TysonParser.NullLiteral - 37)) | (1 << (TysonParser.BooleanLiteral - 37)) | (1 << (TysonParser.DecimalLiteral - 37)) | (1 << (TysonParser.If - 37)) | (1 << (TysonParser.For - 37)) | (1 << (TysonParser.Do - 37)) | (1 << (TysonParser.While - 37)) | (1 << (TysonParser.Continue - 37)) | (1 << (TysonParser.Break - 37)) | (1 << (TysonParser.Log - 37)) | (1 << (TysonParser.Var - 37)) | (1 << (TysonParser.Let - 37)) | (1 << (TysonParser.Const - 37)) | (1 << (TysonParser.Identifier - 37)) | (1 << (TysonParser.StringLiteral - 37)))) !== 0)) {
 				{
 				{
 				this.state = 59;
@@ -468,7 +471,7 @@ export class TysonParser extends Parser {
 			{
 			this.state = 83;
 			_la = this._input.LA(1);
-			if (!(((((_la - 46)) & ~0x1F) === 0 && ((1 << (_la - 46)) & ((1 << (TysonParser.Var - 46)) | (1 << (TysonParser.Let - 46)) | (1 << (TysonParser.Const - 46)))) !== 0))) {
+			if (!(((((_la - 48)) & ~0x1F) === 0 && ((1 << (_la - 48)) & ((1 << (TysonParser.Var - 48)) | (1 << (TysonParser.Let - 48)) | (1 << (TysonParser.Const - 48)))) !== 0))) {
 			this._errHandler.recoverInline(this);
 			} else {
 				if (this._input.LA(1) === Token.EOF) {
@@ -1089,7 +1092,7 @@ export class TysonParser extends Parser {
 						}
 						this.state = 180;
 						_la = this._input.LA(1);
-						if (!(_la === TysonParser.Equals || _la === TysonParser.NotEquals)) {
+						if (!((((_la) & ~0x1F) === 0 && ((1 << _la) & ((1 << TysonParser.Equals) | (1 << TysonParser.NotEquals) | (1 << TysonParser.StrictEquals) | (1 << TysonParser.StrictNotEquals))) !== 0))) {
 						this._errHandler.recoverInline(this);
 						} else {
 							if (this._input.LA(1) === Token.EOF) {
@@ -1270,7 +1273,7 @@ export class TysonParser extends Parser {
 	}
 
 	public static readonly _serializedATN: string =
-		"\x03\uC91D\uCABA\u058D\uAFBA\u4F53\u0607\uEA8B\uC241\x037\xCC\x04\x02" +
+		"\x03\uC91D\uCABA\u058D\uAFBA\u4F53\u0607\uEA8B\uC241\x039\xCC\x04\x02" +
 		"\t\x02\x04\x03\t\x03\x04\x04\t\x04\x04\x05\t\x05\x04\x06\t\x06\x04\x07" +
 		"\t\x07\x04\b\t\b\x04\t\t\t\x04\n\t\n\x04\v\t\v\x04\f\t\f\x04\r\t\r\x04" +
 		"\x0E\t\x0E\x04\x0F\t\x0F\x04\x10\t\x10\x04\x11\t\x11\x04\x12\t\x12\x04" +
@@ -1294,72 +1297,71 @@ export class TysonParser extends Parser {
 		"\xC2\v\x12\x03\x13\x03\x13\x03\x13\x03\x13\x05\x13\xC8\n\x13\x03\x14\x03" +
 		"\x14\x03\x14\x02\x02\x03\"\x15\x02\x02\x04\x02\x06\x02\b\x02\n\x02\f\x02" +
 		"\x0E\x02\x10\x02\x12\x02\x14\x02\x16\x02\x18\x02\x1A\x02\x1C\x02\x1E\x02" +
-		" \x02\"\x02$\x02&\x02\x02\b\x03\x0202\x04\x02\v\v\x1F$\x03\x02\x13\x15" +
-		"\x03\x02\x10\x11\x03\x02\x16\x19\x03\x02\x1A\x1B\x02\xDE\x02+\x03\x02" +
-		"\x02\x02\x04:\x03\x02\x02\x02\x06<\x03\x02\x02\x02\bE\x03\x02\x02\x02" +
-		"\nJ\x03\x02\x02\x02\fL\x03\x02\x02\x02\x0EO\x03\x02\x02\x02\x10U\x03\x02" +
-		"\x02\x02\x12W\x03\x02\x02\x02\x14Z\x03\x02\x02\x02\x16^\x03\x02\x02\x02" +
-		"\x18`\x03\x02\x02\x02\x1Ac\x03\x02\x02\x02\x1C\x8A\x03\x02\x02\x02\x1E" +
-		"\x8C\x03\x02\x02\x02 \x8F\x03\x02\x02\x02\"\xA7\x03\x02\x02\x02$\xC7\x03" +
-		"\x02\x02\x02&\xC9\x03\x02\x02\x02(*\x05\x04\x03\x02)(\x03\x02\x02\x02" +
-		"*-\x03\x02\x02\x02+)\x03\x02\x02\x02+,\x03\x02\x02\x02,.\x03\x02\x02\x02" +
-		"-+\x03\x02\x02\x02./\x07\x02\x02\x03/\x03\x03\x02\x02\x020;\x05\x06\x04" +
-		"\x021;\x05\f\x07\x022;\x05\x12\n\x023;\x05\x18\r\x024;\x05\x1A\x0E\x02" +
-		"5;\x05\x1C\x0F\x026;\x05\x1E\x10\x027;\x05 \x11\x028;\x05\b\x05\x029;" +
-		"\x05\n\x06\x02:0\x03\x02\x02\x02:1\x03\x02\x02\x02:2\x03\x02\x02\x02:" +
-		"3\x03\x02\x02\x02:4\x03\x02\x02\x02:5\x03\x02\x02\x02:6\x03\x02\x02\x02" +
-		":7\x03\x02\x02\x02:8\x03\x02\x02\x02:9\x03\x02\x02\x02;\x05\x03\x02\x02" +
-		"\x02<@\x07\x07\x02\x02=?\x05\x04\x03\x02>=\x03\x02\x02\x02?B\x03\x02\x02" +
-		"\x02@>\x03\x02\x02\x02@A\x03\x02\x02\x02AC\x03\x02\x02\x02B@\x03\x02\x02" +
-		"\x02CD\x07\b\x02\x02D\x07\x03\x02\x02\x02EF\x07/\x02\x02FG\x07\x05\x02" +
-		"\x02GH\x05\"\x12\x02HI\x07\x06\x02\x02I\t\x03\x02\x02\x02JK\x07\t\x02" +
-		"\x02K\v\x03\x02\x02\x02LM\x05\x0E\b\x02MN\x07\t\x02\x02N\r\x03\x02\x02" +
-		"\x02OP\x05\x10\t\x02PS\x073\x02\x02QR\x07\v\x02\x02RT\x05\"\x12\x02SQ" +
-		"\x03\x02\x02\x02ST\x03\x02\x02\x02T\x0F\x03\x02\x02\x02UV\t\x02\x02\x02" +
-		"V\x11\x03\x02\x02\x02WX\x05\x14\v\x02XY\x07\t\x02\x02Y\x13\x03\x02\x02" +
-		"\x02Z[\x073\x02\x02[\\\x05\x16\f\x02\\]\x05\"\x12\x02]\x15\x03\x02\x02" +
-		"\x02^_\t\x03\x02\x02_\x17\x03\x02\x02\x02`a\x05\"\x12\x02ab\x07\t\x02" +
-		"\x02b\x19\x03\x02\x02\x02cd\x07(\x02\x02de\x07\x05\x02\x02ef\x05\"\x12" +
-		"\x02fg\x07\x06\x02\x02gj\x05\x04\x03\x02hi\x07)\x02\x02ik\x05\x04\x03" +
-		"\x02jh\x03\x02\x02\x02jk\x03\x02\x02\x02k\x1B\x03\x02\x02\x02lm\x07+\x02" +
-		"\x02mn\x05\x04\x03\x02no\x07,\x02\x02op\x07\x05\x02\x02pq\x05\"\x12\x02" +
-		"qr\x07\x06\x02\x02rs\x07\t\x02\x02s\x8B\x03\x02\x02\x02tu\x07,\x02\x02" +
-		"uv\x07\x05\x02\x02vw\x05\"\x12\x02wx\x07\x06\x02\x02xy\x05\x04\x03\x02" +
-		"y\x8B\x03\x02\x02\x02z{\x07*\x02\x02{~\x07\x05\x02\x02|\x7F\x05\x14\v" +
-		"\x02}\x7F\x05\x0E\b\x02~|\x03\x02\x02\x02~}\x03\x02\x02\x02~\x7F\x03\x02" +
-		"\x02\x02\x7F\x80\x03\x02\x02\x02\x80\x81\x07\t\x02\x02\x81\x82\x05\"\x12" +
-		"\x02\x82\x85\x07\t\x02\x02\x83\x86\x05\x14\v\x02\x84\x86\x05\"\x12\x02" +
-		"\x85\x83\x03\x02\x02\x02\x85\x84\x03\x02\x02\x02\x85\x86\x03\x02\x02\x02" +
-		"\x86\x87\x03\x02\x02\x02\x87\x88\x07\x06\x02\x02\x88\x89\x05\x04\x03\x02" +
-		"\x89\x8B\x03\x02\x02\x02\x8Al\x03\x02\x02\x02\x8At\x03\x02\x02\x02\x8A" +
-		"z\x03\x02\x02\x02\x8B\x1D\x03\x02\x02\x02\x8C\x8D\x07-\x02\x02\x8D\x8E" +
-		"\x07\t\x02\x02\x8E\x1F\x03\x02\x02\x02\x8F\x90\x07.\x02\x02\x90\x91\x07" +
-		"\t\x02\x02\x91!\x03\x02\x02\x02\x92\x93\b\x12\x01\x02\x93\xA8\x073\x02" +
-		"\x02\x94\xA8\x05$\x13\x02\x95\x96\x07\x05\x02\x02\x96\x97\x05\"\x12\x02" +
-		"\x97\x98\x07\x06\x02\x02\x98\xA8\x03\x02\x02\x02\x99\x9A\x073\x02\x02" +
-		"\x9A\xA8\x07\x0E\x02\x02\x9B\x9C\x073\x02\x02\x9C\xA8\x07\x0F\x02\x02" +
-		"\x9D\x9E\x07\x0E\x02\x02\x9E\xA8\x073\x02\x02\x9F\xA0\x07\x0F\x02\x02" +
-		"\xA0\xA8\x073\x02\x02\xA1\xA2\x07\x10\x02\x02\xA2\xA8\x05\"\x12\f\xA3" +
-		"\xA4\x07\x11\x02\x02\xA4\xA8\x05\"\x12\v\xA5\xA6\x07\x12\x02\x02\xA6\xA8" +
-		"\x05\"\x12\n\xA7\x92\x03\x02\x02\x02\xA7\x94\x03\x02\x02\x02\xA7\x95\x03" +
-		"\x02\x02\x02\xA7\x99\x03\x02\x02\x02\xA7\x9B\x03\x02\x02\x02\xA7\x9D\x03" +
-		"\x02\x02\x02\xA7\x9F\x03\x02\x02\x02\xA7\xA1\x03\x02\x02\x02\xA7\xA3\x03" +
-		"\x02\x02\x02\xA7\xA5\x03\x02\x02\x02\xA8\xC0\x03\x02\x02\x02\xA9\xAA\f" +
-		"\t\x02\x02\xAA\xAB\x07\x1C\x02\x02\xAB\xBF\x05\"\x12\t\xAC\xAD\f\b\x02" +
-		"\x02\xAD\xAE\t\x04\x02\x02\xAE\xBF\x05\"\x12\t\xAF\xB0\f\x07\x02\x02\xB0" +
-		"\xB1\t\x05\x02\x02\xB1\xBF\x05\"\x12\b\xB2\xB3\f\x06\x02\x02\xB3\xB4\t" +
-		"\x06\x02\x02\xB4\xBF\x05\"\x12\x07\xB5\xB6\f\x05\x02\x02\xB6\xB7\t\x07" +
-		"\x02\x02\xB7\xBF\x05\"\x12\x06\xB8\xB9\f\x04\x02\x02\xB9\xBA\x07\x1D\x02" +
-		"\x02\xBA\xBF\x05\"\x12\x05\xBB\xBC\f\x03\x02\x02\xBC\xBD\x07\x1E\x02\x02" +
-		"\xBD\xBF\x05\"\x12\x03\xBE\xA9\x03\x02\x02\x02\xBE\xAC\x03\x02\x02\x02" +
-		"\xBE\xAF\x03\x02\x02\x02\xBE\xB2\x03\x02\x02\x02\xBE\xB5\x03\x02\x02\x02" +
-		"\xBE\xB8\x03\x02\x02\x02\xBE\xBB\x03\x02\x02\x02\xBF\xC2\x03\x02\x02\x02" +
-		"\xC0\xBE\x03\x02\x02\x02\xC0\xC1\x03\x02\x02\x02\xC1#\x03\x02\x02\x02" +
-		"\xC2\xC0\x03\x02\x02\x02\xC3\xC8\x07%\x02\x02\xC4\xC8\x07&\x02\x02\xC5" +
-		"\xC8\x074\x02\x02\xC6\xC8\x05&\x14\x02\xC7\xC3\x03\x02\x02\x02\xC7\xC4" +
-		"\x03\x02\x02\x02\xC7\xC5\x03\x02\x02\x02\xC7\xC6\x03\x02\x02\x02\xC8%" +
-		"\x03\x02\x02\x02\xC9\xCA\x07\'\x02\x02\xCA\'\x03\x02\x02\x02\x0E+:@Sj" +
-		"~\x85\x8A\xA7\xBE\xC0\xC7";
+		" \x02\"\x02$\x02&\x02\x02\b\x03\x0224\x04\x02\v\v!&\x03\x02\x13\x15\x03" +
+		"\x02\x10\x11\x03\x02\x16\x19\x03\x02\x1A\x1D\x02\xDE\x02+\x03\x02\x02" +
+		"\x02\x04:\x03\x02\x02\x02\x06<\x03\x02\x02\x02\bE\x03\x02\x02\x02\nJ\x03" +
+		"\x02\x02\x02\fL\x03\x02\x02\x02\x0EO\x03\x02\x02\x02\x10U\x03\x02\x02" +
+		"\x02\x12W\x03\x02\x02\x02\x14Z\x03\x02\x02\x02\x16^\x03\x02\x02\x02\x18" +
+		"`\x03\x02\x02\x02\x1Ac\x03\x02\x02\x02\x1C\x8A\x03\x02\x02\x02\x1E\x8C" +
+		"\x03\x02\x02\x02 \x8F\x03\x02\x02\x02\"\xA7\x03\x02\x02\x02$\xC7\x03\x02" +
+		"\x02\x02&\xC9\x03\x02\x02\x02(*\x05\x04\x03\x02)(\x03\x02\x02\x02*-\x03" +
+		"\x02\x02\x02+)\x03\x02\x02\x02+,\x03\x02\x02\x02,.\x03\x02\x02\x02-+\x03" +
+		"\x02\x02\x02./\x07\x02\x02\x03/\x03\x03\x02\x02\x020;\x05\x06\x04\x02" +
+		"1;\x05\f\x07\x022;\x05\x12\n\x023;\x05\x18\r\x024;\x05\x1A\x0E\x025;\x05" +
+		"\x1C\x0F\x026;\x05\x1E\x10\x027;\x05 \x11\x028;\x05\b\x05\x029;\x05\n" +
+		"\x06\x02:0\x03\x02\x02\x02:1\x03\x02\x02\x02:2\x03\x02\x02\x02:3\x03\x02" +
+		"\x02\x02:4\x03\x02\x02\x02:5\x03\x02\x02\x02:6\x03\x02\x02\x02:7\x03\x02" +
+		"\x02\x02:8\x03\x02\x02\x02:9\x03\x02\x02\x02;\x05\x03\x02\x02\x02<@\x07" +
+		"\x07\x02\x02=?\x05\x04\x03\x02>=\x03\x02\x02\x02?B\x03\x02\x02\x02@>\x03" +
+		"\x02\x02\x02@A\x03\x02\x02\x02AC\x03\x02\x02\x02B@\x03\x02\x02\x02CD\x07" +
+		"\b\x02\x02D\x07\x03\x02\x02\x02EF\x071\x02\x02FG\x07\x05\x02\x02GH\x05" +
+		"\"\x12\x02HI\x07\x06\x02\x02I\t\x03\x02\x02\x02JK\x07\t\x02\x02K\v\x03" +
+		"\x02\x02\x02LM\x05\x0E\b\x02MN\x07\t\x02\x02N\r\x03\x02\x02\x02OP\x05" +
+		"\x10\t\x02PS\x075\x02\x02QR\x07\v\x02\x02RT\x05\"\x12\x02SQ\x03\x02\x02" +
+		"\x02ST\x03\x02\x02\x02T\x0F\x03\x02\x02\x02UV\t\x02\x02\x02V\x11\x03\x02" +
+		"\x02\x02WX\x05\x14\v\x02XY\x07\t\x02\x02Y\x13\x03\x02\x02\x02Z[\x075\x02" +
+		"\x02[\\\x05\x16\f\x02\\]\x05\"\x12\x02]\x15\x03\x02\x02\x02^_\t\x03\x02" +
+		"\x02_\x17\x03\x02\x02\x02`a\x05\"\x12\x02ab\x07\t\x02\x02b\x19\x03\x02" +
+		"\x02\x02cd\x07*\x02\x02de\x07\x05\x02\x02ef\x05\"\x12\x02fg\x07\x06\x02" +
+		"\x02gj\x05\x04\x03\x02hi\x07+\x02\x02ik\x05\x04\x03\x02jh\x03\x02\x02" +
+		"\x02jk\x03\x02\x02\x02k\x1B\x03\x02\x02\x02lm\x07-\x02\x02mn\x05\x04\x03" +
+		"\x02no\x07.\x02\x02op\x07\x05\x02\x02pq\x05\"\x12\x02qr\x07\x06\x02\x02" +
+		"rs\x07\t\x02\x02s\x8B\x03\x02\x02\x02tu\x07.\x02\x02uv\x07\x05\x02\x02" +
+		"vw\x05\"\x12\x02wx\x07\x06\x02\x02xy\x05\x04\x03\x02y\x8B\x03\x02\x02" +
+		"\x02z{\x07,\x02\x02{~\x07\x05\x02\x02|\x7F\x05\x14\v\x02}\x7F\x05\x0E" +
+		"\b\x02~|\x03\x02\x02\x02~}\x03\x02\x02\x02~\x7F\x03\x02\x02\x02\x7F\x80" +
+		"\x03\x02\x02\x02\x80\x81\x07\t\x02\x02\x81\x82\x05\"\x12\x02\x82\x85\x07" +
+		"\t\x02\x02\x83\x86\x05\x14\v\x02\x84\x86\x05\"\x12\x02\x85\x83\x03\x02" +
+		"\x02\x02\x85\x84\x03\x02\x02\x02\x85\x86\x03\x02\x02\x02\x86\x87\x03\x02" +
+		"\x02\x02\x87\x88\x07\x06\x02\x02\x88\x89\x05\x04\x03\x02\x89\x8B\x03\x02" +
+		"\x02\x02\x8Al\x03\x02\x02\x02\x8At\x03\x02\x02\x02\x8Az\x03\x02\x02\x02" +
+		"\x8B\x1D\x03\x02\x02\x02\x8C\x8D\x07/\x02\x02\x8D\x8E\x07\t\x02\x02\x8E" +
+		"\x1F\x03\x02\x02\x02\x8F\x90\x070\x02\x02\x90\x91\x07\t\x02\x02\x91!\x03" +
+		"\x02\x02\x02\x92\x93\b\x12\x01\x02\x93\xA8\x075\x02\x02\x94\xA8\x05$\x13" +
+		"\x02\x95\x96\x07\x05\x02\x02\x96\x97\x05\"\x12\x02\x97\x98\x07\x06\x02" +
+		"\x02\x98\xA8\x03\x02\x02\x02\x99\x9A\x075\x02\x02\x9A\xA8\x07\x0E\x02" +
+		"\x02\x9B\x9C\x075\x02\x02\x9C\xA8\x07\x0F\x02\x02\x9D\x9E\x07\x0E\x02" +
+		"\x02\x9E\xA8\x075\x02\x02\x9F\xA0\x07\x0F\x02\x02\xA0\xA8\x075\x02\x02" +
+		"\xA1\xA2\x07\x10\x02\x02\xA2\xA8\x05\"\x12\f\xA3\xA4\x07\x11\x02\x02\xA4" +
+		"\xA8\x05\"\x12\v\xA5\xA6\x07\x12\x02\x02\xA6\xA8\x05\"\x12\n\xA7\x92\x03" +
+		"\x02\x02\x02\xA7\x94\x03\x02\x02\x02\xA7\x95\x03\x02\x02\x02\xA7\x99\x03" +
+		"\x02\x02\x02\xA7\x9B\x03\x02\x02\x02\xA7\x9D\x03\x02\x02\x02\xA7\x9F\x03" +
+		"\x02\x02\x02\xA7\xA1\x03\x02\x02\x02\xA7\xA3\x03\x02\x02\x02\xA7\xA5\x03" +
+		"\x02\x02\x02\xA8\xC0\x03\x02\x02\x02\xA9\xAA\f\t\x02\x02\xAA\xAB\x07\x1E" +
+		"\x02\x02\xAB\xBF\x05\"\x12\t\xAC\xAD\f\b\x02\x02\xAD\xAE\t\x04\x02\x02" +
+		"\xAE\xBF\x05\"\x12\t\xAF\xB0\f\x07\x02\x02\xB0\xB1\t\x05\x02\x02\xB1\xBF" +
+		"\x05\"\x12\b\xB2\xB3\f\x06\x02\x02\xB3\xB4\t\x06\x02\x02\xB4\xBF\x05\"" +
+		"\x12\x07\xB5\xB6\f\x05\x02\x02\xB6\xB7\t\x07\x02\x02\xB7\xBF\x05\"\x12" +
+		"\x06\xB8\xB9\f\x04\x02\x02\xB9\xBA\x07\x1F\x02\x02\xBA\xBF\x05\"\x12\x05" +
+		"\xBB\xBC\f\x03\x02\x02\xBC\xBD\x07 \x02\x02\xBD\xBF\x05\"\x12\x03\xBE" +
+		"\xA9\x03\x02\x02\x02\xBE\xAC\x03\x02\x02\x02\xBE\xAF\x03\x02\x02\x02\xBE" +
+		"\xB2\x03\x02\x02\x02\xBE\xB5\x03\x02\x02\x02\xBE\xB8\x03\x02\x02\x02\xBE" +
+		"\xBB\x03\x02\x02\x02\xBF\xC2\x03\x02\x02\x02\xC0\xBE\x03\x02\x02\x02\xC0" +
+		"\xC1\x03\x02\x02\x02\xC1#\x03\x02\x02\x02\xC2\xC0\x03\x02\x02\x02\xC3" +
+		"\xC8\x07\'\x02\x02\xC4\xC8\x07(\x02\x02\xC5\xC8\x076\x02\x02\xC6\xC8\x05" +
+		"&\x14\x02\xC7\xC3\x03\x02\x02\x02\xC7\xC4\x03\x02\x02\x02\xC7\xC5\x03" +
+		"\x02\x02\x02\xC7\xC6\x03\x02\x02\x02\xC8%\x03\x02\x02\x02\xC9\xCA\x07" +
+		")\x02\x02\xCA\'\x03\x02\x02\x02\x0E+:@Sj~\x85\x8A\xA7\xBE\xC0\xC7";
 	public static __ATN: ATN;
 	public static get _ATN(): ATN {
 		if (!TysonParser.__ATN) {
@@ -2528,6 +2530,8 @@ export class EqualityExpressionContext extends ExpressionContext {
 	}
 	public Equals(): TerminalNode | undefined { return this.tryGetToken(TysonParser.Equals, 0); }
 	public NotEquals(): TerminalNode | undefined { return this.tryGetToken(TysonParser.NotEquals, 0); }
+	public StrictEquals(): TerminalNode | undefined { return this.tryGetToken(TysonParser.StrictEquals, 0); }
+	public StrictNotEquals(): TerminalNode | undefined { return this.tryGetToken(TysonParser.StrictNotEquals, 0); }
 	constructor(ctx: ExpressionContext) {
 		super(ctx.parent, ctx.invokingState);
 		this.copyFrom(ctx);
@@ -2690,5 +2694,3 @@ export class NumericLiteralContext extends ParserRuleContext {
 		}
 	}
 }
-
-
