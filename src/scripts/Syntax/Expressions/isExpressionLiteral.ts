@@ -1,15 +1,14 @@
 import { AnalyzeResult, Lexema } from "interfaces/Interface";
 import { isLiteral } from "scripts/Syntax";
 
-// Identifier || literal
-export function isExpressionLiteral(lexemas: Lexema[], mode: boolean): AnalyzeResult {
-  const log = [];
+import { syntax } from "scripts/store";
 
+// Identifier || literal
+export function isExpressionLiteral(lexemas: Lexema[]): AnalyzeResult {
   if (lexemas[0].type === "Expression") {
-    log.push(
-      mode
-        ? "Из стека получен Expression, где ожидался Expression, возврат поточного токена"
-        : "Получен Expression, где ожидался Expression",
+    syntax.pushLog(
+      "Из стека получен Expression, где ожидался Expression, возврат поточного токена",
+      "Получен Expression, где ожидался Expression",
     );
 
     return {
@@ -22,7 +21,6 @@ export function isExpressionLiteral(lexemas: Lexema[], mode: boolean): AnalyzeRe
         body: [lexemas[0]],
       },
       rest: lexemas.slice(1),
-      log,
     };
   }
 
@@ -37,17 +35,15 @@ export function isExpressionLiteral(lexemas: Lexema[], mode: boolean): AnalyzeRe
         body: [lexemas[0]],
       },
       rest: lexemas.slice(1),
-      log,
     };
   }
 
-  const literal = isLiteral(lexemas, mode);
+  const literal = isLiteral(lexemas);
   if (literal.isSuccessfull) {
     return {
       isSuccessfull: true,
       foundedLexema: literal.foundedLexema,
       rest: literal.rest,
-      log,
     };
   }
 
@@ -55,6 +51,5 @@ export function isExpressionLiteral(lexemas: Lexema[], mode: boolean): AnalyzeRe
     isSuccessfull: false,
     foundedLexema: null,
     rest: lexemas,
-    log,
   };
 }

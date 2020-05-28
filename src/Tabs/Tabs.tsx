@@ -37,7 +37,7 @@ const Sidebar: React.FC<Props> = observer(({ getCode, initialCode = "" }) => {
     lexemas.analyzeLexemas(code);
   }, [code]);
 
-  React.useEffect(() => syntax.analyzeLexemas(lexemas.lexemas), [lexemas.lexemas]);
+  React.useEffect(() => syntax.analyzeLexemas(lexemas.lexemas), [lexemas.lexemas, syntax.mode]);
 
   React.useEffect(() => parser.parseCode(syntax.programm), [syntax.programm]);
 

@@ -50,5 +50,4 @@ export interface AnalyzeResult {
   isSuccessfull: boolean;
   foundedLexema: Lexema;
   rest: Lexema[];
-  log: string[];
 }

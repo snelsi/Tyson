@@ -1,15 +1,12 @@
 import { AnalyzeResult, Lexema } from "interfaces/Interface";
 import { Var, Let, Const } from "scripts/keyWords";
 
-export function isVarModifier(lexemas: Lexema[], mode: boolean): AnalyzeResult {
-  const log = [];
-
+export function isVarModifier(lexemas: Lexema[]): AnalyzeResult {
   if (!lexemas || lexemas.length === 0) {
     return {
       isSuccessfull: false,
       foundedLexema: null,
       rest: lexemas,
-      log,
     };
   }
 
@@ -18,7 +15,6 @@ export function isVarModifier(lexemas: Lexema[], mode: boolean): AnalyzeResult {
       isSuccessfull: true,
       foundedLexema: lexemas[0],
       rest: lexemas.slice(1),
-      log,
     };
   }
 
@@ -26,6 +22,5 @@ export function isVarModifier(lexemas: Lexema[], mode: boolean): AnalyzeResult {
     isSuccessfull: false,
     foundedLexema: null,
     rest: lexemas,
-    log,
   };
 }

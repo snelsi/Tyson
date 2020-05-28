@@ -2,24 +2,22 @@ import { Lexema, AnalyzeResult } from "interfaces/Interface";
 import { isVariableDeclaration } from "scripts/Syntax";
 import { Semicolon } from "scripts/keySymbols";
 
+import { syntax } from "scripts/store";
+
 // variableDeclarationStatement
 //     : variableDeclaration SemiColon
 //     ;
 
-export function isVariableDeclarationStatement(lexemas: Lexema[], mode: boolean): AnalyzeResult {
-  const log = [];
-
-  const variableDeclarationList = isVariableDeclaration(lexemas, mode);
-  log.push(...variableDeclarationList.log);
+export function isVariableDeclarationStatement(lexemas: Lexema[]): AnalyzeResult {
+  const variableDeclarationList = isVariableDeclaration(lexemas);
 
   if (!variableDeclarationList.isSuccessfull) {
-    log.push("Не удалось составить variableStatement");
+    syntax.pushLog("Не удалось составить variableStatement");
 
     return {
       isSuccessfull: false,
       foundedLexema: null,
       rest: lexemas,
-      log,
     };
   }
 
@@ -27,17 +25,16 @@ export function isVariableDeclarationStatement(lexemas: Lexema[], mode: boolean)
     variableDeclarationList.rest[0]?.type !== "keysymbol" ||
     variableDeclarationList.rest[0]?.id !== Semicolon.id
   ) {
-    log.push("!Пропущена точка с запятой после variableDeclarationList");
+    syntax.pushLog("!Пропущена точка с запятой после variableDeclarationList");
 
     return {
       isSuccessfull: false,
       foundedLexema: null,
       rest: lexemas,
-      log,
     };
   }
 
-  log.push("Составлен variableStatement.");
+  syntax.pushLog("Составлен variableStatement.");
 
   return {
     isSuccessfull: true,
@@ -49,6 +46,5 @@ export function isVariableDeclarationStatement(lexemas: Lexema[], mode: boolean)
       body: [variableDeclarationList.foundedLexema, variableDeclarationList.rest[0]],
     },
     rest: variableDeclarationList.rest.slice(1),
-    log,
   };
 }

@@ -1,8 +1,13 @@
 import { AnalyzeResult, BaseLexema } from "interfaces/Interface";
 import { isStatement } from "scripts/Syntax/Statements/isStatement";
 
-export const syntaxAnalyse = (lexemas: BaseLexema[], mode = false): AnalyzeResult => {
+import { syntax } from "scripts/store";
+
+export const syntaxAnalyse = (lexemas: BaseLexema[]): AnalyzeResult => {
+  syntax.clearLog();
+
   if (!lexemas || lexemas.length === 0) {
+    syntax.pushLog("Не передано ни одной лексемы");
     return {
       isSuccessfull: true,
       foundedLexema: {
@@ -13,7 +18,6 @@ export const syntaxAnalyse = (lexemas: BaseLexema[], mode = false): AnalyzeResul
         body: [],
       },
       rest: lexemas,
-      log: ["Не передано ни одной лексемы"],
     };
   }
 
@@ -27,18 +31,16 @@ export const syntaxAnalyse = (lexemas: BaseLexema[], mode = false): AnalyzeResul
       body: [],
     },
     rest: lexemas,
-    log: [],
   };
 
   let statement: AnalyzeResult;
 
   do {
     try {
-      statement = isStatement(result.rest, mode);
-      result.log.push(...statement.log);
+      statement = isStatement(result.rest);
     } catch (e) {
       console.warn(e);
-      result.log.push(`!${e}`);
+      syntax.pushLog(`!${e}`);
       statement = null;
     }
     if (!statement?.isSuccessfull) {

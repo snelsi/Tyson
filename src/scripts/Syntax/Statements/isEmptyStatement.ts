@@ -1,24 +1,23 @@
 import { Lexema, AnalyzeResult } from "interfaces/Interface";
 import { Semicolon } from "scripts/keySymbols";
 
+import { syntax } from "scripts/store";
+
 /**
  * ;
  */
-export function isEmptyStatement(lexemas: Lexema[], mode: boolean): AnalyzeResult {
-  const log = [];
-
+export function isEmptyStatement(lexemas: Lexema[]): AnalyzeResult {
   if (lexemas[0]?.type !== "keysymbol" || lexemas[0].id !== Semicolon.id) {
     return {
       isSuccessfull: false,
       foundedLexema: null,
       rest: lexemas,
-      log,
     };
   }
 
-  log.push("Встречена точка с запятой.");
+  syntax.pushLog("Встречена точка с запятой.");
 
-  log.push("Составлен пустой Statement");
+  syntax.pushLog("Составлен пустой Statement");
 
   return {
     isSuccessfull: true,
@@ -30,6 +29,5 @@ export function isEmptyStatement(lexemas: Lexema[], mode: boolean): AnalyzeResul
       body: [lexemas[0]],
     },
     rest: lexemas.slice(1),
-    log,
   };
 }

@@ -1,30 +1,28 @@
 import { AnalyzeResult, Lexema } from "interfaces/Interface";
 import { Plus, Minus, Not } from "scripts/keySymbols";
 
+import { syntax } from "scripts/store";
+
 const operators = [Plus, Minus, Not];
 
 // +  singleExpression      # UnaryPlusExpression
 // -  singleExpression      # UnaryMinusExpression
 // '!' singleExpression
-export function isLeftUnarExpression(lexemas: Lexema[], mode: boolean): AnalyzeResult {
-  const log = [];
-
+export function isLeftUnarExpression(lexemas: Lexema[]): AnalyzeResult {
   if (lexemas[0]?.type !== "keysymbol" || !operators.map((op) => op.id).includes(lexemas[0]?.id)) {
     return {
       isSuccessfull: false,
       foundedLexema: null,
       rest: lexemas,
-      log,
     };
   }
 
   if (lexemas[1]?.type !== "identificator") {
-    log.push(`!После унарного оператора '${lexemas[0].body}' не последовал идентификатор`);
+    syntax.pushLog(`!После унарного оператора '${lexemas[0].body}' не последовал идентификатор`);
     return {
       isSuccessfull: false,
       foundedLexema: null,
       rest: lexemas,
-      log,
     };
   }
 
@@ -38,6 +36,5 @@ export function isLeftUnarExpression(lexemas: Lexema[], mode: boolean): AnalyzeR
       body: [lexemas[0], lexemas[1]],
     },
     rest: lexemas.slice(2),
-    log,
   };
 }

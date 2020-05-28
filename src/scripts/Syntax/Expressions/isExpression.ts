@@ -20,24 +20,19 @@ import { isSingleExpression, isRightAssociatedExpression } from "scripts/Syntax"
 //     | singleExpression And singleExpression                                                           # LogicalAndExpression
 //     | <assoc=right> singleExpression Or singleExpression                                              # LogicalOrExpression
 //     ;
-export function isExpression(lexemas: Lexema[], mode: boolean): AnalyzeResult {
-  const log = [];
-
-  const left = isSingleExpression(lexemas, mode);
-  log.push(...left.log);
+export function isExpression(lexemas: Lexema[]): AnalyzeResult {
+  const left = isSingleExpression(lexemas);
   if (!left.isSuccessfull) {
     return {
       isSuccessfull: false,
       foundedLexema: null,
       rest: lexemas,
-      log,
     };
   }
 
   const foundedRightExpressions = [];
   let rest = left.rest;
-  let expression = isRightAssociatedExpression(left.rest, mode);
-  log.push(...expression.log);
+  let expression = isRightAssociatedExpression(left.rest);
 
   while (expression.isSuccessfull) {
     foundedRightExpressions.push(
@@ -45,8 +40,7 @@ export function isExpression(lexemas: Lexema[], mode: boolean): AnalyzeResult {
       expression.foundedLexema.body[1],
     );
     rest = expression.rest;
-    expression = isRightAssociatedExpression(expression.rest, mode);
-    log.push(...expression.log);
+    expression = isRightAssociatedExpression(expression.rest);
   }
 
   return {
@@ -59,6 +53,5 @@ export function isExpression(lexemas: Lexema[], mode: boolean): AnalyzeResult {
       body: [left.foundedLexema, ...foundedRightExpressions],
     },
     rest,
-    log,
   };
 }

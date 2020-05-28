@@ -44,20 +44,16 @@ const operators = [
 // Or singleExpression                                                            # LogicalOrExpression
 // assignmentOperator singleExpression                                            # AssignmentOperatorExpression
 
-export function isRightAssociatedExpression(lexemas: Lexema[], mode: boolean): AnalyzeResult {
-  const log = [];
-
+export function isRightAssociatedExpression(lexemas: Lexema[]): AnalyzeResult {
   if (lexemas[0]?.type !== "keysymbol" || !operators.map((op) => op.id).includes(lexemas[0]?.id)) {
     return {
       isSuccessfull: false,
       foundedLexema: null,
       rest: lexemas,
-      log,
     };
   }
 
-  const singleExpression = isSingleExpression(lexemas.slice(1), mode);
-  log.push(...singleExpression.log);
+  const singleExpression = isSingleExpression(lexemas.slice(1));
 
   if (singleExpression.isSuccessfull) {
     return {
@@ -70,7 +66,6 @@ export function isRightAssociatedExpression(lexemas: Lexema[], mode: boolean): A
         body: [lexemas[0], singleExpression.foundedLexema],
       },
       rest: singleExpression.rest,
-      log,
     };
   }
 }

@@ -7,15 +7,12 @@ import { Null, True, False } from "scripts/keyWords";
 //     | StringLiteral
 //     | numericLiteral
 //     ;
-export const isLiteral = (lexemas: Lexema[], mode = false): AnalyzeResult => {
-  const log = [];
-
+export const isLiteral = (lexemas: Lexema[]): AnalyzeResult => {
   if (!lexemas || lexemas.length === 0) {
     return {
       isSuccessfull: false,
       foundedLexema: null,
       rest: lexemas,
-      log,
     };
   }
 
@@ -30,7 +27,6 @@ export const isLiteral = (lexemas: Lexema[], mode = false): AnalyzeResult => {
       isSuccessfull: true,
       foundedLexema: lexemas[0],
       rest: lexemas.slice(1),
-      log,
     };
   }
 
@@ -38,6 +34,5 @@ export const isLiteral = (lexemas: Lexema[], mode = false): AnalyzeResult => {
     isSuccessfull: false,
     foundedLexema: null,
     rest: lexemas,
-    log,
   };
 };

@@ -2,30 +2,27 @@ import { AnalyzeResult, Lexema } from "interfaces/Interface";
 import { Semicolon } from "scripts/keySymbols";
 import { Break } from "scripts/keyWords";
 
-export function isBreak(lexemas: Lexema[], mode: boolean): AnalyzeResult {
-  const log = [];
+import { syntax } from "scripts/store";
 
+export function isBreak(lexemas: Lexema[]): AnalyzeResult {
   if (lexemas[0].id !== Break.id) {
     return {
       isSuccessfull: false,
       foundedLexema: null,
       rest: lexemas,
-      log,
     };
   }
 
   if (lexemas[1]?.type !== "keysymbol" || lexemas[1]?.id !== Semicolon.id) {
-    log.push(
-      mode
-        ? `!Из магазина получена комманда break. Из стека ожидалась точка с запятой, но получен ${lexemas[1].body}`
-        : "!Пропущена точка с запятой после break",
+    syntax.pushLog(
+      `!Из магазина получена комманда break. Из стека ожидалась точка с запятой, но получен ${lexemas[1].body}`,
+      "!Пропущена точка с запятой после break",
     );
 
     return {
       isSuccessfull: false,
       foundedLexema: null,
       rest: lexemas,
-      log,
     };
   }
 
@@ -42,6 +39,5 @@ export function isBreak(lexemas: Lexema[], mode: boolean): AnalyzeResult {
       ],
     },
     rest: lexemas.slice(2),
-    log,
   };
 }

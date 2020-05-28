@@ -30,11 +30,17 @@ class SyntaxStore {
     this.log = [];
   };
 
-  @action public pushLog = (info: string) => {
-    this.log.push(info);
+  @action public pushLog = (info: string, alternative?: string) => {
+    if (alternative !== undefined) {
+      this.log.push(this.mode === "Pushdown" ? alternative : info);
+    } else {
+      this.log.push(info);
+    }
   };
 }
 
-const SyntaxStoreContext = React.createContext(new SyntaxStore());
+export const syntax = new SyntaxStore();
+
+const SyntaxStoreContext = React.createContext(syntax);
 
 export const useSyntax = () => React.useContext(SyntaxStoreContext);

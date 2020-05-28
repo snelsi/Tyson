@@ -10,12 +10,9 @@ const functions = [isDoWhile, isWhile, isFor];
 //     | While OpenParen expressionSequence CloseParen statement                                                                                          # WhileStatement
 //     | For OpenParen (expressionSequence | variableDeclarationList)? SemiColon expressionSequence? SemiColon expressionSequence? CloseParen statement   # ForStatement
 //     ;
-export function isIterationStatement(lexemas: Lexema[], mode: boolean): AnalyzeResult {
-  const log = [];
-
+export function isIterationStatement(lexemas: Lexema[]): AnalyzeResult {
   for (let check of functions) {
-    let result = check(lexemas, mode);
-    log.push(...result.log);
+    let result = check(lexemas);
     if (result.isSuccessfull) {
       return result;
     }
@@ -25,6 +22,5 @@ export function isIterationStatement(lexemas: Lexema[], mode: boolean): AnalyzeR
     isSuccessfull: false,
     foundedLexema: null,
     rest: lexemas,
-    log,
   };
 }

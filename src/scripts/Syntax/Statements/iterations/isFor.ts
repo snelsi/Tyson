@@ -3,131 +3,112 @@ import { isStatement, isAssignment, isVariableDeclaration, isExpression } from "
 import { OpenParen, CloseParen, Semicolon } from "scripts/keySymbols";
 import { For } from "scripts/keyWords";
 
-/* eslint-disable complexity */
-export function isFor(lexemas: Lexema[], mode: boolean): AnalyzeResult {
-  const log = [];
+import { syntax } from "scripts/store";
 
+export function isFor(lexemas: Lexema[]): AnalyzeResult {
   if (lexemas[0]?.id !== For.id) {
     return {
       isSuccessfull: false,
       foundedLexema: null,
       rest: lexemas,
-      log,
     };
   }
 
   if (lexemas[1]?.type !== "keysymbol" || lexemas[1]?.id !== OpenParen.id) {
-    log.push(
-      mode
-        ? `!Из магазина получен "for". Из стека ожидалась открывающая скобка, но был получен '${lexemas[1].body}'.`
-        : "!После for должна идти открывающая скобка",
+    syntax.pushLog(
+      `!Из магазина получен "for". Из стека ожидалась открывающая скобка, но был получен '${lexemas[1].body}'.`,
+      "!После for должна идти открывающая скобка",
     );
 
     return {
       isSuccessfull: false,
       foundedLexema: null,
       rest: lexemas,
-      log,
     };
   }
 
-  let declar = isVariableDeclaration(lexemas.slice(2), mode);
-  log.push(...declar.log);
+  let declar = isVariableDeclaration(lexemas.slice(2));
+
   if (!declar.isSuccessfull) {
-    declar = isAssignment(lexemas.slice(2), mode);
-    log.push(...declar.log);
+    declar = isAssignment(lexemas.slice(2));
   }
 
   if (declar.rest[0]?.type !== "keysymbol" || declar.rest[0]?.id !== Semicolon.id) {
-    log.push(
-      mode
-        ? `!Из магазина получен variableDeclaration. Ожидалась точка с запятой из стека, но был получен '${declar.rest[0].body}'`
-        : "!После variableDeclaration пропущена точка с запятой",
+    syntax.pushLog(
+      `!Из магазина получен variableDeclaration. Ожидалась точка с запятой из стека, но был получен '${declar.rest[0].body}'`,
+      "!После variableDeclaration пропущена точка с запятой",
     );
 
     return {
       isSuccessfull: false,
       foundedLexema: null,
       rest: lexemas,
-      log,
     };
   }
 
-  const condition = isExpression(declar.rest.slice(1), mode);
-  log.push(...condition.log);
+  const condition = isExpression(declar.rest.slice(1));
 
   if (!condition.isSuccessfull) {
-    log.push(
-      mode
-        ? `!Из магазина получена инициализация for, из стека ожидалось условие выхода, но был получен ${declar.rest[1].body}`
-        : "!Пропущено условие выхода в for",
+    syntax.pushLog(
+      `!Из магазина получена инициализация for, из стека ожидалось условие выхода, но был получен ${declar.rest[1].body}`,
+      "!Пропущено условие выхода в for",
     );
 
     return {
       isSuccessfull: false,
       foundedLexema: null,
       rest: lexemas,
-      log,
     };
   }
 
   if (condition.rest[0]?.type !== "keysymbol" || condition.rest[0]?.id !== Semicolon.id) {
-    log.push(
-      mode
-        ? `!Из магазина получено условие, из стека ожидалась точка с запятой, но получен ${condition.rest[0].body}`
-        : "!После условия в for пропущена точка с запятой",
+    syntax.pushLog(
+      `!Из магазина получено условие, из стека ожидалась точка с запятой, но получен ${condition.rest[0].body}`,
+      "!После условия в for пропущена точка с запятой",
     );
 
     return {
       isSuccessfull: false,
       foundedLexema: null,
       rest: lexemas,
-      log,
     };
   }
 
-  let op2 = isAssignment(condition.rest.slice(1), mode);
-  log.push(...op2.log);
+  let op2 = isAssignment(condition.rest.slice(1));
 
   if (!op2.isSuccessfull) {
-    op2 = isExpression(condition.rest.slice(1), mode);
-    log.push(...op2.log);
+    op2 = isExpression(condition.rest.slice(1));
   }
 
   if (op2.rest[0]?.type !== "keysymbol" || op2.rest[0]?.id !== CloseParen.id) {
-    log.push(
-      mode
-        ? `!Из магазина получен оператор. Из стека ожидалась закрывающая скобка, но получен ${op2.rest[0].body}`
-        : "!Пропущена закрывающая скобка после оператора",
+    syntax.pushLog(
+      `!Из магазина получен оператор. Из стека ожидалась закрывающая скобка, но получен ${op2.rest[0].body}`,
+      "!Пропущена закрывающая скобка после оператора",
     );
 
     return {
       isSuccessfull: false,
       foundedLexema: null,
       rest: lexemas,
-      log,
     };
   }
 
-  const statement = isStatement(op2.rest.slice(1), mode);
-  log.push(...statement.log);
+  const statement = isStatement(op2.rest.slice(1));
 
   if (!statement.isSuccessfull) {
-    log.push(
-      mode
-        ? `!Из магазина был получен цикл for. Из стека ожидалось тело цикла, но получен ${op2.rest[1].body}`
-        : "!Пропущено тело цикла for",
+    syntax.pushLog(
+      `!Из магазина был получен цикл for. Из стека ожидалось тело цикла, но получен ${op2.rest[1].body}`,
+      "!Пропущено тело цикла for",
     );
 
     return {
       isSuccessfull: false,
       foundedLexema: null,
       rest: lexemas,
-      log,
     };
   }
 
-  log.push(mode ? "Из стека был составлен Statement, очистка магазина" : "Составлен Statement");
+  syntax.pushLog("Из стека был составлен Statement, очистка магазина", "Составлен Statement");
 
   return {
     isSuccessfull: true,
@@ -149,6 +130,5 @@ export function isFor(lexemas: Lexema[], mode: boolean): AnalyzeResult {
       ],
     },
     rest: statement.rest,
-    log,
   };
 }

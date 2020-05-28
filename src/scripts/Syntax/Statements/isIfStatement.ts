@@ -3,81 +3,70 @@ import { isStatement, isExpression } from "scripts/Syntax";
 import { OpenParen, CloseParen } from "scripts/keySymbols";
 import { If, Else } from "scripts/keyWords";
 
-export function isIfStatement(lexemas: Lexema[], mode: boolean): AnalyzeResult {
-  const log = [];
+import { syntax } from "scripts/store";
 
+export function isIfStatement(lexemas: Lexema[]): AnalyzeResult {
   if (lexemas[0].id !== If.id) {
     return {
       isSuccessfull: false,
       foundedLexema: null,
       rest: lexemas,
-      log,
     };
   }
 
   if (lexemas[1]?.type !== "keysymbol" || lexemas[1]?.id !== OpenParen.id) {
-    log.push(
-      mode
-        ? `!Из магазина получен "if". Из стека ожидалась открывающая скобка, но был получен '${lexemas[1].body}'.`
-        : "!После if должна идти открывающая скобка",
+    syntax.pushLog(
+      `!Из магазина получен "if". Из стека ожидалась открывающая скобка, но был получен '${lexemas[1].body}'.`,
+      "!После if должна идти открывающая скобка",
     );
 
     return {
       isSuccessfull: false,
       foundedLexema: null,
       rest: lexemas,
-      log,
     };
   }
 
-  const condition = isExpression(lexemas.slice(2), mode);
-  log.push(...condition.log);
+  const condition = isExpression(lexemas.slice(2));
 
   if (!condition.isSuccessfull) {
-    log.push(
-      mode
-        ? `!Из магазина получена инициализация if, из стека ожидалось условие, но был получен ${lexemas[2].body}`
-        : "!Пропущено условие после if",
+    syntax.pushLog(
+      `!Из магазина получена инициализация if, из стека ожидалось условие, но был получен ${lexemas[2].body}`,
+      "!Пропущено условие после if",
     );
 
     return {
       isSuccessfull: false,
       foundedLexema: null,
       rest: lexemas,
-      log,
     };
   }
 
   if (condition.rest[0]?.type !== "keysymbol" || condition.rest[0]?.id !== CloseParen.id) {
-    log.push(
-      mode
-        ? `!Из магазина получено условие if. Из стека ожидалась закрывающая скобка, но получен ${condition.rest[0].body}`
-        : "!Пропущена закрывающая скобка после условия if",
+    syntax.pushLog(
+      `!Из магазина получено условие if. Из стека ожидалась закрывающая скобка, но получен ${condition.rest[0].body}`,
+      "!Пропущена закрывающая скобка после условия if",
     );
 
     return {
       isSuccessfull: false,
       foundedLexema: null,
       rest: lexemas,
-      log,
     };
   }
 
-  const statement = isStatement(condition.rest.slice(1), mode);
-  log.push(...statement.log);
+  const statement = isStatement(condition.rest.slice(1));
 
   if (!statement.isSuccessfull) {
-    log.push(
-      mode
-        ? `!Из магазина был получен if. Из стека ожидался statement, но получен ${condition.rest[1].body}`
-        : "!Пропущен statement после if",
+    syntax.pushLog(
+      `!Из магазина был получен if. Из стека ожидался statement, но получен ${condition.rest[1].body}`,
+      "!Пропущен statement после if",
     );
 
     return {
       isSuccessfull: false,
       foundedLexema: null,
       rest: lexemas,
-      log,
     };
   }
 
@@ -86,28 +75,25 @@ export function isIfStatement(lexemas: Lexema[], mode: boolean): AnalyzeResult {
   if (statement.rest[0]?.id === Else.id) {
     const [elseLexema] = statement.rest;
 
-    const elseStatement = isStatement(statement.rest.slice(1), mode);
-    log.push(...elseStatement.log);
+    const elseStatement = isStatement(statement.rest.slice(1));
 
     if (!elseStatement.isSuccessfull) {
-      log.push(
-        mode
-          ? `!Из магазина был получен else. Из стека ожидался statement, но получен ${condition.rest[1].body}`
-          : "!Пропущен statement после else",
+      syntax.pushLog(
+        `!Из магазина был получен else. Из стека ожидался statement, но получен ${condition.rest[1].body}`,
+        "!Пропущен statement после else",
       );
 
       return {
         isSuccessfull: false,
         foundedLexema: null,
         rest: lexemas,
-        log,
       };
     }
 
     elseLogic = [elseLexema, elseStatement];
   }
 
-  log.push(mode ? "Из стека был составлен логический блок" : "Составлен логический блок");
+  syntax.pushLog("Из стека был составлен логический блок", "Составлен логический блок");
 
   return {
     isSuccessfull: true,
@@ -126,6 +112,5 @@ export function isIfStatement(lexemas: Lexema[], mode: boolean): AnalyzeResult {
       ],
     },
     rest: elseLogic.length ? elseLogic[1].rest : statement.rest,
-    log,
   };
 }

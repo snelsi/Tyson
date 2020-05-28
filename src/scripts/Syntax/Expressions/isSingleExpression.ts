@@ -6,12 +6,9 @@ import { isIterator } from "./isIterator";
 
 const functions = [isBracketExpression, isLeftUnarExpression, isIterator, isExpressionLiteral];
 
-export function isSingleExpression(lexemas: Lexema[], mode: boolean): AnalyzeResult {
-  const log = [];
-
+export function isSingleExpression(lexemas: Lexema[]): AnalyzeResult {
   for (let check of functions) {
-    let result = check(lexemas, mode);
-    log.push(...result.log);
+    let result = check(lexemas);
     if (result.isSuccessfull) {
       return result;
     }
@@ -21,6 +18,5 @@ export function isSingleExpression(lexemas: Lexema[], mode: boolean): AnalyzeRes
     isSuccessfull: false,
     foundedLexema: null,
     rest: lexemas,
-    log,
   };
 }

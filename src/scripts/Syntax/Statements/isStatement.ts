@@ -13,6 +13,8 @@ import {
   isLog,
 } from "scripts/Syntax/Statements";
 
+import { syntax } from "scripts/store";
+
 const functions = [
   isBracketStatement,
   isAssignmentStatement,
@@ -26,27 +28,22 @@ const functions = [
   isEmptyStatement,
 ];
 
-export function isStatement(lexemas: Lexema[], mode = false): AnalyzeResult {
-  const log = [];
-
+export function isStatement(lexemas: Lexema[]): AnalyzeResult {
   for (let check of functions) {
-    let result = check(lexemas, mode);
-    log.push(...result.log);
+    let result = check(lexemas);
     if (result.isSuccessfull) {
       return result;
     }
   }
 
-  log.push(
-    mode
-      ? `Из стека был получен '${lexemas[0].body}'. Нет доступных переходов.`
-      : `Не удалось составить Statement. '${lexemas[0].body}' - неизвестное слово`,
+  syntax.pushLog(
+    `Из стека был получен '${lexemas[0].body}'. Нет доступных переходов.`,
+    `Не удалось составить Statement. '${lexemas[0].body}' - неизвестное слово`,
   );
 
   return {
     isSuccessfull: false,
     foundedLexema: null,
     rest: lexemas,
-    log,
   };
 }

@@ -2,36 +2,34 @@ import { Lexema, AnalyzeResult } from "interfaces/Interface";
 import { OpenParen, CloseParen } from "scripts/keySymbols";
 import { isExpression } from "scripts/Syntax";
 
+import { syntax } from "scripts/store";
+
 /**
  * ( expression )
  */
-export function isBracketExpression(lexemas: Lexema[], mode: boolean): AnalyzeResult {
-  const log = [];
-
+export function isBracketExpression(lexemas: Lexema[]): AnalyzeResult {
   if (lexemas[0]?.type !== "keysymbol" || lexemas[0].id !== OpenParen.id) {
     return {
       isSuccessfull: false,
       foundedLexema: null,
       rest: lexemas,
-      log,
     };
   }
 
-  log.push(
-    mode ? "Встречена открывающая скобка, занесена в магазин." : "Встречена открывающая скобка.",
+  syntax.pushLog(
+    "Встречена открывающая скобка, занесена в магазин.",
+    "Встречена открывающая скобка.",
   );
 
-  let singleExpression = isExpression(lexemas.slice(1), mode);
-  log.push(...singleExpression.log);
+  let singleExpression = isExpression(lexemas.slice(1));
 
   if (!singleExpression.isSuccessfull) {
-    log.push(`!Внутри скобок пропущен Expression [${lexemas[1].row} ${lexemas[1].column}]`);
+    syntax.pushLog(`!Внутри скобок пропущен Expression [${lexemas[1].row} ${lexemas[1].column}]`);
 
     return {
       isSuccessfull: false,
       foundedLexema: null,
       rest: lexemas,
-      log,
     };
   }
 
@@ -39,18 +37,17 @@ export function isBracketExpression(lexemas: Lexema[], mode: boolean): AnalyzeRe
     singleExpression.rest[0]?.type !== "keysymbol" ||
     singleExpression.rest[0].id !== CloseParen.id
   ) {
-    log.push(
+    syntax.pushLog(
       `!Пропущена закрывающая круглая скобка [${singleExpression.rest[0].row} ${singleExpression.rest[0].column}]`,
     );
     return {
       isSuccessfull: false,
       foundedLexema: null,
       rest: lexemas,
-      log,
     };
   }
 
-  log.push("Встречена закрывающая скобка. Составлен Expression.");
+  syntax.pushLog("Встречена закрывающая скобка. Составлен Expression.");
 
   return {
     isSuccessfull: true,
@@ -62,6 +59,5 @@ export function isBracketExpression(lexemas: Lexema[], mode: boolean): AnalyzeRe
       body: [lexemas[0], singleExpression.foundedLexema, singleExpression.rest[0]],
     },
     rest: singleExpression.rest.slice(1),
-    log,
   };
 }

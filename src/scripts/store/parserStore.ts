@@ -20,6 +20,8 @@ class ParserStore {
   };
 }
 
-const ParserStoreContext = React.createContext(new ParserStore());
+export const parser = new ParserStore();
+
+const ParserStoreContext = React.createContext(parser);
 
 export const useParser = () => React.useContext(ParserStoreContext);

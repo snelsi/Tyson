@@ -2,23 +2,21 @@ import { Lexema, AnalyzeResult } from "interfaces/Interface";
 import { isExpression } from "scripts/Syntax/Expressions";
 import { Semicolon } from "scripts/keySymbols";
 
+import { syntax } from "scripts/store";
+
 // expressionStatement
 //     : singleExpression SemiColon
 //     ;
-export function isExpressionStatement(lexemas: Lexema[], mode: boolean): AnalyzeResult {
-  const log = [];
-
-  const expressionSequence = isExpression(lexemas, mode);
-  log.push(...expressionSequence.log);
+export function isExpressionStatement(lexemas: Lexema[]): AnalyzeResult {
+  const expressionSequence = isExpression(lexemas);
 
   if (!expressionSequence.isSuccessfull) {
-    log.push("Не удалось составить singleExpression");
+    syntax.pushLog("Не удалось составить singleExpression");
 
     return {
       isSuccessfull: false,
       foundedLexema: null,
       rest: lexemas,
-      log,
     };
   }
 
@@ -26,17 +24,16 @@ export function isExpressionStatement(lexemas: Lexema[], mode: boolean): Analyze
     expressionSequence.rest[0].type !== "keysymbol" ||
     expressionSequence.rest[0]?.id !== Semicolon.id
   ) {
-    log.push("!Пропущена точка с запятой после singleExpression");
+    syntax.pushLog("!Пропущена точка с запятой после singleExpression");
 
     return {
       isSuccessfull: false,
       foundedLexema: null,
       rest: lexemas,
-      log,
     };
   }
 
-  log.push("Составлен expressionStatement.");
+  syntax.pushLog("Составлен expressionStatement.");
 
   return {
     isSuccessfull: true,
@@ -48,6 +45,5 @@ export function isExpressionStatement(lexemas: Lexema[], mode: boolean): Analyze
       body: [expressionSequence.foundedLexema, expressionSequence.rest[0]],
     },
     rest: expressionSequence.rest.slice(1),
-    log,
   };
 }

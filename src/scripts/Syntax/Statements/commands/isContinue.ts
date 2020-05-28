@@ -2,30 +2,27 @@ import { AnalyzeResult, Lexema } from "interfaces/Interface";
 import { Semicolon } from "scripts/keySymbols";
 import { Continue } from "scripts/keyWords";
 
-export function isContinue(lexemas: Lexema[], mode: boolean): AnalyzeResult {
-  const log = [];
+import { syntax } from "scripts/store";
 
+export function isContinue(lexemas: Lexema[]): AnalyzeResult {
   if (lexemas[0].id !== Continue.id) {
     return {
       isSuccessfull: false,
       foundedLexema: null,
       rest: lexemas,
-      log,
     };
   }
 
   if (lexemas[1]?.type !== "keysymbol" || lexemas[1]?.id !== Semicolon.id) {
-    log.push(
-      mode
-        ? `!Из магазина получена комманда continue. Из стека ожидалась точка с запятой, но получен ${lexemas[1].body}`
-        : "!Пропущена точка с запятой после continue",
+    syntax.pushLog(
+      `!Из магазина получена комманда continue. Из стека ожидалась точка с запятой, но получен ${lexemas[1].body}`,
+      "!Пропущена точка с запятой после continue",
     );
 
     return {
       isSuccessfull: false,
       foundedLexema: null,
       rest: lexemas,
-      log,
     };
   }
 
@@ -42,6 +39,5 @@ export function isContinue(lexemas: Lexema[], mode: boolean): AnalyzeResult {
       ],
     },
     rest: lexemas.slice(2),
-    log,
   };
 }
