@@ -6,7 +6,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "antlr4ts": "antlr4ts -visitor src/scripts/antlr4/TysonParser.g4 src/scripts/antlr4/TysonLexer.g4",
+    "antlr4ts": "antlr4ts -visitor src/scripts/antlr4/TysonParser.g4 src/scripts/antlr4/TysonLexer.g4 -o src/scripts/antlr4",
     "lint": "eslint . --ext js,jsx,ts,tsx --max-warnings=0"
   },
   "dependencies": {
