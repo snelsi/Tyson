@@ -22,7 +22,7 @@ const Title = styled.h4`
 
 export const ParserTab = observer(() => {
   const parser = useParser();
-
+  const anchors = Array.from(parser.anchors);
   return (
     <div>
       <div>
@@ -33,63 +33,75 @@ export const ParserTab = observer(() => {
         </Padding>
       </div>
 
-      <Title>Variables</Title>
-      <Table size="small">
-        <TableHead>
-          <TableRow>
-            <TableCell>i</TableCell>
-            <TableCell>identificator</TableCell>
-            <TableCell>value</TableCell>
-            <TableCell>constant</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {parser.variables.variables.map((identificator, i) => (
-            <TableRow key={identificator[0]}>
-              <TableCell>{i}</TableCell>
-              <TableCell>{identificator[0]}</TableCell>
-              <TableCell>{String(identificator[1].value)}</TableCell>
-              <TableCell>{String(identificator[1].constant)}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+      {parser.variables.variables.length > 0 && (
+        <>
+          <Title>Variables</Title>
+          <Table size="small">
+            <TableHead>
+              <TableRow>
+                <TableCell>i</TableCell>
+                <TableCell>identificator</TableCell>
+                <TableCell>value</TableCell>
+                <TableCell>constant</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {parser.variables.variables.map((identificator, i) => (
+                <TableRow key={identificator[0]}>
+                  <TableCell>{i}</TableCell>
+                  <TableCell>{identificator[0]}</TableCell>
+                  <TableCell>{String(identificator[1].value)}</TableCell>
+                  <TableCell>{String(identificator[1].constant)}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </>
+      )}
 
-      <Title>Anchors</Title>
-      <Table size="small">
-        <TableHead>
-          <TableRow>
-            <TableCell>i</TableCell>
-            <TableCell>index</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {Array.from(parser.anchors).map(([i, index]) => (
-            <TableRow key={i}>
-              <TableCell>{i}</TableCell>
-              <TableCell>{index}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+      {anchors.length > 0 && (
+        <>
+          <Title>Anchors</Title>
+          <Table size="small">
+            <TableHead>
+              <TableRow>
+                <TableCell>i</TableCell>
+                <TableCell>index</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {anchors.map(([i, index]) => (
+                <TableRow key={i}>
+                  <TableCell>{i}</TableCell>
+                  <TableCell>{index}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </>
+      )}
 
-      <Title>Log</Title>
-      <Table size="small">
-        <TableHead>
-          <TableRow>
-            <TableCell>i</TableCell>
-            <TableCell>message</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {parser.log.map((msg, i) => (
-            <TableRow className={msg[0] === "!" ? "error" : ""} key={`${msg}-${i}`}>
-              <TableCell>{i}</TableCell>
-              <TableCell>{msg}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+      {parser.log.length > 0 && (
+        <>
+          <Title>Log</Title>
+          <Table size="small">
+            <TableHead>
+              <TableRow>
+                <TableCell>i</TableCell>
+                <TableCell>message</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {parser.log.map((msg, i) => (
+                <TableRow className={msg[0] === "!" ? "error" : ""} key={`${msg}-${i}`}>
+                  <TableCell>{i}</TableCell>
+                  <TableCell>{msg}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </>
+      )}
     </div>
   );
 });
