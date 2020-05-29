@@ -64,6 +64,9 @@ export const unarOperations = {
 
   "!": (lex: Token) => !lex,
 
+  UPlus: (lex: Token) => +lex,
+  UMinus: (lex: Token) => -lex,
+
   // pre increment
   PrI: (lex: string) => {
     // @ts-ignore

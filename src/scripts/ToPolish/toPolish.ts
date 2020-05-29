@@ -11,6 +11,7 @@ const toToken = (input: BaseLexema) => {
   return input.body;
 };
 
+/* eslint-disable complexity */
 export const toPolish = (expression: Lexema): Token[] => {
   const input = flatLexema(expression).reverse();
   const output: Token[] = [];
@@ -21,15 +22,23 @@ export const toPolish = (expression: Lexema): Token[] => {
     const tokenPriority = priorityTable[inputToken.body];
 
     // Iterators should be converted to special mark
-    if (inputToken.body === "++" || inputToken.body === "--") {
+    if (inputToken?.body === "++" || inputToken?.body === "--") {
       // Pre
-      if (inputToken.details === "Pre") {
-        stack.push(inputToken.body === "++" ? "PrI" : "PrD");
+      if (inputToken?.details === "Pre") {
+        stack.push(inputToken?.body === "++" ? "PrI" : "PrD");
       }
       // Post
       else {
-        output.push(inputToken.body === "++" ? "PoI" : "PoD");
+        output.push(inputToken?.body === "++" ? "PoI" : "PoD");
       }
+      input.pop();
+    }
+
+    // unar
+    else if (inputToken?.details?.startsWith("unar")) {
+      if (inputToken?.body === "+") stack.push("UPlus");
+      else if (inputToken?.body === "-") stack.push("UMinus");
+      else stack.push(inputToken?.body);
       input.pop();
     }
 

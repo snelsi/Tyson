@@ -18,6 +18,8 @@ export function isLeftUnarExpression(lexemas: Lexema[]): AnalyzeResult {
     };
   }
 
+  lexemas[0].details = "unar " + lexemas[0].details;
+
   const expr = isExpression(lexemas.slice(1));
 
   if (!expr.isSuccessfull) {
