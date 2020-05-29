@@ -46,18 +46,6 @@ export const While = {
   details: "cycle declaration",
 };
 
-export const Continue = {
-  id: 209,
-  word: "continue",
-  details: "cycle continue operator",
-};
-
-export const Break = {
-  id: 210,
-  word: "break",
-  details: "cycle break operator",
-};
-
 export const Log = {
   id: 211,
   word: "log",
@@ -91,8 +79,6 @@ export const keyWords = [
   For,
   Do,
   While,
-  Continue,
-  Break,
   Log,
   Var,
   Let,

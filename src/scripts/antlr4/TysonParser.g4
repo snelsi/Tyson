@@ -15,8 +15,6 @@ statement
     | expressionStatement
     | ifStatement
     | iterationStatement
-    | continueStatement
-    | breakStatement
     | logStatement
     | emptyStatement
     ;
@@ -77,14 +75,6 @@ iterationStatement
     : Do statement While OpenParen expression CloseParen SemiColon                                                                              # DoStatement
     | While OpenParen expression CloseParen statement                                                                                           # WhileStatement
     | For OpenParen (assignment | variableDeclaration)? SemiColon expression SemiColon (assignment | expression)? CloseParen statement          # ForStatement
-    ;
-
-continueStatement
-    : Continue SemiColon
-    ;
-
-breakStatement
-    : Break SemiColon
     ;
 
 expression

@@ -38,10 +38,7 @@ export const priorityTable = {
   "/": 8,
   "^": 8,
 
-  continue: 9,
-  break: 9,
-
-  var: 10,
-  let: 10,
-  const: 10,
+  var: 9,
+  let: 9,
+  const: 9,
 };

@@ -37,8 +37,6 @@ import { AssignmentOperatorContext } from "./TysonParser";
 import { ExpressionStatementContext } from "./TysonParser";
 import { IfStatementContext } from "./TysonParser";
 import { IterationStatementContext } from "./TysonParser";
-import { ContinueStatementContext } from "./TysonParser";
-import { BreakStatementContext } from "./TysonParser";
 import { ExpressionContext } from "./TysonParser";
 import { LiteralContext } from "./TysonParser";
 import { NumericLiteralContext } from "./TysonParser";
@@ -464,28 +462,6 @@ export interface TysonParserListener extends ParseTreeListener {
 	exitIterationStatement?: (ctx: IterationStatementContext) => void;
 
 	/**
-	 * Enter a parse tree produced by `TysonParser.continueStatement`.
-	 * @param ctx the parse tree
-	 */
-	enterContinueStatement?: (ctx: ContinueStatementContext) => void;
-	/**
-	 * Exit a parse tree produced by `TysonParser.continueStatement`.
-	 * @param ctx the parse tree
-	 */
-	exitContinueStatement?: (ctx: ContinueStatementContext) => void;
-
-	/**
-	 * Enter a parse tree produced by `TysonParser.breakStatement`.
-	 * @param ctx the parse tree
-	 */
-	enterBreakStatement?: (ctx: BreakStatementContext) => void;
-	/**
-	 * Exit a parse tree produced by `TysonParser.breakStatement`.
-	 * @param ctx the parse tree
-	 */
-	exitBreakStatement?: (ctx: BreakStatementContext) => void;
-
-	/**
 	 * Enter a parse tree produced by `TysonParser.expression`.
 	 * @param ctx the parse tree
 	 */
@@ -518,3 +494,4 @@ export interface TysonParserListener extends ParseTreeListener {
 	 */
 	exitNumericLiteral?: (ctx: NumericLiteralContext) => void;
 }
+

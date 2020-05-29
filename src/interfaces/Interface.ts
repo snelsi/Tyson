@@ -12,8 +12,6 @@ export type BaseType =
 export type StatementType =
   | "Statement"
   | "Log"
-  | "Continue"
-  | "Break"
   | "For"
   | "Do While"
   | "While"

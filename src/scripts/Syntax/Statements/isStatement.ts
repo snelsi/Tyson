@@ -8,8 +8,6 @@ import {
   isIfStatement,
   isIterationStatement,
   isEmptyStatement,
-  isContinue,
-  isBreak,
   isLog,
 } from "scripts/Syntax/Statements";
 
@@ -21,8 +19,6 @@ const functions = [
   isVariableDeclarationStatement,
   isIfStatement,
   isIterationStatement,
-  isContinue,
-  isBreak,
   isLog,
   isExpressionStatement,
   isEmptyStatement,

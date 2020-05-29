@@ -6,6 +6,6 @@ export * from "./isIfStatement";
 export * from "./isIterationStatement";
 export * from "./isStatement";
 export * from "./isVariableDeclarationStatement";
+export * from "./isLog";
 
-export * from "./commands";
 export * from "./iterations";

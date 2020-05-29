@@ -55,8 +55,6 @@ Else:                           'else';
 For:                            'for';
 Do:                             'do';
 While:                          'while';
-Continue:                       'continue';
-Break:                          'break';
 
 Log:                            'log';
 
