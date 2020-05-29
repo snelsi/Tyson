@@ -6,7 +6,7 @@ import { Log } from "scripts/keyWords";
 import { syntax } from "scripts/store";
 
 export function isLog(lexemas: Lexema[]): AnalyzeResult {
-  if (lexemas[0].id !== Log.id) {
+  if (lexemas[0]?.id !== Log.id) {
     return {
       isSuccessfull: false,
       foundedLexema: null,

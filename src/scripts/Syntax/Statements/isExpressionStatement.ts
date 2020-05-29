@@ -21,7 +21,7 @@ export function isExpressionStatement(lexemas: Lexema[]): AnalyzeResult {
   }
 
   if (
-    expressionSequence.rest[0].type !== "keysymbol" ||
+    expressionSequence.rest[0]?.type !== "keysymbol" ||
     expressionSequence.rest[0]?.id !== Semicolon.id
   ) {
     syntax.pushLog("!Пропущена точка с запятой после singleExpression");

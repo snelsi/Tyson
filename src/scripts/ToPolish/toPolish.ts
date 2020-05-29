@@ -4,10 +4,10 @@ import { flatLexema } from "scripts/helpers";
 import { False, True, Null } from "scripts/keyWords";
 
 const toToken = (input: BaseLexema) => {
-  if (input.type === "number") return Number(input.body);
-  if (input.id === True.id) return true;
-  if (input.id === False.id) return false;
-  if (input.id === Null.id) return null;
+  if (input?.type === "number") return Number(input.body);
+  if (input?.id === True.id) return true;
+  if (input?.id === False.id) return false;
+  if (input?.id === Null.id) return null;
   return input.body;
 };
 

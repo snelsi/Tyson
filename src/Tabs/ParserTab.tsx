@@ -10,11 +10,14 @@ import TableRow from "@material-ui/core/TableRow";
 import { observer } from "mobx-react";
 import { useParser } from "scripts/store";
 
+const Padding = styled.div`
+  padding: 12px 16px;
+`;
 const Title = styled.h4`
-  padding: 16px;
+  border-bottom: 1px solid #e8e8e8;
   font-size: 18px;
   margin-top: 0.5em;
-  border-bottom: 1px solid #e8e8e8;
+  padding: 16px;
 `;
 
 export const ParserTab = observer(() => {
@@ -22,6 +25,14 @@ export const ParserTab = observer(() => {
 
   return (
     <div>
+      <div>
+        <Title>Polish output</Title>
+
+        <Padding>
+          <code>{parser.polish.join(" ")}</code>
+        </Padding>
+      </div>
+
       <Title>Variables</Title>
       <Table size="small">
         <TableHead>
@@ -43,7 +54,26 @@ export const ParserTab = observer(() => {
           ))}
         </TableBody>
       </Table>
-      <Title>Log:</Title>
+
+      <Title>Anchors</Title>
+      <Table size="small">
+        <TableHead>
+          <TableRow>
+            <TableCell>i</TableCell>
+            <TableCell>index</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {Array.from(parser.anchors).map(([i, index]) => (
+            <TableRow key={i}>
+              <TableCell>{i}</TableCell>
+              <TableCell>{index}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+
+      <Title>Log</Title>
       <Table size="small">
         <TableHead>
           <TableRow>

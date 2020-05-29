@@ -33,8 +33,8 @@ export function isStatement(lexemas: Lexema[]): AnalyzeResult {
   }
 
   syntax.pushLog(
-    `Из стека был получен '${lexemas[0].body}'. Нет доступных переходов.`,
-    `Не удалось составить Statement. '${lexemas[0].body}' - неизвестное слово`,
+    `Из стека был получен '${lexemas[0]?.body}'. Нет доступных переходов.`,
+    `Не удалось составить Statement. '${lexemas[0]?.body}' - неизвестное слово`,
   );
 
   return {

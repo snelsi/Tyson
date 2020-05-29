@@ -44,7 +44,7 @@ export function isLeftUnarIterator(lexemas: Lexema[]): AnalyzeResult {
   return {
     isSuccessfull: true,
     foundedLexema: {
-      type: "Expression",
+      type: "Iterator",
       details: "Left Unar Iterator",
       row: lexemas[0].row,
       column: lexemas[0].column,
@@ -76,7 +76,7 @@ export function isRightUnarIterator(lexemas: Lexema[]): AnalyzeResult {
   return {
     isSuccessfull: true,
     foundedLexema: {
-      type: "Expression",
+      type: "Iterator",
       details: "Right operator Single Expression",
       row: lexemas[0].row,
       column: lexemas[0].column,

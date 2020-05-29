@@ -35,7 +35,7 @@ export function isBracketExpression(lexemas: Lexema[]): AnalyzeResult {
 
   if (
     singleExpression.rest[0]?.type !== "keysymbol" ||
-    singleExpression.rest[0].id !== CloseParen.id
+    singleExpression.rest[0]?.id !== CloseParen.id
   ) {
     syntax.pushLog(
       `!Пропущена закрывающая круглая скобка [${singleExpression.rest[0].row} ${singleExpression.rest[0].column}]`,

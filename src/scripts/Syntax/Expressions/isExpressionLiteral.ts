@@ -5,7 +5,7 @@ import { syntax } from "scripts/store";
 
 // Identifier || literal
 export function isExpressionLiteral(lexemas: Lexema[]): AnalyzeResult {
-  if (lexemas[0].type === "Expression") {
+  if (lexemas[0]?.type === "Expression") {
     syntax.pushLog(
       "Из стека получен Expression, где ожидался Expression, возврат поточного токена",
       "Получен Expression, где ожидался Expression",
@@ -13,27 +13,15 @@ export function isExpressionLiteral(lexemas: Lexema[]): AnalyzeResult {
 
     return {
       isSuccessfull: true,
-      foundedLexema: {
-        type: "Expression",
-        details: "Expression Literal",
-        row: lexemas[0].row,
-        column: lexemas[0].column,
-        body: [lexemas[0]],
-      },
+      foundedLexema: lexemas[0],
       rest: lexemas.slice(1),
     };
   }
 
-  if (lexemas[0].type === "identificator") {
+  if (lexemas[0]?.type === "identificator") {
     return {
       isSuccessfull: true,
-      foundedLexema: {
-        type: "Expression",
-        details: "Expression Literal",
-        row: lexemas[0].row,
-        column: lexemas[0].column,
-        body: [lexemas[0]],
-      },
+      foundedLexema: lexemas[0],
       rest: lexemas.slice(1),
     };
   }

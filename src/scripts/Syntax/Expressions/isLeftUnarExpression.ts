@@ -2,6 +2,7 @@ import { AnalyzeResult, Lexema } from "interfaces/Interface";
 import { Plus, Minus, Not } from "scripts/keySymbols";
 
 import { syntax } from "scripts/store";
+import { isExpression } from "./isExpression";
 
 const operators = [Plus, Minus, Not];
 
@@ -17,8 +18,10 @@ export function isLeftUnarExpression(lexemas: Lexema[]): AnalyzeResult {
     };
   }
 
-  if (lexemas[1]?.type !== "identificator") {
-    syntax.pushLog(`!После унарного оператора '${lexemas[0].body}' не последовал идентификатор`);
+  const expr = isExpression(lexemas.slice(1));
+
+  if (!expr.isSuccessfull) {
+    syntax.pushLog(`!После унарного оператора '${lexemas[0].body}' не последовало выражение`);
     return {
       isSuccessfull: false,
       foundedLexema: null,
@@ -33,8 +36,8 @@ export function isLeftUnarExpression(lexemas: Lexema[]): AnalyzeResult {
       details: "Left Unar Expression",
       row: lexemas[0].row,
       column: lexemas[0].column,
-      body: [lexemas[0], lexemas[1]],
+      body: [lexemas[0], expr.foundedLexema],
     },
-    rest: lexemas.slice(2),
+    rest: expr.rest,
   };
 }

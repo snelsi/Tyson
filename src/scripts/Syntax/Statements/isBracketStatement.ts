@@ -32,11 +32,11 @@ export function isBracketStatement(lexemas: Lexema[]): AnalyzeResult {
   if (statement.rest[0]?.type !== "keysymbol" || statement.rest[0].id !== CloseBrace.id) {
     syntax.pushLog(
       `!Из стека был получен ${
-        statement.rest[0].body
-      } после Statement, но ожидалась закрывающая скобка [${statement.rest[0].row}, ${
-        statement.rest[0].column - 1
+        statement.rest[0]?.body
+      } после Statement, но ожидалась закрывающая скобка [${statement.rest[0]?.row}, ${
+        statement.rest[0]?.column - 1
       }]`,
-      `!Пропущена закрывающая скобка [${statement.rest[0].row}, ${statement.rest[0].column - 1}]`,
+      `!Пропущена закрывающая скобка [${statement.rest[0]?.row}, ${statement.rest[0]?.column - 1}]`,
     );
 
     return {

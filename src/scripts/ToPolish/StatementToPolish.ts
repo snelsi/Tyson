@@ -1,5 +1,12 @@
 import { Lexema, Token } from "interfaces/Interface";
-import { toPolish, ifToPolish, forToPolish, doWhileToPolish, whileToPolish } from ".";
+import {
+  bracketsToPolish,
+  toPolish,
+  ifToPolish,
+  forToPolish,
+  doWhileToPolish,
+  whileToPolish,
+} from ".";
 
 export const StatementToPolish = (lexema: Lexema): Token[] => {
   switch (lexema.type) {
@@ -11,6 +18,8 @@ export const StatementToPolish = (lexema: Lexema): Token[] => {
       return doWhileToPolish(lexema);
     case "While":
       return whileToPolish(lexema);
+    case "Brackets":
+      return bracketsToPolish(lexema);
     default:
       return toPolish(lexema);
   }

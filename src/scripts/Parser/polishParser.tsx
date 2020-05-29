@@ -19,9 +19,24 @@ export const parsePolish = (input: Token[]): Token[] => {
     return token;
   };
 
-  for (let token of input) {
+  let i = 0;
+  let iterations = 0;
+  while (i < input.length && iterations < 100000) {
+    const token = input[i];
+    // GoTo
+    if (token === "$GoTo") {
+      i = parser.anchors.get(stack.pop());
+    }
+    // Conditional GoTo
+    else if (token === "$CondGoTo") {
+      const index = stack.pop();
+      const condition = getVariable();
+      if (condition) {
+        i = parser.anchors.get(index);
+      }
+    }
     // Declaration
-    if (declarations.hasOwnProperty(String(token))) {
+    else if (declarations.hasOwnProperty(String(token))) {
       if (stack.length < 1) throw new Error(`Can't perform '${token}', the stack is empty`);
       declarations[String(token)](stack[stack.length - 1]);
     }
@@ -30,7 +45,7 @@ export const parsePolish = (input: Token[]): Token[] => {
       if (stack.length < 2) {
         throw new Error(`Can't perform '${token}', less than 2 variables in stack`);
       }
-      assingments[String(token)](stack[stack.length - 1], stack[stack.length - 2]);
+      assingments[String(token)](getVariable(), stack.pop());
     }
     // One variable
     else if (unarOperations.hasOwnProperty(String(token))) {
@@ -48,6 +63,9 @@ export const parsePolish = (input: Token[]): Token[] => {
     else {
       stack.push(token);
     }
+
+    i++;
+    iterations++;
   }
 
   return stack;

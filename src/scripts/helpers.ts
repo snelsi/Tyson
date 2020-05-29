@@ -60,3 +60,5 @@ export const toNodes = (tree: Lexema): NodeTree => {
     edges,
   };
 };
+
+export const insertNull = (array: Lexema[], index: number) => array.splice(index, 0, null);

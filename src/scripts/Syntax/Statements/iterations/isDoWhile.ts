@@ -21,7 +21,7 @@ export function isDoWhile(lexemas: Lexema[]): AnalyzeResult {
 
   if (!statement.isSuccessfull) {
     syntax.pushLog(
-      `!Из магазина был получен цикл do. Из стека ожидалось тело цикла, но получен ${statement[1].body}`,
+      `!Из магазина был получен цикл do. Из стека ожидалось тело цикла, но получен ${lexemas[1].body}`,
       "!Пропущено тело цикла do",
     );
 
@@ -34,7 +34,7 @@ export function isDoWhile(lexemas: Lexema[]): AnalyzeResult {
 
   if (statement.rest[0]?.id !== While.id) {
     syntax.pushLog(
-      `!Из магазина был получено тело цикла do. Из стека ожидался 'while', но получен ${statement[1].body}`,
+      `!Из магазина был получено тело цикла do. Из стека ожидался 'while', но получен ${statement.rest[0].body}`,
       "!Пропущено условие 'while' после тела цикла do",
     );
 
@@ -45,9 +45,9 @@ export function isDoWhile(lexemas: Lexema[]): AnalyzeResult {
     };
   }
 
-  if (statement.rest[0]?.type !== "keysymbol" || statement.rest[0]?.id !== OpenParen.id) {
+  if (statement.rest[1]?.type !== "keysymbol" || statement.rest[1]?.id !== OpenParen.id) {
     syntax.pushLog(
-      `!Из магазина получен "while". Из стека ожидалась открывающая скобка, но был получен '${statement.rest[0].body}'.`,
+      `!Из магазина получен "while". Из стека ожидалась открывающая скобка, но был получен '${statement.rest[1].body}'.`,
       "!После while должна идти открывающая скобка",
     );
 
@@ -58,7 +58,7 @@ export function isDoWhile(lexemas: Lexema[]): AnalyzeResult {
     };
   }
 
-  const condition = isExpression(lexemas.slice(2));
+  const condition = isExpression(statement.rest.slice(2));
 
   if (!condition.isSuccessfull) {
     syntax.pushLog(
@@ -118,6 +118,6 @@ export function isDoWhile(lexemas: Lexema[]): AnalyzeResult {
         condition.rest[1], // ;
       ],
     },
-    rest: statement.rest,
+    rest: condition.rest.slice(2),
   };
 }

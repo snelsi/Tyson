@@ -22,7 +22,7 @@ export type StatementType =
   | "If"
   | "Variable Declaration";
 
-export type Type = BaseType | StatementType | "Expression" | "Type" | "Programm";
+export type Type = BaseType | StatementType | "Expression" | "Iterator" | "Type" | "Programm";
 
 export interface Lexema {
   type: Type;

@@ -1,3 +1,4 @@
+export * from "./bracketsToPolish";
 export * from "./doWhileToPolish";
 export * from "./forToPolish";
 export * from "./ifToPolish";

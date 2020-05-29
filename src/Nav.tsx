@@ -62,34 +62,28 @@ export const Nav: React.FC<NavProps> = () => (
   <NavBar>
     <div className="wrapper">
       <NavLink to="/1" activeClassName="selected">
-        Пример 1
+        Приклад 1
       </NavLink>
       <NavLink to="/2" activeClassName="selected">
-        Пример 2
+        Приклад 2
       </NavLink>
       <NavLink to="/3" activeClassName="selected">
-        Пример 3
+        Приклад 3
       </NavLink>
       <NavLink to="/4" activeClassName="selected">
-        Пример 4
+        Приклад 4
       </NavLink>
       <NavLink to="/5" activeClassName="selected">
-        Пример 5
+        Приклад 5
       </NavLink>
       <NavLink to="/6" activeClassName="selected">
-        Пример 6
+        Приклад 6
       </NavLink>
       <NavLink to="/7" activeClassName="selected">
-        Пример 7
+        Приклад 7
       </NavLink>
       <NavLink to="/8" activeClassName="selected">
-        Пример 8
-      </NavLink>
-      <NavLink to="/9" activeClassName="selected">
-        Пример 9
-      </NavLink>
-      <NavLink to="/10" activeClassName="selected">
-        Пример 10
+        Приклад 8
       </NavLink>
     </div>
   </NavBar>

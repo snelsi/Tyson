@@ -6,7 +6,7 @@ import { If, Else } from "scripts/keyWords";
 import { syntax } from "scripts/store";
 
 export function isIfStatement(lexemas: Lexema[]): AnalyzeResult {
-  if (lexemas[0].id !== If.id) {
+  if (lexemas[0]?.id !== If.id) {
     return {
       isSuccessfull: false,
       foundedLexema: null,
@@ -71,6 +71,7 @@ export function isIfStatement(lexemas: Lexema[]): AnalyzeResult {
   }
 
   let elseLogic = [];
+  let rest = statement.rest;
 
   if (statement.rest[0]?.id === Else.id) {
     const [elseLexema] = statement.rest;
@@ -90,7 +91,8 @@ export function isIfStatement(lexemas: Lexema[]): AnalyzeResult {
       };
     }
 
-    elseLogic = [elseLexema, elseStatement];
+    elseLogic = [elseLexema, elseStatement.foundedLexema];
+    rest = elseStatement.rest;
   }
 
   syntax.pushLog("Из стека был составлен логический блок", "Составлен логический блок");
@@ -111,6 +113,6 @@ export function isIfStatement(lexemas: Lexema[]): AnalyzeResult {
         ...elseLogic, // else?
       ],
     },
-    rest: elseLogic.length ? elseLogic[1].rest : statement.rest,
+    rest,
   };
 }

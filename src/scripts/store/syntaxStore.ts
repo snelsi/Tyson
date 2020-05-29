@@ -32,7 +32,7 @@ class SyntaxStore {
 
   @action public pushLog = (info: string, alternative?: string) => {
     if (alternative !== undefined) {
-      this.log.push(this.mode === "Pushdown" ? alternative : info);
+      this.log.push(this.mode === "Pushdown" ? info : alternative);
     } else {
       this.log.push(info);
     }

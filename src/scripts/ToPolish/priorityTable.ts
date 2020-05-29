@@ -30,6 +30,7 @@ export const priorityTable = {
   "*=": 6,
   "/=": 6,
   "^=": 6,
+  "%=": 6,
 
   "+": 7,
   "-": 7,
@@ -37,6 +38,7 @@ export const priorityTable = {
   "*": 8,
   "/": 8,
   "^": 8,
+  "%": 8,
 
   var: 9,
   let: 9,

@@ -26,6 +26,11 @@ const StrNotEqual = (num2: number, num1: number) => num1 !== num2;
 const Equal = (num2: number, num1: number) => num1 == num2;
 const NotEqual = (num2: number, num1: number) => num1 != num2;
 
+const Less = (num2: number, num1: number) => num1 < num2;
+const LessThanEquals = (num2: number, num1: number) => num1 <= num2;
+const More = (num2: number, num1: number) => num1 > num2;
+const MoreThanEquals = (num2: number, num1: number) => num1 >= num2;
+
 export const operations = {
   "+": Add,
   "-": Minus,
@@ -42,6 +47,11 @@ export const operations = {
 
   "==": Equal,
   "!=": NotEqual,
+
+  "<": Less,
+  "<=": LessThanEquals,
+  ">": More,
+  ">=": MoreThanEquals,
 };
 
 const Log = (expr: any) => {
