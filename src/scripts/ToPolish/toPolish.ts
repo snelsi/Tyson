@@ -36,8 +36,8 @@ export const toPolish = (expression: Lexema): Token[] => {
 
     // unar
     else if (inputToken?.details?.startsWith("unar")) {
-      if (inputToken?.body === "+") stack.push("UPlus");
-      else if (inputToken?.body === "-") stack.push("UMinus");
+      if (inputToken?.body === "+") stack.push("$UPlus");
+      else if (inputToken?.body === "-") stack.push("$UMinus");
       else stack.push(inputToken?.body);
       input.pop();
     }

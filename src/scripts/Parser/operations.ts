@@ -31,6 +31,7 @@ const LessThanEquals = (num2: number, num1: number) => num1 <= num2;
 const More = (num2: number, num1: number) => num1 > num2;
 const MoreThanEquals = (num2: number, num1: number) => num1 >= num2;
 
+/**  (value, value) => value */
 export const operations = {
   "+": Add,
   "-": Minus,
@@ -54,54 +55,61 @@ export const operations = {
   ">=": MoreThanEquals,
 };
 
-const Log = (expr: any) => {
-  parser.pushLog(expr);
-  console.log(expr);
+/** (value) => value */
+export const unarValue = {
+  "!": (value: Token) => !value,
+
+  $UPlus: (value: Token) => +value,
+  $UMinus: (value: Token) => -value,
+
+  log: (value: any) => {
+    parser.pushLog(value);
+    console.log(value);
+    return value;
+  },
 };
 
-export const unarOperations = {
-  log: Log,
+const createVariable = (name: string) => {
+  parser.variables.createVariable(name, false);
+  return name;
+};
+const createConstVariable = (name: string) => {
+  parser.variables.createVariable(name, true);
+  return name;
+};
 
-  "!": (lex: Token) => !lex,
-
-  UPlus: (lex: Token) => +lex,
-  UMinus: (lex: Token) => -lex,
-
+/** (variableName) => value */
+export const unarName = {
   // pre increment
-  PrI: (lex: string) => {
+  PrI: (name: string) => {
     // @ts-ignore
-    const value = parser.variables.getVariable(lex) + 1;
-    parser.variables.setVariable(lex, value);
+    const value = parser.variables.getVariable(name) + 1;
+    parser.variables.setVariable(name, value);
     return value;
   },
   // pre decrement
-  PrD: (lex: string) => {
+  PrD: (name: string) => {
     // @ts-ignore
-    const value = parser.variables.getVariable(lex) - 1;
-    parser.variables.setVariable(lex, value);
+    const value = parser.variables.getVariable(name) - 1;
+    parser.variables.setVariable(name, value);
     return value;
   },
 
   // post increment
-  PoI: (lex: string) => {
-    const value = parser.variables.getVariable(lex);
+  PoI: (name: string) => {
+    const value = parser.variables.getVariable(name);
     // @ts-ignore
-    parser.variables.setVariable(lex, value + 1);
+    parser.variables.setVariable(name, value + 1);
     return value;
   },
   // post decrement
-  PoD: (lex: string) => {
-    const value = parser.variables.getVariable(lex);
+  PoD: (name: string) => {
+    const value = parser.variables.getVariable(name);
     // @ts-ignore
-    parser.variables.setVariable(lex, value - 1);
+    parser.variables.setVariable(name, value - 1);
     return value;
   },
-};
 
-const createVariable = (name: string) => parser.variables.createVariable(name, false);
-const createConstVariable = (name: string) => parser.variables.createVariable(name, true);
-
-export const declarations = {
   var: createVariable,
   let: createVariable,
   const: createConstVariable,
@@ -133,6 +141,7 @@ const setVariablePower = (value: any, name: string) => {
   parser.variables.setVariable(name, cur ** value);
 };
 
+/** (value, variableName) => void */
 export const assingments = {
   "=": setVariable,
   "+=": setVariablePlus,

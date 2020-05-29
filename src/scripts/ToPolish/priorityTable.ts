@@ -40,8 +40,8 @@ export const priorityTable = {
   "^": 8,
   "%": 8,
 
-  UPlus: 9,
-  UMinus: 9,
+  $UPlus: 9,
+  $UMinus: 9,
 
   var: 9,
   let: 9,

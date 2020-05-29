@@ -1,5 +1,5 @@
 import { Token } from "interfaces/Interface";
-import { operations, unarOperations, declarations, assingments } from "./operations";
+import { operations, unarValue, unarName, assingments } from "./operations";
 
 import { parser } from "scripts/store/parserStore";
 
@@ -35,10 +35,17 @@ export const parsePolish = (input: Token[]): Token[] => {
         i = parser.anchors.get(index);
       }
     }
-    // Declaration
-    else if (declarations.hasOwnProperty(String(token))) {
+    // Working with value
+    else if (unarValue.hasOwnProperty(String(token))) {
       if (stack.length < 1) throw new Error(`Can't perform '${token}', the stack is empty`);
-      declarations[String(token)](stack[stack.length - 1]);
+      const operation = unarValue[String(token)];
+      stack.push(operation(getVariable()));
+    }
+    // Working with variable name, don't translate to value
+    else if (unarName.hasOwnProperty(String(token))) {
+      if (stack.length < 1) throw new Error(`Can't perform '${token}', the stack is empty`);
+      const operation = unarName[String(token)];
+      stack.push(operation(stack.pop()));
     }
     // Assignments
     else if (assingments.hasOwnProperty(String(token))) {
@@ -46,11 +53,6 @@ export const parsePolish = (input: Token[]): Token[] => {
         throw new Error(`Can't perform '${token}', less than 2 variables in stack`);
       }
       assingments[String(token)](getVariable(), stack.pop());
-    }
-    // One variable
-    else if (unarOperations.hasOwnProperty(String(token))) {
-      if (stack.length < 1) throw new Error(`Can't perform '${token}', the stack is empty`);
-      stack.push(unarOperations[String(token)](stack[stack.length - 1]));
     }
     // Two variables
     else if (operations.hasOwnProperty(String(token))) {
