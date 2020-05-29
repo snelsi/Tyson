@@ -50,7 +50,7 @@ export const parsePolish = (input: Token[]): Token[] => {
     // One variable
     else if (unarOperations.hasOwnProperty(String(token))) {
       if (stack.length < 1) throw new Error(`Can't perform '${token}', the stack is empty`);
-      stack.push(unarOperations[String(token)](getVariable()));
+      stack.push(unarOperations[String(token)](stack[stack.length - 1]));
     }
     // Two variables
     else if (operations.hasOwnProperty(String(token))) {
