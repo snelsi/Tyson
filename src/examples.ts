@@ -190,7 +190,7 @@ let i = 2;
 
 
 if (i === 3) {
-  log("Seems like you missong a bracket");
+  log("Seems like you missing a bracket");
 
 
 log('This log is missing semicolon')
