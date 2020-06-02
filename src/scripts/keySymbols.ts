@@ -215,7 +215,6 @@ export const keySymbols = [
   MinusAssign,
   MultiplyAssign,
   DivideAssign,
-  Power,
   ModulusAssign,
   PowerAssign,
 
@@ -235,4 +234,5 @@ export const keySymbols = [
   Not,
   Modulus,
   Assign,
+  Power,
 ];
