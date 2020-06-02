@@ -7,7 +7,7 @@ import { syntax } from "scripts/store";
 //     : Identifier assignmentOperator singleExpression
 //     ;
 export function isAssignment(lexemas: Lexema[]): AnalyzeResult {
-  if (lexemas[0]?.type !== "identificator") {
+  if (lexemas[0]?.type !== "identifier") {
     return {
       isSuccessfull: false,
       foundedLexema: null,

@@ -32,7 +32,7 @@ export function isLeftUnarIterator(lexemas: Lexema[]): AnalyzeResult {
     };
   }
 
-  if (lexemas[1]?.type !== "identificator") {
+  if (lexemas[1]?.type !== "identifier") {
     syntax.pushLog(`!После унарного оператора '${lexemas[0].body}' не последовал идентификатор`);
     return {
       isSuccessfull: false,
@@ -57,7 +57,7 @@ export function isLeftUnarIterator(lexemas: Lexema[]): AnalyzeResult {
 // Identifier ++      # PostIncrementExpression
 // Identifier --      # PostDecreaseExpression
 export function isRightUnarIterator(lexemas: Lexema[]): AnalyzeResult {
-  if (lexemas[0]?.type !== "identificator") {
+  if (lexemas[0]?.type !== "identifier") {
     return {
       isSuccessfull: false,
       foundedLexema: null,

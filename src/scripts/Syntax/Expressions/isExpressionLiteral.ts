@@ -18,7 +18,7 @@ export function isExpressionLiteral(lexemas: Lexema[]): AnalyzeResult {
     };
   }
 
-  if (lexemas[0]?.type === "identificator") {
+  if (lexemas[0]?.type === "identifier") {
     return {
       isSuccessfull: true,
       foundedLexema: lexemas[0],

@@ -40,18 +40,18 @@ export const ParserTab = observer(() => {
             <TableHead>
               <TableRow>
                 <TableCell>i</TableCell>
-                <TableCell>identificator</TableCell>
+                <TableCell>identifier</TableCell>
                 <TableCell>value</TableCell>
                 <TableCell>constant</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {parser.variables.variables.map((identificator, i) => (
-                <TableRow key={identificator[0]}>
+              {parser.variables.variables.map((identifier, i) => (
+                <TableRow key={identifier[0]}>
                   <TableCell>{i}</TableCell>
-                  <TableCell>{identificator[0]}</TableCell>
-                  <TableCell>{String(identificator[1].value)}</TableCell>
-                  <TableCell>{String(identificator[1].constant)}</TableCell>
+                  <TableCell>{identifier[0]}</TableCell>
+                  <TableCell>{String(identifier[1].value)}</TableCell>
+                  <TableCell>{String(identifier[1].constant)}</TableCell>
                 </TableRow>
               ))}
             </TableBody>

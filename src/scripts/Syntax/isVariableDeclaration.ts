@@ -20,7 +20,7 @@ export function isVariableDeclaration(lexemas: Lexema[]): AnalyzeResult {
     };
   }
 
-  if (varModifier.rest[0]?.type !== "identificator") {
+  if (varModifier.rest[0]?.type !== "identifier") {
     syntax.pushLog("Не удалось составить variableDeclarationList");
 
     return {
@@ -58,7 +58,7 @@ export function isVariableDeclaration(lexemas: Lexema[]): AnalyzeResult {
       column: lexemas[0].column,
       body: [
         varModifier.foundedLexema, // type
-        varModifier.rest[0], // identificator
+        varModifier.rest[0], // identifier
         ...optional,
       ],
     },

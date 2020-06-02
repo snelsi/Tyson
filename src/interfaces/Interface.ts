@@ -3,7 +3,7 @@ export type Token = number | string | boolean;
 export type BaseType =
   | "keysymbol"
   | "keyword"
-  | "identificator"
+  | "identifier"
   | "number"
   | "string"
   | "operator"
