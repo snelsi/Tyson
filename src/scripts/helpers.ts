@@ -10,8 +10,7 @@ export const flatLexema = (head: Lexema): BaseLexema[] => {
         visitLexema(child);
       });
     } else {
-      // @ts-ignore
-      output.push(lexema);
+      output.push(lexema as BaseLexema);
     }
   };
 
