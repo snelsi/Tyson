@@ -47,25 +47,25 @@ export const While = {
 };
 
 export const Log = {
-  id: 211,
+  id: 209,
   word: "log",
   details: "log out command",
 };
 
 export const Var = {
-  id: 212,
+  id: 210,
   word: "var",
   details: "global variable",
 };
 
 export const Let = {
-  id: 213,
+  id: 211,
   word: "let",
   details: "localscope variable",
 };
 
 export const Const = {
-  id: 214,
+  id: 212,
   word: "const",
   details: "constant variable",
 };
