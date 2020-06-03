@@ -4,8 +4,6 @@ import { isStatement } from "scripts/Syntax/Statements/isStatement";
 import { syntax } from "scripts/store";
 
 export const syntaxAnalyse = (lexemas: BaseLexema[]): AnalyzeResult => {
-  syntax.clearLog();
-
   if (!lexemas || lexemas.length === 0) {
     syntax.pushLog("Не передано ни одной лексемы");
     return {

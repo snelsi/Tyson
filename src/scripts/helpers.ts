@@ -61,3 +61,4 @@ export const toNodes = (tree: Lexema): NodeTree => {
 };
 
 export const insertNull = (array: Lexema[], index: number) => array.splice(index, 0, null);
+export const isLetter = (symbol: string) => symbol.match(/_|\w/);

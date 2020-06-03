@@ -21,7 +21,7 @@ export const isString = () => {
         body: word,
       });
 
-      return false;
+      throw new Error(`missing closing quote after [${row}, ${column}]`);
     } else {
       lexemas.lexemas.push({
         row,

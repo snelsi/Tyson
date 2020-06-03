@@ -19,20 +19,24 @@ class LexemasStore {
     this.column = 1;
     this.row = 1;
 
-    while (lexemas.rest) {
-      this.trimWhitespaces();
+    try {
+      while (lexemas.rest) {
+        this.trimWhitespaces();
 
-      if (this.rest && !isLexema()) {
-        console.log(this.rest);
-        this.lexemas.push({
-          row: this.row,
-          column: this.column,
-          type: "error",
-          body: this.rest.split(" ")[0],
-          details: `unexpected symbol '${this.rest}' in [${this.row}, ${this.column}]`,
-        });
-        break;
+        if (this.rest && !isLexema()) {
+          console.log(this.rest);
+          this.lexemas.push({
+            row: this.row,
+            column: this.column,
+            type: "error",
+            body: this.rest.split(" ")[0],
+            details: `unexpected symbol '${this.rest}' in [${this.row}, ${this.column}]`,
+          });
+          break;
+        }
       }
+    } catch (e) {
+      console.log(e);
     }
   };
 

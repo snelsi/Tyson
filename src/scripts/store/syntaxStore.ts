@@ -16,6 +16,7 @@ class SyntaxStore {
   }
 
   @action public analyzeLexemas = (lexemas: BaseLexema[]) => {
+    this.log = [];
     const res = syntaxAnalyse(lexemas);
 
     this.isSuccessfull = res.isSuccessfull;
@@ -24,10 +25,6 @@ class SyntaxStore {
 
   @action public toggleMode = () => {
     this.mode = this.mode === "Recursive" ? "Pushdown" : "Recursive";
-  };
-
-  @action public clearLog = () => {
-    this.log = [];
   };
 
   @action public pushLog = (info: string, alternative?: string) => {

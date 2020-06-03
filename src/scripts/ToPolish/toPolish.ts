@@ -64,11 +64,7 @@ export const toPolish = (expression: Lexema): Token[] => {
       if (token.body === ")" || token.body === "}") {
         stack.pop();
       } else if (token.body !== ";") {
-        if (token.body === "++" || token.body === "--") {
-          stack.push();
-        } else {
-          stack.push(token.body);
-        }
+        stack.push(token.body);
       }
     }
   }
