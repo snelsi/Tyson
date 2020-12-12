@@ -1,3 +1,4 @@
+// @ts-nocheck
 // Generated from src/scripts/antlr4/TysonParser.g4 by ANTLR 4.7.3-SNAPSHOT
 
 
@@ -494,4 +495,3 @@ export interface TysonParserListener extends ParseTreeListener {
 	 */
 	exitNumericLiteral?: (ctx: NumericLiteralContext) => void;
 }
-

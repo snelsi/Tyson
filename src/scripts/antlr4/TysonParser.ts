@@ -1,3 +1,4 @@
+// @ts-nocheck
 // Generated from src/scripts/antlr4/TysonParser.g4 by ANTLR 4.7.3-SNAPSHOT
 
 
@@ -100,29 +101,29 @@ export class TysonParser extends Parser {
 	public static readonly RULE_numericLiteral = 16;
 	// tslint:disable:no-trailing-whitespace
 	public static readonly ruleNames: string[] = [
-		"program", "statement", "bracketStatement", "logStatement", "emptyStatement", 
-		"variableDeclarationStatement", "variableDeclaration", "varModifier", 
-		"assignmentStatement", "assignment", "assignmentOperator", "expressionStatement", 
+		"program", "statement", "bracketStatement", "logStatement", "emptyStatement",
+		"variableDeclarationStatement", "variableDeclaration", "varModifier",
+		"assignmentStatement", "assignment", "assignmentOperator", "expressionStatement",
 		"ifStatement", "iterationStatement", "expression", "literal", "numericLiteral",
 	];
 
 	private static readonly _LITERAL_NAMES: Array<string | undefined> = [
-		undefined, undefined, undefined, "'('", "')'", "'{'", "'}'", "';'", "','", 
-		"'='", "':'", "'.'", "'++'", "'--'", "'+'", "'-'", "'!'", "'*'", "'/'", 
-		"'%'", "'<'", "'>'", "'<='", "'>='", "'=='", "'!='", "'==='", "'!=='", 
-		"'^'", "'&&'", "'||'", "'*='", "'/='", "'%='", "'+='", "'-='", "'^='", 
-		"'null'", undefined, undefined, "'if'", "'else'", "'for'", "'do'", "'while'", 
+		undefined, undefined, undefined, "'('", "')'", "'{'", "'}'", "';'", "','",
+		"'='", "':'", "'.'", "'++'", "'--'", "'+'", "'-'", "'!'", "'*'", "'/'",
+		"'%'", "'<'", "'>'", "'<='", "'>='", "'=='", "'!='", "'==='", "'!=='",
+		"'^'", "'&&'", "'||'", "'*='", "'/='", "'%='", "'+='", "'-='", "'^='",
+		"'null'", undefined, undefined, "'if'", "'else'", "'for'", "'do'", "'while'",
 		"'log'", "'var'", "'let'", "'const'",
 	];
 	private static readonly _SYMBOLIC_NAMES: Array<string | undefined> = [
-		undefined, "MultiLineComment", "SingleLineComment", "OpenParen", "CloseParen", 
-		"OpenBrace", "CloseBrace", "SemiColon", "Comma", "Assign", "Colon", "Dot", 
-		"PlusPlus", "MinusMinus", "Plus", "Minus", "Not", "Multiply", "Divide", 
-		"Modulus", "LessThan", "MoreThan", "LessThanEquals", "GreaterThanEquals", 
-		"Equals", "NotEquals", "StrictEquals", "StrictNotEquals", "Power", "And", 
-		"Or", "MultiplyAssign", "DivideAssign", "ModulusAssign", "PlusAssign", 
-		"MinusAssign", "PowerAssign", "NullLiteral", "BooleanLiteral", "DecimalLiteral", 
-		"If", "Else", "For", "Do", "While", "Log", "Var", "Let", "Const", "Identifier", 
+		undefined, "MultiLineComment", "SingleLineComment", "OpenParen", "CloseParen",
+		"OpenBrace", "CloseBrace", "SemiColon", "Comma", "Assign", "Colon", "Dot",
+		"PlusPlus", "MinusMinus", "Plus", "Minus", "Not", "Multiply", "Divide",
+		"Modulus", "LessThan", "MoreThan", "LessThanEquals", "GreaterThanEquals",
+		"Equals", "NotEquals", "StrictEquals", "StrictNotEquals", "Power", "And",
+		"Or", "MultiplyAssign", "DivideAssign", "ModulusAssign", "PlusAssign",
+		"MinusAssign", "PowerAssign", "NullLiteral", "BooleanLiteral", "DecimalLiteral",
+		"If", "Else", "For", "Do", "While", "Log", "Var", "Let", "Const", "Identifier",
 		"StringLiteral", "WhiteSpaces", "LineTerminator", "UnexpectedCharacter",
 	];
 	public static readonly VOCABULARY: Vocabulary = new VocabularyImpl(TysonParser._LITERAL_NAMES, TysonParser._SYMBOLIC_NAMES, []);
@@ -2546,5 +2547,3 @@ export class NumericLiteralContext extends ParserRuleContext {
 		}
 	}
 }
-
-

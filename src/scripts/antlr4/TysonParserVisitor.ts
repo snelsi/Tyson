@@ -1,3 +1,4 @@
+// @ts-nocheck
 // Generated from src/scripts/antlr4/TysonParser.g4 by ANTLR 4.7.3-SNAPSHOT
 
 
@@ -329,4 +330,3 @@ export interface TysonParserVisitor<Result> extends ParseTreeVisitor<Result> {
 	 */
 	visitNumericLiteral?: (ctx: NumericLiteralContext) => Result;
 }
-

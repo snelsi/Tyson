@@ -1,3 +1,4 @@
+// @ts-nocheck
 // Generated from src/scripts/antlr4/TysonLexer.g4 by ANTLR 4.7.3-SNAPSHOT
 
 
@@ -82,38 +83,38 @@ export class TysonLexer extends Lexer {
 	];
 
 	public static readonly ruleNames: string[] = [
-		"MultiLineComment", "SingleLineComment", "OpenParen", "CloseParen", "OpenBrace", 
-		"CloseBrace", "SemiColon", "Comma", "Assign", "Colon", "Dot", "PlusPlus", 
-		"MinusMinus", "Plus", "Minus", "Not", "Multiply", "Divide", "Modulus", 
-		"LessThan", "MoreThan", "LessThanEquals", "GreaterThanEquals", "Equals", 
-		"NotEquals", "StrictEquals", "StrictNotEquals", "Power", "And", "Or", 
-		"MultiplyAssign", "DivideAssign", "ModulusAssign", "PlusAssign", "MinusAssign", 
-		"PowerAssign", "NullLiteral", "BooleanLiteral", "DecimalLiteral", "If", 
-		"Else", "For", "Do", "While", "Log", "Var", "Let", "Const", "Identifier", 
-		"StringLiteral", "WhiteSpaces", "LineTerminator", "UnexpectedCharacter", 
-		"DoubleStringCharacter", "SingleStringCharacter", "EscapeSequence", "CharacterEscapeSequence", 
-		"SingleEscapeCharacter", "NonEscapeCharacter", "EscapeCharacter", "DecimalIntegerLiteral", 
-		"IdentifierPart", "IdentifierStart", "UnicodeLetter", "UnicodeCombiningMark", 
+		"MultiLineComment", "SingleLineComment", "OpenParen", "CloseParen", "OpenBrace",
+		"CloseBrace", "SemiColon", "Comma", "Assign", "Colon", "Dot", "PlusPlus",
+		"MinusMinus", "Plus", "Minus", "Not", "Multiply", "Divide", "Modulus",
+		"LessThan", "MoreThan", "LessThanEquals", "GreaterThanEquals", "Equals",
+		"NotEquals", "StrictEquals", "StrictNotEquals", "Power", "And", "Or",
+		"MultiplyAssign", "DivideAssign", "ModulusAssign", "PlusAssign", "MinusAssign",
+		"PowerAssign", "NullLiteral", "BooleanLiteral", "DecimalLiteral", "If",
+		"Else", "For", "Do", "While", "Log", "Var", "Let", "Const", "Identifier",
+		"StringLiteral", "WhiteSpaces", "LineTerminator", "UnexpectedCharacter",
+		"DoubleStringCharacter", "SingleStringCharacter", "EscapeSequence", "CharacterEscapeSequence",
+		"SingleEscapeCharacter", "NonEscapeCharacter", "EscapeCharacter", "DecimalIntegerLiteral",
+		"IdentifierPart", "IdentifierStart", "UnicodeLetter", "UnicodeCombiningMark",
 		"UnicodeDigit", "UnicodeConnectorPunctuation",
 	];
 
 	private static readonly _LITERAL_NAMES: Array<string | undefined> = [
-		undefined, undefined, undefined, "'('", "')'", "'{'", "'}'", "';'", "','", 
-		"'='", "':'", "'.'", "'++'", "'--'", "'+'", "'-'", "'!'", "'*'", "'/'", 
-		"'%'", "'<'", "'>'", "'<='", "'>='", "'=='", "'!='", "'==='", "'!=='", 
-		"'^'", "'&&'", "'||'", "'*='", "'/='", "'%='", "'+='", "'-='", "'^='", 
-		"'null'", undefined, undefined, "'if'", "'else'", "'for'", "'do'", "'while'", 
+		undefined, undefined, undefined, "'('", "')'", "'{'", "'}'", "';'", "','",
+		"'='", "':'", "'.'", "'++'", "'--'", "'+'", "'-'", "'!'", "'*'", "'/'",
+		"'%'", "'<'", "'>'", "'<='", "'>='", "'=='", "'!='", "'==='", "'!=='",
+		"'^'", "'&&'", "'||'", "'*='", "'/='", "'%='", "'+='", "'-='", "'^='",
+		"'null'", undefined, undefined, "'if'", "'else'", "'for'", "'do'", "'while'",
 		"'log'", "'var'", "'let'", "'const'",
 	];
 	private static readonly _SYMBOLIC_NAMES: Array<string | undefined> = [
-		undefined, "MultiLineComment", "SingleLineComment", "OpenParen", "CloseParen", 
-		"OpenBrace", "CloseBrace", "SemiColon", "Comma", "Assign", "Colon", "Dot", 
-		"PlusPlus", "MinusMinus", "Plus", "Minus", "Not", "Multiply", "Divide", 
-		"Modulus", "LessThan", "MoreThan", "LessThanEquals", "GreaterThanEquals", 
-		"Equals", "NotEquals", "StrictEquals", "StrictNotEquals", "Power", "And", 
-		"Or", "MultiplyAssign", "DivideAssign", "ModulusAssign", "PlusAssign", 
-		"MinusAssign", "PowerAssign", "NullLiteral", "BooleanLiteral", "DecimalLiteral", 
-		"If", "Else", "For", "Do", "While", "Log", "Var", "Let", "Const", "Identifier", 
+		undefined, "MultiLineComment", "SingleLineComment", "OpenParen", "CloseParen",
+		"OpenBrace", "CloseBrace", "SemiColon", "Comma", "Assign", "Colon", "Dot",
+		"PlusPlus", "MinusMinus", "Plus", "Minus", "Not", "Multiply", "Divide",
+		"Modulus", "LessThan", "MoreThan", "LessThanEquals", "GreaterThanEquals",
+		"Equals", "NotEquals", "StrictEquals", "StrictNotEquals", "Power", "And",
+		"Or", "MultiplyAssign", "DivideAssign", "ModulusAssign", "PlusAssign",
+		"MinusAssign", "PowerAssign", "NullLiteral", "BooleanLiteral", "DecimalLiteral",
+		"If", "Else", "For", "Do", "While", "Log", "Var", "Let", "Const", "Identifier",
 		"StringLiteral", "WhiteSpaces", "LineTerminator", "UnexpectedCharacter",
 	];
 	public static readonly VOCABULARY: Vocabulary = new VocabularyImpl(TysonLexer._LITERAL_NAMES, TysonLexer._SYMBOLIC_NAMES, []);
@@ -412,4 +413,3 @@ export class TysonLexer extends Lexer {
 	}
 
 }
-
